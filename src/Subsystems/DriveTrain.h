@@ -1,16 +1,15 @@
 #ifndef DriveTrain_H
 #define DriveTrain_H
 
-#include "Commands/Subsystem.h"
+#include "Commands/PIDSubsystem.h"
 #include "WPILib.h"
 
-class DriveTrain: public Subsystem
+class DriveTrain: public PIDSubsystem
 {
-private:
-	// It's desirable that everything possible under private except
-	// for methods that implement subsystem capabilities
 public:
 	DriveTrain();
+	double ReturnPIDInput();
+	void UsePIDOutput(double output);
 	void InitDefaultCommand();
 };
 
