@@ -15,8 +15,8 @@ private:
 	{
 		CommandBase::init();
 		chooser = new SendableChooser();
-		//chooser->AddDefault("Default Auto", new DefaultAutoCommand());
-		//chooser->AddObject("My Auto", new MyAutoCommand());
+		chooser->AddDefault("Auto Drive", new AutoDrive());
+		chooser->AddObject("Auto Turn", new AutoTurn());
 		SmartDashboard::PutData("Auto Modes", chooser);
 	}
 
@@ -52,12 +52,13 @@ private:
 			autonomousCommand.reset(new ExampleCommand());
 		} */
 
-		autonomousCommand.reset(new AutoDrive());
-		autonomousCommand->Start();
-//		autonomousCommand.reset((Command *)chooser->GetSelected());
-//
-//		if (autonomousCommand != NULL)
-//			autonomousCommand->Start();
+//		autonomousCommand.reset(new AutoDrive());
+//		autonomousCommand->Start();
+
+		autonomousCommand.reset((Command *)chooser->GetSelected());
+
+		if (autonomousCommand != NULL)
+			autonomousCommand->Start();
 	}
 
 	void AutonomousPeriodic()

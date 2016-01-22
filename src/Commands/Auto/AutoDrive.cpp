@@ -18,10 +18,10 @@ void AutoDrive::Initialize()
 void AutoDrive::Execute()
 {
 	if (359 > driveTrain->GetGyroAngle()) {
-		driveTrain->AutoDrive(0, -0.4);
+		driveTrain->AutoDrive(0, 0.4);
 	}
 	if (1 > driveTrain->GetGyroAngle()) {
-		driveTrain->AutoDrive(0, 0.4);
+		driveTrain->AutoDrive(0, -0.4);
 	}
 	else {
 		driveTrain->AutoDrive(0.5, 0);
