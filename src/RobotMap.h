@@ -5,8 +5,8 @@
 
 //Drive Train
 
-const int LEFTDRIVEMOTOR = 0;
-const int RIGHTDRIVEMOTOR = 1;
+const int LEFTDRIVEMOTOR = 1;
+const int RIGHTDRIVEMOTOR = 0;
 
 //Buttons
 

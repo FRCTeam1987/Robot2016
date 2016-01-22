@@ -1,5 +1,8 @@
 #include "WPILib.h"
 #include "Commands/Command.h"
+#include "Commands/Auto/AutoTurn.h"
+#include "Commands/Auto/AutoDrive.h"
+#include "Commands/Auto/TestGroup.h"
 #include "CommandBase.h"
 
 class Robot: public IterativeRobot
@@ -49,10 +52,12 @@ private:
 			autonomousCommand.reset(new ExampleCommand());
 		} */
 
-		autonomousCommand.reset((Command *)chooser->GetSelected());
-
-		if (autonomousCommand != NULL)
-			autonomousCommand->Start();
+		autonomousCommand.reset(new TestGroup());
+		autonomousCommand->Start();
+//		autonomousCommand.reset((Command *)chooser->GetSelected());
+//
+//		if (autonomousCommand != NULL)
+//			autonomousCommand->Start();
 	}
 
 	void AutonomousPeriodic()

@@ -37,6 +37,11 @@ void DriveTrain::DriveArcade(Joystick *stick)
 	robotDrive->ArcadeDrive(-stick->GetY(), -stick->GetX());
 }
 
+void DriveTrain::AutoDrive(float move, float rotate)
+{
+	robotDrive->ArcadeDrive(move, rotate);
+}
+
 double DriveTrain::GetGyroAngle()
 {
 	return navx->GetAngle();
