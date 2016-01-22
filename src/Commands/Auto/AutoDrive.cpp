@@ -11,13 +11,21 @@ AutoDrive::AutoDrive()
 // Called just before this Command runs the first time
 void AutoDrive::Initialize()
 {
-
+	driveTrain->ResetGyro();
 }
 
 // Called repeatedly when this Command is scheduled to run
 void AutoDrive::Execute()
 {
-	driveTrain->AutoDrive(0.5, 0);
+	if (359 > driveTrain->GetGyroAngle()) {
+		driveTrain->AutoDrive(0, -0.4);
+	}
+	if (1 > driveTrain->GetGyroAngle()) {
+		driveTrain->AutoDrive(0, 0.4);
+	}
+	else {
+		driveTrain->AutoDrive(0.5, 0);
+	}
 }
 
 // Make this return true when this Command no longer needs to run execute()

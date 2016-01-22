@@ -46,3 +46,8 @@ double DriveTrain::GetGyroAngle()
 {
 	return navx->GetAngle();
 }
+
+void DriveTrain::ResetGyro()
+{
+	navx->Reset();
+}

@@ -20,8 +20,9 @@ public:
 	void UsePIDOutput(double output);
 	void InitDefaultCommand();
 	void DriveArcade(Joystick *stick);
-	void AutoDrive(float move, float rotatet);
+	void AutoDrive(float move, float rotate);
 	double GetGyroAngle();
+	void ResetGyro();
 };
 
 #endif

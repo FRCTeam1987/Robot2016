@@ -52,7 +52,7 @@ private:
 			autonomousCommand.reset(new ExampleCommand());
 		} */
 
-		autonomousCommand.reset(new TestGroup());
+		autonomousCommand.reset(new AutoDrive());
 		autonomousCommand->Start();
 //		autonomousCommand.reset((Command *)chooser->GetSelected());
 //
