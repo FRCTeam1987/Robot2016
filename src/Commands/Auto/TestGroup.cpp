@@ -21,6 +21,6 @@ TestGroup::TestGroup()
 	// a CommandGroup containing them would require both the chassis and the
 	// arm.
 
-	AddSequential(new AutoTurn());
+	AddSequential(new AutoTurn(90));
 	AddSequential(new AutoDrive());
 }

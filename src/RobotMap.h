@@ -3,6 +3,10 @@
 
 #include "WPILib.h"
 
+//Auto Values
+
+const double AUTODRIVESTRAIGHTSPEED = 0.4;
+
 //Drive Train
 
 const int LEFTDRIVEMOTOR = 1;

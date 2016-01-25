@@ -6,8 +6,10 @@
 
 class AutoTurn: public CommandBase
 {
+private:
+	double m_setpoint;
 public:
-	AutoTurn();
+	AutoTurn(double setpoint);
 	void Initialize();
 	void Execute();
 	bool IsFinished();

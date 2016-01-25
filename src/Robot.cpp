@@ -2,6 +2,7 @@
 #include "Commands/Command.h"
 #include "Commands/Auto/AutoTurn.h"
 #include "Commands/Auto/AutoDrive.h"
+#include "Commands/Auto/DriveStraight.h"
 #include "Commands/Auto/TestGroup.h"
 #include "CommandBase.h"
 
@@ -16,7 +17,8 @@ private:
 		CommandBase::init();
 		chooser = new SendableChooser();
 		chooser->AddDefault("Auto Drive", new AutoDrive());
-		chooser->AddObject("Auto Turn", new AutoTurn());
+		chooser->AddObject("Auto Turn - 90", new AutoTurn(45));
+		chooser->AddObject("Drive Straight PID", new DriveStraight(0));
 		SmartDashboard::PutData("Auto Modes", chooser);
 	}
 
