@@ -12,10 +12,15 @@ DriveTrain::DriveTrain() :
 	rightDrive = new Talon(RIGHTDRIVEMOTOR);
 	robotDrive = new RobotDrive(leftDrive, rightDrive);
 	navx = new AHRS(SPI::Port::kMXP);
+	encoder = new Encoder(ENCODERPIN_A, ENCODERPIN_B);
 
 	m_autoMode = DRIVE_STRAIGHT;
 	m_autoSpeed = 0;
 	m_output = 0;
+	//Might need more refinement, doesnt seem to be actual wheel diameter, but works pretty well
+	m_wheelDiameter = 9.0;
+
+	encoder->SetDistancePerPulse((PI * m_wheelDiameter) / ENCODERTICKS);
 }
 
 double DriveTrain::ReturnPIDInput()
@@ -85,4 +90,14 @@ double DriveTrain::GetOutput()
 void DriveTrain::setPID(double P, double I, double D)
 {
 	GetPIDController()->SetPID(P, I, D);
+}
+
+void DriveTrain::ResetEncoder()
+{
+	encoder->Reset();
+}
+
+double DriveTrain::GetEncoderDistance()
+{
+	return encoder->GetDistance();
 }

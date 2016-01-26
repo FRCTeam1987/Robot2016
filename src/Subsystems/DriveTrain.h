@@ -15,10 +15,12 @@ private:
 	Talon *leftDrive;
 	Talon *rightDrive;
 	RobotDrive *robotDrive;
+	Encoder *encoder;
     AHRS *navx;
     double m_output;
     double m_autoSpeed;
     AutoType m_autoMode;
+    double m_wheelDiameter;
 
 public:
 	DriveTrain();
@@ -34,6 +36,8 @@ public:
 	void SetAutoSpeed(double autoSpeed);
 	double GetOutput();
 	void setPID (double P, double I, double D);
+	void ResetEncoder();
+	double GetEncoderDistance();
 };
 
 #endif

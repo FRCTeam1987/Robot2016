@@ -10,7 +10,7 @@ PrintStuff::PrintStuff()
 // Called just before this Command runs the first time
 void PrintStuff::Initialize()
 {
-	printf("Gyro Angle - %f\n", driveTrain->GetGyroAngle());
+	printf("Gyro Angle - %f\tEncoder Distance - %f\n", driveTrain->GetGyroAngle(), driveTrain->GetEncoderDistance());
 }
 
 // Called repeatedly when this Command is scheduled to run

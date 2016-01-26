@@ -18,7 +18,7 @@ private:
 		chooser = new SendableChooser();
 		chooser->AddDefault("Auto Drive", new AutoDrive());
 		chooser->AddObject("Auto Turn - 90", new AutoTurn(45));
-		chooser->AddObject("Drive Straight PID", new DriveStraight(0));
+		chooser->AddObject("Drive Straight PID", new DriveStraight(0, 6));
 		SmartDashboard::PutData("Auto Modes", chooser);
 	}
 

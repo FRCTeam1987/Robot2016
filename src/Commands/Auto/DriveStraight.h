@@ -10,7 +10,7 @@ private:
 	double m_setpoint;
 
 public:
-	DriveStraight(double m_setpoint);
+	DriveStraight(double setpoint, double driveTime);
 	void Initialize();
 	void Execute();
 	bool IsFinished();

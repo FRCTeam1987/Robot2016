@@ -9,6 +9,7 @@ class OI
 private:
 	BroncoJoy *stick;
 	JoystickButton *printStuff;
+	JoystickButton *resetEncoder;
 
 public:
 	OI();

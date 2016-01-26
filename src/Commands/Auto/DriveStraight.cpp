@@ -1,11 +1,11 @@
 #include "DriveStraight.h"
 #include "../../RobotMap.h"
 
-DriveStraight::DriveStraight(double setpoint)
+DriveStraight::DriveStraight(double setpoint, double driveTime)
 {
 	Requires(driveTrain);
 	m_setpoint = setpoint;
-	SetTimeout(6);
+	SetTimeout(driveTime);
 }
 
 // Called just before this Command runs the first time
