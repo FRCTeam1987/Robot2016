@@ -26,7 +26,15 @@ double DriveTrain::ReturnPIDInput()
 void DriveTrain::UsePIDOutput(double output)
 {
 	m_output = output;
-	//Use m_autoSpeed
+
+	if(m_autoMode == DRIVE_STRAIGHT)
+	{
+		AutoDrive(m_autoSpeed, output);
+	}
+	else if(m_autoMode == AUTO_TURN)
+	{
+		AutoDrive(0, output);
+	}
 }
 
 void DriveTrain::InitDefaultCommand()
