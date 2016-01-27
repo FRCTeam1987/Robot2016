@@ -21,6 +21,7 @@ private:
     double m_autoSpeed;
     AutoType m_autoMode;
     double m_wheelDiameter;
+    double m_offset;
 
 public:
 	DriveTrain();
@@ -38,6 +39,7 @@ public:
 	void setPID (double P, double I, double D);
 	void ResetEncoder();
 	double GetEncoderDistance();
+	void SetOffset(double offset);
 };
 
 #endif

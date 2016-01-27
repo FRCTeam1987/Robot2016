@@ -14,10 +14,16 @@ DriveTrain::DriveTrain() :
 	navx = new AHRS(SPI::Port::kMXP);
 	encoder = new Encoder(ENCODERPIN_A, ENCODERPIN_B);
 
+	GetPIDController()->SetContinuous(true);
+	GetPIDController()->SetInputRange(0, 360);
+	GetPIDController()->SetOutputRange(-1, 1);
+
+
 	m_autoMode = DRIVE_STRAIGHT;
 	m_autoSpeed = 0;
 	m_output = 0;
-	//Might need more refinement, doesnt seem to be actual wheel diameter, but works pretty well
+	m_offset = 0;
+	//Might need more refinement, doesn't seem to be actual wheel diameter, but works pretty well
 	m_wheelDiameter = 9.0;
 
 	encoder->SetDistancePerPulse((PI * m_wheelDiameter) / ENCODERTICKS);
@@ -30,6 +36,8 @@ double DriveTrain::ReturnPIDInput()
 
 void DriveTrain::UsePIDOutput(double output)
 {
+	output>0 ? output += m_offset : output -= m_offset;
+
 	m_output = output;
 
 	if(m_autoMode == DRIVE_STRAIGHT)
@@ -49,12 +57,12 @@ void DriveTrain::InitDefaultCommand()
 
 void DriveTrain::DriveArcade(Joystick *stick)
 {
-	robotDrive->ArcadeDrive(-stick->GetY(), -stick->GetX());
+	robotDrive->ArcadeDrive(stick->GetY(), -stick->GetX());
 }
 
 void DriveTrain::AutoDrive(float move, float rotate)
 {
-	robotDrive->ArcadeDrive(move, rotate);
+	robotDrive->ArcadeDrive(-move, rotate);
 }
 
 double DriveTrain::GetGyroAngle()
@@ -100,4 +108,9 @@ void DriveTrain::ResetEncoder()
 double DriveTrain::GetEncoderDistance()
 {
 	return encoder->GetDistance();
+}
+
+void DriveTrain::SetOffset(double offset)
+{
+	m_offset = offset;
 }

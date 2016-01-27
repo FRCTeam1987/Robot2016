@@ -1,9 +1,9 @@
 #include "WPILib.h"
 #include "Commands/Command.h"
-#include "Commands/Auto/AutoTurn.h"
-#include "Commands/Auto/AutoDrive.h"
-#include "Commands/Auto/DriveStraight.h"
-#include "Commands/Auto/TestGroup.h"
+#include "Commands/DriveTrain/AutoTurn.h"
+#include "Commands/DriveTrain/AutoDrive.h"
+#include "Commands/DriveTrain/DriveStraight.h"
+#include "Commands/DriveTrain/CrossLowBar.h"
 #include "CommandBase.h"
 
 class Robot: public IterativeRobot
@@ -18,7 +18,8 @@ private:
 		chooser = new SendableChooser();
 		chooser->AddDefault("Auto Drive", new AutoDrive());
 		chooser->AddObject("Auto Turn - 90", new AutoTurn(45));
-		chooser->AddObject("Drive Straight PID", new DriveStraight(0, 6));
+		chooser->AddObject("Drive Straight PID", new DriveStraight(0, 48, 0.5));
+		chooser->AddObject("Cross Low Bar", new CrossLowBar());
 		SmartDashboard::PutData("Auto Modes", chooser);
 	}
 
