@@ -70,9 +70,50 @@ double DriveTrain::GetGyroAngle()
 	return navx->GetAngle();
 }
 
+float DriveTrain::GetGyroX()
+{
+	return navx->GetRawGyroX();
+}
+
+float DriveTrain::GetGyroY()
+{
+	return navx->GetRawGyroY();
+}
+
+float DriveTrain::GetGyroZ()
+{
+	return navx->GetRawGyroZ();
+}
+
+float DriveTrain::GetVelocityX()
+{
+	return navx->GetVelocityX();
+}
+
+float DriveTrain::GetVelocityY()
+{
+	return navx->GetVelocityY();
+}
+
+float DriveTrain::GetVelocityZ()
+{
+	return navx->GetVelocityZ();
+}
+
+float DriveTrain::GetPitch()
+{
+	return navx->GetPitch();
+}
+
+float DriveTrain::GetRoll()
+{
+	return navx->GetRoll();
+}
+
 void DriveTrain::ResetGyro()
 {
 	navx->Reset();
+	navx->ZeroYaw();
 }
 
 void DriveTrain::SetAutoMode(AutoType autoMode)

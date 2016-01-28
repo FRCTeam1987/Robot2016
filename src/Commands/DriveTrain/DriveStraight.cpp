@@ -13,11 +13,11 @@ DriveStraight::DriveStraight(double angle, double distance, double speed)
 void DriveStraight::Initialize()
 {
 	//previous values -0.012, 0.004, -0.023
-	driveTrain->setPID(-0.05, 0.0, 0.0);
+	driveTrain->setPID(-0.06, -0.004, 0.0);
 	driveTrain->SetAutoSpeed(motorSpeed);
 	driveTrain->SetAutoMode(driveTrain->DRIVE_STRAIGHT);
 
-	driveTrain->SetOffset(0.01);
+	driveTrain->SetOffset(0.0);
 	driveTrain->SetSetpoint(angleSetpoint);
 	driveTrain->Enable();
 	driveTrain->ResetGyro();

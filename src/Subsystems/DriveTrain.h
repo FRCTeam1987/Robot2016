@@ -31,6 +31,16 @@ public:
 	void DriveArcade(Joystick *stick);
 	void AutoDrive(float move, float rotate);
 	double GetGyroAngle();
+
+	float GetGyroX();
+	float GetGyroY();
+	float GetGyroZ();
+	float GetVelocityX();
+	float GetVelocityY();
+	float GetVelocityZ();
+	float GetPitch();
+	float GetRoll();
+
 	void ResetGyro();
 	void SetAutoMode(AutoType autoMode);
 	AutoType GetAutoMode();
