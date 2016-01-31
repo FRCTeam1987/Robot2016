@@ -8,35 +8,11 @@ AutoTurn::AutoTurn(double setpoint)
 
 void AutoTurn::Initialize()
 {
-//	if(m_setpoint <= 30)
-//	{
-//		driveTrain->setPID(-0.018, 0.0, -0.01);
-//	}
-//	else if(m_setpoint <= 60)
-//	{
-//		//60 degrees PID: -0.015, 0.0, -0.025
-//		driveTrain->setPID(-0.015, 0.0, -0.025);
-//	}
-//	else if(m_setpoint <= 90)
-//	{
-//		driveTrain->setPID(-0.015, 0.0, -0.0);
-//	}
-//	else if(m_setpoint <= 120)
-//	{
-//		driveTrain->setPID(-0.015, 0.0, -0.0);
-//	}
-//	else if(m_setpoint <= 150)
-//	{
-//		driveTrain->setPID(-0.015, 0.0, -0.0);
-//	}
-//	else if(m_setpoint <= 180)
-//	{
-//		driveTrain->setPID(-0.015, 0.0, -0.0);
-//	}
-//	driveTrain->setPID(-0.02, 0.0, -0.02);
-	// TODO - Ask Lucas about the previous lines
-	driveTrain->ResetGyro();
+	//60 degrees PID: -0.015, 0.0, -0.025
+    // driveTrain->setPID(-0.02, 0.0, -0.02);
 	driveTrain->setPID(-0.012, 0.0, -0.019);
+
+	driveTrain->ResetGyro();
 	driveTrain->SetAutoMode(driveTrain->AUTO_TURN);
 
 	driveTrain->SetOffset(0.2);

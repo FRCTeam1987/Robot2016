@@ -16,13 +16,13 @@ DriveTrain::DriveTrain() :
 
 	GetPIDController()->SetContinuous(true);
 	GetPIDController()->SetInputRange(0, 360);
-	GetPIDController()->SetOutputRange(-1, 1);
+	GetPIDController()->SetOutputRange((-1 + m_offset), 1 - m_offset);
 
 
 	m_autoMode = DRIVE_STRAIGHT;
 	m_autoSpeed = 0;
 	m_output = 0;
-	m_offset = 0;
+	m_offset = 0; //make this number positive
 
 	//Might need more refinement, doesn't seem to be actual wheel diameter, but works pretty well
 	m_wheelDiameter = 9.0;
@@ -58,12 +58,12 @@ void DriveTrain::InitDefaultCommand()
 
 void DriveTrain::DriveArcade(Joystick *stick)
 {
-	robotDrive->ArcadeDrive(-stick->GetY(), stick->GetX());
+	robotDrive->ArcadeDrive(stick->GetY(), stick->GetX());
 }
 
 void DriveTrain::AutoDrive(float move, float rotate)
 {
-	robotDrive->ArcadeDrive(-move, rotate);
+	robotDrive->ArcadeDrive(move, rotate);
 }
 
 double DriveTrain::GetGyroAngle()

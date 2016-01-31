@@ -18,19 +18,17 @@ private:
 		CommandBase::init();
 		chooser = new SendableChooser();
 		chooser->AddObject("Auto Drive", new AutoDrive());
-		chooser->AddObject("Auto Turn - 90", new AutoTurn(45));
-		/*  Delete these before commiting to GitHub   */
 		chooser->AddObject("Auto Turn - 030", new AutoTurn(30));
 		chooser->AddObject("Auto Turn - 060", new AutoTurn(60));
 		chooser->AddObject("Auto Turn - 090", new AutoTurn(90));
 		chooser->AddObject("Auto Turn - 120", new AutoTurn(120));
 		chooser->AddObject("Auto Turn - 150", new AutoTurn(150));
-		/*  Delete these before commiting to GitHub   */
-//		chooser->AddObject("Drive Straight PID 75", new DriveStraight(0, 120, 0.75));
-//		chooser->AddDefault("Drive Straight PID 100", new DriveStraight(0, 120, 1.0));
+		chooser->AddDefault("Drive Straight PID 50\%", new DriveStraight(0, 60, 0.5));
+		chooser->AddObject("Drive Straight PID 75\%", new DriveStraight(0, 60, 0.75));
+		chooser->AddObject("Drive Straight PID 100\%", new DriveStraight(0, 60, 1.0));
 		chooser->AddObject("Cross Low Bar", new CrossLowBar());
-		SmartDashboard::PutData("Auto Modes", chooser);
 		chooser->AddObject("Wait For Pitch", new WaitForPitch(8,0.6));
+		SmartDashboard::PutData("Auto Modes", chooser);
 	}
 
 	/**
@@ -68,8 +66,8 @@ private:
 //		autonomousCommand.reset(new AutoDrive());
 //		autonomousCommand->Start();
 
-//		autonomousCommand.reset((Command *)chooser->GetSelected());
-		autonomousCommand.reset(new DriveStraight(0, 120, .70));
+		autonomousCommand.reset((Command *)chooser->GetSelected());
+//		autonomousCommand.reset(new DriveStraight(0, 120, .70));
 
 		if (autonomousCommand != NULL)
 			autonomousCommand->Start();
