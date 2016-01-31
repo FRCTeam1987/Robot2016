@@ -5,6 +5,7 @@
 #include "Commands/DriveTrain/DriveStraight.h"
 #include "Commands/DriveTrain/CrossLowBar.h"
 #include "CommandBase.h"
+#include "Commands/WaitForPitch.h"
 
 class Robot: public IterativeRobot
 {
@@ -29,6 +30,7 @@ private:
 //		chooser->AddDefault("Drive Straight PID 100", new DriveStraight(0, 120, 1.0));
 		chooser->AddObject("Cross Low Bar", new CrossLowBar());
 		SmartDashboard::PutData("Auto Modes", chooser);
+		chooser->AddObject("Wait For Pitch", new WaitForPitch(8,0.6));
 	}
 
 	/**
