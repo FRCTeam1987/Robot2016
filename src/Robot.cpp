@@ -69,7 +69,7 @@ private:
 //		autonomousCommand->Start();
 
 //		autonomousCommand.reset((Command *)chooser->GetSelected());
-		autonomousCommand.reset(new DriveStraight(0, 120, .90));
+		autonomousCommand.reset(new DriveStraight(0, 120, .70));
 
 		if (autonomousCommand != NULL)
 			autonomousCommand->Start();

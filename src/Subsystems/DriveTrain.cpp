@@ -58,7 +58,7 @@ void DriveTrain::InitDefaultCommand()
 
 void DriveTrain::DriveArcade(Joystick *stick)
 {
-	robotDrive->ArcadeDrive(stick->GetY(), -stick->GetX());
+	robotDrive->ArcadeDrive(-stick->GetY(), stick->GetX());
 }
 
 void DriveTrain::AutoDrive(float move, float rotate)
