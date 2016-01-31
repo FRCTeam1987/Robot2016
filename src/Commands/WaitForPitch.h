@@ -6,8 +6,11 @@
 
 class WaitForPitch: public CommandBase
 {
+private:
+	float targetPitch;
+	double motorSpeed;
 public:
-	WaitForPitch();
+	WaitForPitch(float setPitch,double speed);
 	void Initialize();
 	void Execute();
 	bool IsFinished();

@@ -33,8 +33,10 @@ void AutoTurn::Initialize()
 //	{
 //		driveTrain->setPID(-0.015, 0.0, -0.0);
 //	}
-	driveTrain->setPID(-0.02, 0.0, -0.02);
+//	driveTrain->setPID(-0.02, 0.0, -0.02);
+	// TODO - Ask Lucas about the previous lines
 	driveTrain->ResetGyro();
+	driveTrain->setPID(-0.012, 0.0, -0.019);
 	driveTrain->SetAutoMode(driveTrain->AUTO_TURN);
 
 	driveTrain->SetOffset(0.2);
