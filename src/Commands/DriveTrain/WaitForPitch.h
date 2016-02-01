@@ -1,7 +1,7 @@
 #ifndef WaitForPitch_H
 #define WaitForPitch_H
 
-#include "../CommandBase.h"
+#include "../../CommandBase.h"
 #include "WPILib.h"
 
 class WaitForPitch: public CommandBase

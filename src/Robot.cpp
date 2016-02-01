@@ -4,8 +4,8 @@
 #include "Commands/DriveTrain/AutoDrive.h"
 #include "Commands/DriveTrain/DriveStraight.h"
 #include "Commands/DriveTrain/CrossLowBar.h"
+#include "Commands/DriveTrain/WaitForPitch.h"
 #include "CommandBase.h"
-#include "Commands/WaitForPitch.h"
 
 class Robot: public IterativeRobot
 {

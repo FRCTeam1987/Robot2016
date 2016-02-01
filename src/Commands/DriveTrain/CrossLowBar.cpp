@@ -1,5 +1,6 @@
 #include "CrossLowBar.h"
 #include "DriveStraight.h"
+#include "WaitForPitch.h"
 
 CrossLowBar::CrossLowBar()
 {
