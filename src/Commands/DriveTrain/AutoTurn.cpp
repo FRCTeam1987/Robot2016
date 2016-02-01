@@ -8,7 +8,7 @@ AutoTurn::AutoTurn(double setpoint)
 
 void AutoTurn::Initialize()
 {
-	//60 degrees PID: -0.015, 0.0, -0.025
+	// 60 degrees PID: -0.015, 0.0, -0.025
     // driveTrain->setPID(-0.02, 0.0, -0.02);
 	driveTrain->setPID(-0.012, 0.0, -0.019);
 
