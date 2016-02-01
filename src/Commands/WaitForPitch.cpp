@@ -10,10 +10,6 @@ WaitForPitch::WaitForPitch(float setPitch, double speed)
 // Called just before this Command runs the first time
 void WaitForPitch::Initialize()
 {
-//	driveTrain->ResetGyro();
-//	driveTrain->setPID(-0.06, -0.004, 0.0);
-//	driveTrain->SetAutoSpeed(motorSpeed);
-//	driveTrain->SetAutoMode(driveTrain->DRIVE_STRAIGHT);
 	driveTrain->ResetGyro();
 	driveTrain->ResetEncoder();
 	driveTrain->setPID(-0.06, -0.004, 0.0);
@@ -33,15 +29,12 @@ void WaitForPitch::Execute()
 bool WaitForPitch::IsFinished()
 {
 	return driveTrain->GetRoll() <= targetPitch + 1 && driveTrain->GetRoll() >= targetPitch - 1;   //using roll, not pitch, because reasons
-	std::cout<<driveTrain->GetRoll()<<"         "<<targetPitch<<std::endl;
-	//return driveTrain->GetRoll() <= targetPitch;
 }
 
 // Called once after isFinished returns true
 void WaitForPitch::End()
 {
 	driveTrain->Disable();
-	driveTrain->SetAutoSpeed(0);
 }
 
 // Called when another command which requires one or more of the same
@@ -49,5 +42,4 @@ void WaitForPitch::End()
 void WaitForPitch::Interrupted()
 {
 	driveTrain->Disable();
-	driveTrain->SetAutoSpeed(0);
 }

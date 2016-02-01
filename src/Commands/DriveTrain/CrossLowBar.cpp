@@ -3,7 +3,7 @@
 
 CrossLowBar::CrossLowBar()
 {
-	AddSequential(new DriveStraight(0, 40, 0.6));
-
+	AddSequential(new WaitForPitch(8,0.6));
+	AddSequential(new WaitForPitch(-3.5,-0.04));
 }
 
