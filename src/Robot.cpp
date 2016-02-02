@@ -23,9 +23,9 @@ private:
 		chooser->AddObject("Auto Turn - 090", new AutoTurn(90));
 		chooser->AddObject("Auto Turn - 120", new AutoTurn(120));
 		chooser->AddObject("Auto Turn - 150", new AutoTurn(150));
-		chooser->AddDefault("Drive Straight PID 50\%", new DriveStraight(0, 60, 0.5));
-		chooser->AddObject("Drive Straight PID 75\%", new DriveStraight(0, 60, 0.75));
-		chooser->AddObject("Drive Straight PID 100\%", new DriveStraight(0, 60, 1.0));
+		chooser->AddDefault("Drive Straight PID 050\%", new DriveStraight(0, 100, 0.5));
+		chooser->AddObject("Drive Straight PID 075\%", new DriveStraight(0, 100, 0.75));
+		chooser->AddObject("Drive Straight PID 100\%", new DriveStraight(0, 100, 1.0));
 		chooser->AddObject("Cross Low Bar", new CrossLowBar());
 		chooser->AddObject("Wait For Pitch", new WaitForPitch(8,0.6));
 		SmartDashboard::PutData("Auto Modes", chooser);

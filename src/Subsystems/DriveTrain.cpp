@@ -14,9 +14,12 @@ DriveTrain::DriveTrain() :
 	navx = new AHRS(SPI::Port::kMXP);
 	encoder = new Encoder(ENCODERPIN_A, ENCODERPIN_B);
 
+	GetPIDController()->SetAbsoluteTolerance(2.0);
 	GetPIDController()->SetContinuous(true);
 	GetPIDController()->SetInputRange(0, 360);
-	GetPIDController()->SetOutputRange((-1 + m_offset), 1 - m_offset);
+//	GetPIDController()->SetOutputRange((-1 + m_offset), 1 - m_offset);
+
+	GetPIDController()->SetOutputRange(-1, 1);
 
 
 	m_autoMode = DRIVE_STRAIGHT;
@@ -37,9 +40,15 @@ double DriveTrain::ReturnPIDInput()
 
 void DriveTrain::UsePIDOutput(double output)
 {
-	output>0 ? output += m_offset : output -= m_offset;
-
+//	output>0 ? output += m_offset : output -= m_offset;
 	m_output = output;
+
+	if(m_output < 0)
+	{
+		m_output = m_output - m_offset;
+	}else{
+		m_output = m_output + m_offset;
+	}
 
 	if(m_autoMode == DRIVE_STRAIGHT)
 	{
@@ -58,12 +67,13 @@ void DriveTrain::InitDefaultCommand()
 
 void DriveTrain::DriveArcade(Joystick *stick)
 {
+	printf("Move - %f \t Rotate - %f \n", stick->GetY(), -stick->GetX());
 	robotDrive->ArcadeDrive(stick->GetY(), -stick->GetX());
 }
 
 void DriveTrain::AutoDrive(float move, float rotate)
 {
-	robotDrive->ArcadeDrive(move, rotate);
+	robotDrive->ArcadeDrive(-move, rotate);
 }
 
 double DriveTrain::GetGyroAngle()
@@ -155,5 +165,6 @@ double DriveTrain::GetEncoderDistance()
 
 void DriveTrain::SetOffset(double offset)
 {
+	abs(offset);
 	m_offset = offset;
 }
