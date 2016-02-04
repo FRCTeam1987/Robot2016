@@ -23,11 +23,17 @@ private:
     double m_wheelDiameter;
     double m_offset;
 
+    std::shared_ptr<NetworkTable> nt;
+
 public:
 	DriveTrain();
 	double ReturnPIDInput();
 	void UsePIDOutput(double output);
 	void InitDefaultCommand();
+
+	void SetNetworkTable(std::shared_ptr<NetworkTable> nt);
+	std::shared_ptr<NetworkTable> GetNetworkTable();
+
 	void DriveArcade(Joystick *stick);
 	void AutoDrive(float move, float rotate);
 	double GetGyroAngle();

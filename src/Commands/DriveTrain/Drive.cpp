@@ -23,7 +23,7 @@ void Drive::Execute()
 //			driveTrain->GetVelocityY(),
 //			driveTrain->GetVelocityZ());
 	driveTrain->DriveArcade(oi->getStick());
-	printf("Roll: %6.3f\n", driveTrain->GetRoll());
+	//printf("Roll: %6.3f\n", driveTrain->GetRoll());
 }
 
 // Make this return true when this Command no longer needs to run execute()
