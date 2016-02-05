@@ -1,7 +1,9 @@
 #include "Drive.h"
 #include "../../Subsystems/DriveTrain.h"
-
+#include <iostream>
 #include <iomanip>
+
+using namespace std;
 
 Drive::Drive()
 {
@@ -23,7 +25,9 @@ void Drive::Execute()
 //			driveTrain->GetVelocityY(),
 //			driveTrain->GetVelocityZ());
 	driveTrain->DriveArcade(oi->getStick());
-	printf("Roll: %6.3f\n", driveTrain->GetRoll());
+	cout<<AnalogInput(0);
+	//printf("Roll: %6.3f\n", driveTrain->GetRoll());
+
 }
 
 // Make this return true when this Command no longer needs to run execute()
