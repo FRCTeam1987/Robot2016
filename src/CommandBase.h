@@ -19,8 +19,10 @@ public:
 	CommandBase();
 	static void init();
 	// Create a single static instance of all of your subsystems
-	static std::unique_ptr<OI> oi;
+	static OI *oi;
 	static DriveTrain *driveTrain;
+
+	static std::shared_ptr<NetworkTable> table;
 };
 
 #endif

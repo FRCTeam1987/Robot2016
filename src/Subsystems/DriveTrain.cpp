@@ -65,9 +65,19 @@ void DriveTrain::InitDefaultCommand()
 	this->SetDefaultCommand(new Drive());
 }
 
+void DriveTrain::SetNetworkTable(std::shared_ptr<NetworkTable> nt)
+{
+	this->nt = nt;
+}
+
+std::shared_ptr<NetworkTable> DriveTrain::GetNetworkTable()
+{
+	return nt;
+}
+
 void DriveTrain::DriveArcade(Joystick *stick)
 {
-	printf("Move - %f \t Rotate - %f \n", stick->GetY(), -stick->GetX());
+	//printf("Move - %f \t Rotate - %f \n", stick->GetY(), -stick->GetX());
 	robotDrive->ArcadeDrive(stick->GetY(), -stick->GetX());
 }
 
