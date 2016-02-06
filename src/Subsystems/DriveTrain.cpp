@@ -22,6 +22,8 @@ DriveTrain::DriveTrain() :
 	rightDriveSlave->SetControlMode(CANTalon::kFollower);
 	rightDriveSlave->Set(RIGHTDRIVEMOTORMASTER);
 
+	SetCoast();
+
 	robotDrive = new RobotDrive(leftDriveMaster, rightDriveMaster);
 	navx = new AHRS(SPI::Port::kMXP);
 	encoder = new Encoder(ENCODERPIN_A, ENCODERPIN_B);
@@ -189,4 +191,14 @@ void DriveTrain::SetOffset(double offset)
 {
 	abs(offset);
 	m_offset = offset;
+}
+
+void DriveTrain::SetBrake() {
+	leftDriveMaster->ConfigNeutralMode(CANSpeedController::NeutralMode::kNeutralMode_Brake);
+	rightDriveMaster->ConfigNeutralMode(CANSpeedController::NeutralMode::kNeutralMode_Brake);
+}
+
+void DriveTrain::SetCoast() {
+	leftDriveMaster->ConfigNeutralMode(CANSpeedController::NeutralMode::kNeutralMode_Coast);
+	rightDriveMaster->ConfigNeutralMode(CANSpeedController::NeutralMode::kNeutralMode_Coast);
 }

@@ -58,6 +58,9 @@ public:
 	void ResetEncoder();
 	double GetEncoderDistance();
 	void SetOffset(double offset);
+
+	void SetBrake();
+	void SetCoast();
 };
 
 #endif
