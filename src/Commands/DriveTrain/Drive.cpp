@@ -25,7 +25,6 @@ void Drive::Execute()
 //			driveTrain->GetVelocityY(),
 //			driveTrain->GetVelocityZ());
 	driveTrain->DriveArcade(oi->getStick());
-	cout<<AnalogInput(0);
 	//printf("Roll: %6.3f\n", driveTrain->GetRoll());
 
 }
