@@ -3,7 +3,6 @@
 #include <math.h>
 
 // Joystick range in which movement is considered accidental
-#define JOY_DEAD 0.05
 #define MOTOR_MIN 0.3 //Was 0.15
 
 // Uncomment the following line to enable exponential drive control
@@ -13,28 +12,36 @@
 #define EXPO_MULTIPLIER_TURN 2
 
 #ifdef EXPO_DRIVE
-static float expDrive(float joyVal, float expo)
+float BroncoJoy::expDrive(float joyVal, float expo) const
 {
-	float joyMax = 1.0 - JOY_DEAD;
+	float joyMax = 1.0 - m_deadzone;
 	float joySign = joyVal<0 ? -1. : 1.;
-	float joyLive = fabs(joyVal) - JOY_DEAD;
+	float joyLive = fabs(joyVal) - m_deadzone;
 	return joySign * (MOTOR_MIN + ((1.0-MOTOR_MIN) * pow(joyLive, expo)/pow(joyMax,expo)));
 }
 #endif
 
-BroncoJoy::BroncoJoy(uint32_t port) :
+BroncoJoy::BroncoJoy(uint32_t port,
+		float expodrive, float expoturn, float deadzone) :
 	Joystick(port) {
+	m_expodrive = expodrive;
+	m_expoturn = expoturn;
+	m_deadzone = deadzone;
 }
 
-BroncoJoy::BroncoJoy(uint32_t port, uint32_t numAxisTypes, uint32_t numButtonTypes) :
+BroncoJoy::BroncoJoy(uint32_t port, uint32_t numAxisTypes, uint32_t numButtonTypes,
+		float expodrive, float expoturn, float deadzone) :
 	Joystick(port, numAxisTypes, numButtonTypes) {
+	m_expodrive = expodrive;
+	m_expoturn = expoturn;
+	m_deadzone = deadzone;
 }
 
 float BroncoJoy::GetX(JoystickHand hand) const {
 	float x = Joystick::GetX(hand);
 
 	// dead zone
-	if (fabs(x) < JOY_DEAD)
+	if (fabs(x) < m_deadzone)
 		x = 0;
 #ifdef EXPO_DRIVE
 	else
@@ -49,9 +56,8 @@ float BroncoJoy::GetX(JoystickHand hand) const {
 
 float BroncoJoy::GetY(JoystickHand hand) const {
 	float y = Joystick::GetY(hand);
-	float beforeY = y;
 
-	if (fabs(y) < JOY_DEAD)
+	if (fabs(y) < m_deadzone)
 		y = 0;
 #ifdef EXPO_DRIVE
 	else
