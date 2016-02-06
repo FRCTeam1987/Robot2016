@@ -16,8 +16,10 @@ const double AUTODRIVESTRAIGHTSPEED = 0.4;
 
 //Drive Train
 
-const int LEFTDRIVEMOTOR = 1;
-const int RIGHTDRIVEMOTOR = 0;
+const int LEFTDRIVEMOTORMASTER = 2;
+const int LEFTDRIVEMOTORSLAVE = 3;
+const int RIGHTDRIVEMOTORMASTER = 0;
+const int RIGHTDRIVEMOTORSLAVE = 1;
 
 //Buttons
 

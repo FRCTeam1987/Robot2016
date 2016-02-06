@@ -12,8 +12,10 @@ public:
 	enum AutoType {AUTO_TURN, DRIVE_STRAIGHT};
 
 private:
-	Talon *leftDrive;
-	Talon *rightDrive;
+	CANTalon *leftDriveMaster;
+	CANTalon *leftDriveSlave;
+	CANTalon *rightDriveMaster;
+	CANTalon *rightDriveSlave;
 	RobotDrive *robotDrive;
 	Encoder *encoder;
     AHRS *navx;

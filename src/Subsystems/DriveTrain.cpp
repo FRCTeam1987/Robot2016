@@ -8,9 +8,21 @@
 DriveTrain::DriveTrain() :
 		PIDSubsystem("DriveTrain", 1.0, 0.0, 0.0)
 {
-	leftDrive = new Talon(LEFTDRIVEMOTOR);
-	rightDrive = new Talon(RIGHTDRIVEMOTOR);
-	robotDrive = new RobotDrive(leftDrive, rightDrive);
+	leftDriveMaster = new CANTalon(LEFTDRIVEMOTORMASTER);
+	leftDriveMaster->SetControlMode(CANTalon::kPercentVbus);
+
+	leftDriveSlave = new CANTalon(LEFTDRIVEMOTORSLAVE);
+	leftDriveSlave->SetControlMode(CANTalon::kFollower);
+	leftDriveSlave->Set(LEFTDRIVEMOTORMASTER);
+
+	rightDriveMaster = new CANTalon(RIGHTDRIVEMOTORMASTER);
+	rightDriveMaster->SetControlMode(CANTalon::kPercentVbus);
+
+	rightDriveSlave = new CANTalon(RIGHTDRIVEMOTORSLAVE);
+	rightDriveSlave->SetControlMode(CANTalon::kFollower);
+	rightDriveSlave->Set(RIGHTDRIVEMOTORMASTER);
+
+	robotDrive = new RobotDrive(leftDriveMaster, rightDriveMaster);
 	navx = new AHRS(SPI::Port::kMXP);
 	encoder = new Encoder(ENCODERPIN_A, ENCODERPIN_B);
 
