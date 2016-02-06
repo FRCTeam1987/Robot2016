@@ -38,6 +38,7 @@ private:
      */
 	void DisabledInit()
 	{
+		CommandBase::driveTrain->SetBrake();
 	}
 
 	void DisabledPeriodic()

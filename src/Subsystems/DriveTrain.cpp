@@ -10,6 +10,7 @@ DriveTrain::DriveTrain() :
 {
 	leftDriveMaster = new CANTalon(LEFTDRIVEMOTORMASTER);
 	leftDriveMaster->SetControlMode(CANTalon::kPercentVbus);
+	leftDriveMaster->Set(0);
 
 	leftDriveSlave = new CANTalon(LEFTDRIVEMOTORSLAVE);
 	leftDriveSlave->SetControlMode(CANTalon::kFollower);
@@ -17,6 +18,7 @@ DriveTrain::DriveTrain() :
 
 	rightDriveMaster = new CANTalon(RIGHTDRIVEMOTORMASTER);
 	rightDriveMaster->SetControlMode(CANTalon::kPercentVbus);
+	rightDriveMaster->Set(0);
 
 	rightDriveSlave = new CANTalon(RIGHTDRIVEMOTORSLAVE);
 	rightDriveSlave->SetControlMode(CANTalon::kFollower);
@@ -25,6 +27,7 @@ DriveTrain::DriveTrain() :
 	SetCoast();
 
 	robotDrive = new RobotDrive(leftDriveMaster, rightDriveMaster);
+	robotDrive->SetSafetyEnabled(false);
 	navx = new AHRS(SPI::Port::kMXP);
 	encoder = new Encoder(ENCODERPIN_A, ENCODERPIN_B);
 
@@ -45,6 +48,7 @@ DriveTrain::DriveTrain() :
 	m_wheelDiameter = 9.0;
 
 	encoder->SetDistancePerPulse((PI * m_wheelDiameter) / ENCODERTICKS);
+	this->Disable();
 }
 
 double DriveTrain::ReturnPIDInput()
@@ -91,7 +95,7 @@ std::shared_ptr<NetworkTable> DriveTrain::GetNetworkTable()
 
 void DriveTrain::DriveArcade(Joystick *stick)
 {
-	//printf("Move - %f \t Rotate - %f \n", stick->GetY(), -stick->GetX());
+	printf("Move - %f \t Rotate - %f \n", stick->GetY(), -stick->GetX());
 	robotDrive->ArcadeDrive(stick->GetY(), -stick->GetX());
 }
 
@@ -196,9 +200,13 @@ void DriveTrain::SetOffset(double offset)
 void DriveTrain::SetBrake() {
 	leftDriveMaster->ConfigNeutralMode(CANSpeedController::NeutralMode::kNeutralMode_Brake);
 	rightDriveMaster->ConfigNeutralMode(CANSpeedController::NeutralMode::kNeutralMode_Brake);
+	leftDriveSlave->ConfigNeutralMode(CANSpeedController::NeutralMode::kNeutralMode_Brake);
+	rightDriveSlave->ConfigNeutralMode(CANSpeedController::NeutralMode::kNeutralMode_Brake);
 }
 
 void DriveTrain::SetCoast() {
 	leftDriveMaster->ConfigNeutralMode(CANSpeedController::NeutralMode::kNeutralMode_Coast);
 	rightDriveMaster->ConfigNeutralMode(CANSpeedController::NeutralMode::kNeutralMode_Coast);
+	leftDriveSlave->ConfigNeutralMode(CANSpeedController::NeutralMode::kNeutralMode_Coast);
+	rightDriveSlave->ConfigNeutralMode(CANSpeedController::NeutralMode::kNeutralMode_Coast);
 }
