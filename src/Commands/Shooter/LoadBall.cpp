@@ -23,4 +23,5 @@ LoadBall::LoadBall()
 
 	AddSequential(new SetIntake(Shooter::kIntakeForward));
 	AddSequential(new WaitForBall());
+	AddSequential(new SetIntake(Shooter::kIntakeOff));
 }

@@ -6,6 +6,7 @@
 #include "Commands/Shooter/SetIntake.h"
 #include "Commands/Shooter/LoadBall.h"
 #include "Commands/Shooter/WaitForBall.h"
+#include "Commands/Shooter/SetShooterSpeed.h"
 
 OI::OI()
 {
@@ -17,6 +18,9 @@ OI::OI()
 	reverseIntakeMotor = new JoystickButton(stick, REVERSEINTAKEMOTORBUTTON);
 	stopIntakeMotor = new JoystickButton(stick, STOPINTAKEMOTORBUTTON);
 	loadBall = new JoystickButton(stick, LOADBALLBUTTON);
+	spinShooter = new JoystickButton(stick, SPINSHOOTERBUTTON);
+	anotherSpinShooter = new JoystickButton(stick, FASTSHOOTERBUTTON);
+	stopSpinShooter = new JoystickButton(stick, STOPSHOOTERBUTTON);
 
 	printStuff->WhenPressed(new PrintStuff());
 	resetEncoder->WhenPressed(new ResetEncoder());
@@ -26,6 +30,9 @@ OI::OI()
 	reverseIntakeMotor->WhenReleased(new SetIntake(Shooter::kIntakeOff));
 	stopIntakeMotor->WhenPressed(new SetIntake(Shooter::kIntakeOff));
 	loadBall->WhenPressed(new LoadBall());
+	spinShooter->WhenPressed(new SetShooterSpeed(3500));
+	anotherSpinShooter->WhenPressed(new SetShooterSpeed(5000));
+	stopSpinShooter->WhenPressed(new SetShooterSpeed(0));
 }
 
 Joystick* OI::getStick()

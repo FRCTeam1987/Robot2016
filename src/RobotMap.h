@@ -25,6 +25,7 @@ const int RIGHTDRIVEMOTORSLAVE = 3;
 //Shooter
 
 const int INTAKEMOTOR = 0;
+const int WHEELMOTOR = 4;
 
 //Buttons
 
@@ -34,5 +35,8 @@ const int FORWARDINTAKEMOTORBUTTON = 7;
 const int REVERSEINTAKEMOTORBUTTON = 9;
 const int STOPINTAKEMOTORBUTTON = 11;
 const int LOADBALLBUTTON = 2;
+const int SPINSHOOTERBUTTON = 6;
+const int FASTSHOOTERBUTTON = 8;
+const int STOPSHOOTERBUTTON = 4;
 
 #endif

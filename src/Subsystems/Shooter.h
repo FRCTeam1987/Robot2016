@@ -4,20 +4,20 @@
 #include "Commands/PIDSubsystem.h"
 #include "WPILib.h"
 
-class Shooter: public PIDSubsystem
+class Shooter: public Subsystem
 {
 private:
 	Talon *intakeMotor;
+	CANTalon *wheelMotor;
 	DigitalInput *hasBall;
 
 public:
 	enum IntakeMode { kIntakeForward=0, kIntakeReverse, kIntakeOff };
 
 	Shooter();
-	double ReturnPIDInput();
-	void UsePIDOutput(double output);
 	void InitDefaultCommand();
 	void SetIntake(IntakeMode mode);
+	void SetWheel(float rpm);
 	bool HasBall();
 };
 

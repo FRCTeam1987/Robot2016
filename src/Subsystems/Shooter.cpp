@@ -3,29 +3,15 @@
 #include "SmartDashboard/SmartDashboard.h"
 #include "LiveWindow/LiveWindow.h"
 
-Shooter::Shooter() :
-		PIDSubsystem("Shooter", 1.0, 0.0, 0.0)
+Shooter::Shooter() : Subsystem("ExampleSubsystem")
 {
-	// Use these to get going:
-	// SetSetpoint() -  Sets where the PID controller should move the system
-	//                  to
-	// Enable() - Enables the PID controller
 	intakeMotor = new Talon(INTAKEMOTOR);
+	wheelMotor = new CANTalon(WHEELMOTOR);
+	wheelMotor->SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
+	wheelMotor->ConfigNominalOutputVoltage(0,0);
+	wheelMotor->ConfigPeakOutputVoltage(12,0);
+	wheelMotor->SetPID(0.02,0.0001,0,0.0425);
 	hasBall = new DigitalInput(HASBALLSENSOR);
-}
-
-double Shooter::ReturnPIDInput()
-{
-	// Return your input value for the PID loop
-	// e.g. a sensor, like a potentiometer:
-	// yourPot->SetAverageVoltage() / kYourMaxVoltage;
-	return 0; //Temp To Remove Warning
-}
-
-void Shooter::UsePIDOutput(double output)
-{
-	// Use output to drive your system, like a motor
-	// e.g. yourMotor->Set(output);
 }
 
 void Shooter::InitDefaultCommand()
@@ -34,21 +20,28 @@ void Shooter::InitDefaultCommand()
 	//setDefaultCommand(new MySpecialCommand());
 }
 
-void Shooter::SetIntake(IntakeMode mode) {
-	if (mode == kIntakeForward) {
-		intakeMotor->Set(-0.5);
-	}
-
-	else if (mode == kIntakeReverse) {
-		intakeMotor->Set(0.5);
-	}
-
-	else {
+void Shooter::SetIntake(IntakeMode mode)
+{
+	switch(mode) {
+	case kIntakeForward:
+		intakeMotor->Set(-1);
+		break;
+	case kIntakeReverse:
+		intakeMotor->Set(1);
+		break;
+	default:
 		intakeMotor->Set(0);
+		break;
 	}
 }
 
 bool Shooter::HasBall()
 {
 	return !hasBall->Get();
+}
+
+void Shooter::SetWheel(float rpm)
+{
+	wheelMotor->SetControlMode(CANTalon::kSpeed);
+	wheelMotor->Set(rpm);
 }

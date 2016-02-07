@@ -14,6 +14,9 @@ private:
 	JoystickButton *reverseIntakeMotor;
 	JoystickButton *stopIntakeMotor;
 	JoystickButton *loadBall;
+	JoystickButton *spinShooter;
+	JoystickButton *anotherSpinShooter;
+	JoystickButton *stopSpinShooter;
 
 public:
 	OI();
