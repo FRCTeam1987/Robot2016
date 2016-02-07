@@ -2,10 +2,10 @@
 #include "Commands/Scheduler.h"
 
 // Initialize a single static instance of all of your subsystems to NULL
-OI* CommandBase::oi = NULL;
+Shooter* CommandBase::shooter = NULL;
 DriveTrain* CommandBase::driveTrain = NULL;
 std::shared_ptr<NetworkTable> CommandBase::table = NULL;
-
+OI* CommandBase::oi = NULL;
 
 CommandBase::CommandBase(const std::string &name) :
 		Command(name)
@@ -43,6 +43,7 @@ void CommandBase::init()
 	}
 	*/
 	driveTrain = new DriveTrain();
+	shooter = new Shooter();
 	oi = new OI();
 
 	driveTrain->SetNetworkTable(table);

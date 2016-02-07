@@ -21,9 +21,16 @@ const int LEFTDRIVEMOTORSLAVE = 5;
 const int RIGHTDRIVEMOTORMASTER = 2;
 const int RIGHTDRIVEMOTORSLAVE = 3;
 
+//Shooter
+
+const int INTAKEMOTOR = 0;
+
 //Buttons
 
 const int PRINTSTUFFBUTTON = 2;
 const int RESETENCODERBUTTON = 5;
+const int FORWARDINTAKEMOTORBUTTON = 7;
+const int REVERSEINTAKEMOTORBUTTON = 9;
+const int STOPINTAKEMOTORBUTTON = 11;
 
 #endif
