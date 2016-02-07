@@ -13,6 +13,7 @@ private:
 	JoystickButton *forwardIntakeMotor;
 	JoystickButton *reverseIntakeMotor;
 	JoystickButton *stopIntakeMotor;
+	JoystickButton *loadBall;
 
 public:
 	OI();

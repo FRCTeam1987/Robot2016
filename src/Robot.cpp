@@ -5,6 +5,7 @@
 #include "Commands/DriveTrain/DriveStraight.h"
 #include "Commands/DriveTrain/CrossLowBar.h"
 #include "Commands/DriveTrain/WaitForPitch.h"
+#include "Commands/Shooter/WaitForBall.h"
 #include "CommandBase.h"
 
 class Robot: public IterativeRobot
@@ -29,6 +30,7 @@ private:
 		chooser->AddObject("Cross Low Bar", new CrossLowBar());
 		chooser->AddObject("Wait For Pitch", new WaitForPitch(8,0.6));
 		SmartDashboard::PutData("Auto Modes", chooser);
+		SmartDashboard::PutData("Wait For Ball", new WaitForBall());
 	}
 
 	/**

@@ -9,8 +9,9 @@ Shooter::Shooter() :
 	// Use these to get going:
 	// SetSetpoint() -  Sets where the PID controller should move the system
 	//                  to
-	// Enable() - Enables the PID controller.
+	// Enable() - Enables the PID controller
 	intakeMotor = new Talon(INTAKEMOTOR);
+	hasBall = new DigitalInput(HASBALLSENSOR);
 }
 
 double Shooter::ReturnPIDInput()
@@ -45,4 +46,9 @@ void Shooter::SetIntake(IntakeMode mode) {
 	else {
 		intakeMotor->Set(0);
 	}
+}
+
+bool Shooter::HasBall()
+{
+	return !hasBall->Get();
 }

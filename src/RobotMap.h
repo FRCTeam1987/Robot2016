@@ -9,6 +9,7 @@ const int ENCODERPIN_A = 0;
 const int ENCODERPIN_B = 1;
 const int ENCODERTICKS = 250;
 const double PI = 3.141593;
+const int HASBALLSENSOR = 6;
 
 //Auto Values
 
@@ -27,10 +28,11 @@ const int INTAKEMOTOR = 0;
 
 //Buttons
 
-const int PRINTSTUFFBUTTON = 2;
+const int PRINTSTUFFBUTTON = 3;
 const int RESETENCODERBUTTON = 5;
 const int FORWARDINTAKEMOTORBUTTON = 7;
 const int REVERSEINTAKEMOTORBUTTON = 9;
 const int STOPINTAKEMOTORBUTTON = 11;
+const int LOADBALLBUTTON = 2;
 
 #endif

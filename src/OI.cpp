@@ -4,6 +4,8 @@
 #include "Commands/PrintStuff.h"
 #include "Commands/DriveTrain/ResetEncoder.h"
 #include "Commands/Shooter/SetIntake.h"
+#include "Commands/Shooter/LoadBall.h"
+#include "Commands/Shooter/WaitForBall.h"
 
 OI::OI()
 {
@@ -14,6 +16,7 @@ OI::OI()
 	forwardIntakeMotor = new JoystickButton(stick, FORWARDINTAKEMOTORBUTTON);
 	reverseIntakeMotor = new JoystickButton(stick, REVERSEINTAKEMOTORBUTTON);
 	stopIntakeMotor = new JoystickButton(stick, STOPINTAKEMOTORBUTTON);
+	loadBall = new JoystickButton(stick, LOADBALLBUTTON);
 
 	printStuff->WhenPressed(new PrintStuff());
 	resetEncoder->WhenPressed(new ResetEncoder());
@@ -22,6 +25,7 @@ OI::OI()
 	reverseIntakeMotor->WhileHeld(new SetIntake(Shooter::kIntakeReverse));
 	reverseIntakeMotor->WhenReleased(new SetIntake(Shooter::kIntakeOff));
 	stopIntakeMotor->WhenPressed(new SetIntake(Shooter::kIntakeOff));
+	loadBall->WhenPressed(new LoadBall());
 }
 
 Joystick* OI::getStick()

@@ -8,6 +8,7 @@ class Shooter: public PIDSubsystem
 {
 private:
 	Talon *intakeMotor;
+	DigitalInput *hasBall;
 
 public:
 	enum IntakeMode { kIntakeForward=0, kIntakeReverse, kIntakeOff };
@@ -17,6 +18,7 @@ public:
 	void UsePIDOutput(double output);
 	void InitDefaultCommand();
 	void SetIntake(IntakeMode mode);
+	bool HasBall();
 };
 
 #endif
