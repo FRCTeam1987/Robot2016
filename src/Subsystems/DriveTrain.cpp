@@ -95,7 +95,6 @@ std::shared_ptr<NetworkTable> DriveTrain::GetNetworkTable()
 
 void DriveTrain::DriveArcade(Joystick *stick)
 {
-	printf("Move - %f \t Rotate - %f \n", stick->GetY(), -stick->GetX());
 	robotDrive->ArcadeDrive(stick->GetY(), -stick->GetX());
 }
 
