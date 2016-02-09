@@ -9,6 +9,7 @@
 #include "Commands/Shooter/SetShooterSpeed.h"
 #include "Commands/Shooter/Shoot.h"
 #include "Commands/Collector/SetArmPosition.h"
+#include "Commands/Collector/SetCollectorSpeed.h"
 
 OI::OI()
 {
@@ -28,6 +29,7 @@ OI::OI()
 	collectorCollect = new JoystickButton(stick, COLLECTOR_COLLECT);
 	collectorSafe = new JoystickButton(stick, COLLECTOR_SAFE);
 	collectorMax = new JoystickButton(stick, COLLECTOR_MAX);
+	collectorRun = new JoystickButton(stick, COLLECTOR_RUN);
 
 	printStuff->WhenPressed(new PrintStuff());
 	resetEncoder->WhenPressed(new ResetEncoder());
@@ -45,6 +47,8 @@ OI::OI()
 	collectorCollect->WhenPressed(new SetArmPosition(Collector::kCollect));
 	collectorSafe->WhenPressed(new SetArmPosition(Collector::kSafe));
 	collectorMax->WhenPressed(new SetArmPosition(Collector::kMax));
+	collectorRun->WhenPressed(new SetCollectorSpeed(.25));
+	collectorRun->WhenReleased(new SetCollectorSpeed(0));
 }
 
 Joystick* OI::getStick()

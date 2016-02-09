@@ -22,6 +22,7 @@ private:
 	JoystickButton *collectorCollect;
 	JoystickButton *collectorSafe;
 	JoystickButton *collectorMax;
+	JoystickButton *collectorRun;
 
 public:
 	OI();

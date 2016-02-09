@@ -31,7 +31,7 @@ const int RPMTOLERANCE = 50;
 
 //Collector
 
-const int ROLLERMOTOR = 1;
+const int ROLLERMOTOR = 5;
 const int TOP_CYLINDER_A = 2;
 const int TOP_CYLINDER_B = 3;
 const int BOTTOM_CYLINDER_A = 0;
@@ -49,6 +49,7 @@ const int LOADBALLBUTTON = 2;
 //const int FASTSHOOTERBUTTON = 8;
 //const int STOPSHOOTERBUTTON = 4;
 const int SHOOTBUTTON = 1;
+const int COLLECTOR_RUN = 9;
 const int COLLECTOR_GROUND = 8;
 const int COLLECTOR_COLLECT = 10;
 const int COLLECTOR_SAFE = 12;

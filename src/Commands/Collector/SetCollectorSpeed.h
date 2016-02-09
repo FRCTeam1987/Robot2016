@@ -8,6 +8,7 @@ class SetCollectorSpeed: public CommandBase
 {
 private:
 	float m_speed;
+
 public:
 	SetCollectorSpeed(float speed);
 	void Initialize();
