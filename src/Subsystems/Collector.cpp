@@ -24,11 +24,11 @@ void Collector::SetTopCylinderDirection(CylinderDirection direction)
 {
 	if(direction == Collector::kExtendCylinder)
 	{
-		topCylinder->Set(DoubleSolenoid::kForward);
+		topCylinder->Set(DoubleSolenoid::kReverse);
 	}
 	else
 	{
-		topCylinder->Set(DoubleSolenoid::kReverse);
+		topCylinder->Set(DoubleSolenoid::kForward);
 	}
 }
 
@@ -36,10 +36,10 @@ void Collector::SetBottomCylinderDirection(CylinderDirection direction)
 {
 	if(direction == Collector::kExtendCylinder)
 	{
-		bottomCylinder->Set(DoubleSolenoid::kForward);
+		bottomCylinder->Set(DoubleSolenoid::kReverse);
 	}
 	else
 	{
-		bottomCylinder->Set(DoubleSolenoid::kReverse);
+		bottomCylinder->Set(DoubleSolenoid::kForward);
 	}
 }
