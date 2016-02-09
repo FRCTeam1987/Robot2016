@@ -56,5 +56,6 @@ void SetArmPosition::End()
 // subsystems is scheduled to run
 void SetArmPosition::Interrupted()
 {
-
+	collector->SetTopCylinderDirection(Collector::kRetractCylinder);
+	collector->SetBottomCylinderDirection(Collector::kExtendCylinder);
 }

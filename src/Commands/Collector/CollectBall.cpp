@@ -14,3 +14,4 @@ CollectBall::CollectBall()
 	AddSequential(new SetCollectorSpeed(0));
 	AddSequential(new SetArmPosition(Collector::kSafe));
 }
+

@@ -44,5 +44,5 @@ void AutoDrive::End()
 // subsystems is scheduled to run
 void AutoDrive::Interrupted()
 {
-
+	driveTrain->AutoDrive(0,0);
 }
