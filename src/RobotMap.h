@@ -29,6 +29,10 @@ const int WHEELMOTOR = 4;
 
 const int RPMTOLERANCE = 50;
 
+//Collector
+
+const int ROLLERMOTOR = 1;
+
 //Buttons
 
 const int PRINTSTUFFBUTTON = 3;

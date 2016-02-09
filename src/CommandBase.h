@@ -7,6 +7,7 @@
 #include "WPILib.h"
 #include "Subsystems/DriveTrain.h"
 #include "Subsystems/Shooter.h"
+#include "Subsystems/Collector.h"
 
 /**
  * The base for all commands. All atomic commands should subclass CommandBase.
@@ -22,6 +23,7 @@ public:
 	// Create a single static instance of all of your subsystems
 	static DriveTrain *driveTrain;
 	static Shooter *shooter;
+	static Collector *collector;
 	static std::shared_ptr<NetworkTable> table;
 	static OI *oi;
 };

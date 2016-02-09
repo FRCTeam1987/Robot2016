@@ -4,6 +4,7 @@
 // Initialize a single static instance of all of your subsystems to NULL
 Shooter* CommandBase::shooter = NULL;
 DriveTrain* CommandBase::driveTrain = NULL;
+Collector* CommandBase::collector = NULL;
 std::shared_ptr<NetworkTable> CommandBase::table = NULL;
 OI* CommandBase::oi = NULL;
 
