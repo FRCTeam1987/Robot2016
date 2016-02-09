@@ -23,6 +23,7 @@ private:
 	JoystickButton *collectorSafe;
 	JoystickButton *collectorMax;
 	JoystickButton *collectorRun;
+	JoystickButton *collectBall;
 
 public:
 	OI();

@@ -39,8 +39,8 @@ const int BOTTOM_CYLINDER_B = 1;
 
 //Buttons
 
-const int PRINTSTUFFBUTTON = 3;
-const int RESETENCODERBUTTON = 5;
+//const int PRINTSTUFFBUTTON = 3;
+//const int RESETENCODERBUTTON = 5;
 //const int FORWARDINTAKEMOTORBUTTON = 7;
 //const int REVERSEINTAKEMOTORBUTTON = 9;
 //const int STOPINTAKEMOTORBUTTON = 11;
@@ -54,5 +54,6 @@ const int COLLECTOR_GROUND = 8;
 const int COLLECTOR_COLLECT = 10;
 const int COLLECTOR_SAFE = 12;
 const int COLLECTOR_MAX = 11;
+const int COLLECT_BALL_BUTTON = 5;
 
 #endif
