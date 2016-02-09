@@ -21,16 +21,16 @@ OI::OI()
 //	forwardIntakeMotor = new JoystickButton(stick, FORWARDINTAKEMOTORBUTTON);
 //	reverseIntakeMotor = new JoystickButton(stick, REVERSEINTAKEMOTORBUTTON);
 //	stopIntakeMotor = new JoystickButton(stick, STOPINTAKEMOTORBUTTON);
-	loadBall = new JoystickButton(stick, LOADBALLBUTTON);
+	loadBall = new JoystickButton(stick, LOAD_BALL_BUTTON);
 //	spinShooter = new JoystickButton(stick, SPINSHOOTERBUTTON);
 //	anotherSpinShooter = new JoystickButton(stick, FASTSHOOTERBUTTON);
 //	stopSpinShooter = new JoystickButton(stick, STOPSHOOTERBUTTON);
-	shoot = new JoystickButton(stick, SHOOTBUTTON);
-	collectorGround = new JoystickButton(stick, COLLECTOR_GROUND);
-	collectorCollect = new JoystickButton(stick, COLLECTOR_COLLECT);
-	collectorSafe = new JoystickButton(stick, COLLECTOR_SAFE);
-	collectorMax = new JoystickButton(stick, COLLECTOR_MAX);
-	collectorRun = new JoystickButton(stick, COLLECTOR_RUN);
+	shoot = new JoystickButton(stick, SHOOT_BUTTON);
+	collectorGround = new JoystickButton(stick, COLLECTOR_GROUND_BUTTON);
+	collectorCollect = new JoystickButton(stick, COLLECTOR_COLLECT_BUTTON);
+	collectorSafe = new JoystickButton(stick, COLLECTOR_SAFE_BUTTON);
+	collectorMax = new JoystickButton(stick, COLLECTOR_MAX_BUTTON);
+	collectorRun = new JoystickButton(stick, RUN_COLLECTOR_BUTTON);
 	collectBall = new JoystickButton(stick, COLLECT_BALL_BUTTON);
 
 //	printStuff->WhenPressed(new PrintStuff());

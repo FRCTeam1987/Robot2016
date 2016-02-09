@@ -24,7 +24,7 @@ void SetShooterSpeed::Execute()
 // Make this return true when this Command no longer needs to run execute()
 bool SetShooterSpeed::IsFinished()
 {
-	return m_rpm - RPMTOLERANCE < shooter->GetRPM() && shooter->GetRPM() > m_rpm + RPMTOLERANCE;
+	return m_rpm - RPM_TOLERANCE < shooter->GetRPM() && shooter->GetRPM() > m_rpm + RPM_TOLERANCE;
 }
 
 // Called once after isFinished returns true

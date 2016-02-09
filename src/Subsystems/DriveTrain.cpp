@@ -8,28 +8,28 @@
 DriveTrain::DriveTrain() :
 		PIDSubsystem("DriveTrain", 1.0, 0.0, 0.0)
 {
-	leftDriveMaster = new CANTalon(LEFTDRIVEMOTORMASTER);
+	leftDriveMaster = new CANTalon(LEFT_DRIVE_MOTOR_MASTER);
 	leftDriveMaster->SetControlMode(CANTalon::kPercentVbus);
 	leftDriveMaster->Set(0);
 
-	leftDriveSlave = new CANTalon(LEFTDRIVEMOTORSLAVE);
+	leftDriveSlave = new CANTalon(LEFT_DRIVE_MOTOR_SLAVE);
 	leftDriveSlave->SetControlMode(CANTalon::kFollower);
-	leftDriveSlave->Set(LEFTDRIVEMOTORMASTER);
+	leftDriveSlave->Set(LEFT_DRIVE_MOTOR_MASTER);
 
-	rightDriveMaster = new CANTalon(RIGHTDRIVEMOTORMASTER);
+	rightDriveMaster = new CANTalon(RIGHT_DRIVE_MOTOR_MASTER);
 	rightDriveMaster->SetControlMode(CANTalon::kPercentVbus);
 	rightDriveMaster->Set(0);
 
-	rightDriveSlave = new CANTalon(RIGHTDRIVEMOTORSLAVE);
+	rightDriveSlave = new CANTalon(RIGHT_DRIVE_MOTOR_SLAVE);
 	rightDriveSlave->SetControlMode(CANTalon::kFollower);
-	rightDriveSlave->Set(RIGHTDRIVEMOTORMASTER);
+	rightDriveSlave->Set(RIGHT_DRIVE_MOTOR_MASTER);
 
 	SetCoast();
 
 	robotDrive = new RobotDrive(leftDriveMaster, rightDriveMaster);
 	robotDrive->SetSafetyEnabled(false);
 	navx = new AHRS(SPI::Port::kMXP);
-	encoder = new Encoder(ENCODERPIN_A, ENCODERPIN_B);
+	encoder = new Encoder(ENCODER_PIN_A, ENCODER_PIN_B);
 
 	GetPIDController()->SetAbsoluteTolerance(2.0);
 	GetPIDController()->SetContinuous(true);
@@ -47,7 +47,7 @@ DriveTrain::DriveTrain() :
 	//Might need more refinement, doesn't seem to be actual wheel diameter, but works pretty well
 	m_wheelDiameter = 9.0;
 
-	encoder->SetDistancePerPulse((PI * m_wheelDiameter) / ENCODERTICKS);
+	encoder->SetDistancePerPulse((PI * m_wheelDiameter) / ENCODER_TICKS);
 	this->Disable();
 }
 

@@ -4,7 +4,7 @@
 Collector::Collector() :
 		Subsystem("ExampleSubsystem")
 {
-	roller = new Talon(ROLLERMOTOR);
+	roller = new Talon(ROLLER_MOTOR);
 	topCylinder = new DoubleSolenoid(TOP_CYLINDER_A, TOP_CYLINDER_B);
 	bottomCylinder = new DoubleSolenoid(BOTTOM_CYLINDER_A, BOTTOM_CYLINDER_B);
 

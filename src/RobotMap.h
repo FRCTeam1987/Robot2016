@@ -3,39 +3,40 @@
 
 #include "WPILib.h"
 
-//Sensor Values
-
-const int ENCODERPIN_A = 0;
-const int ENCODERPIN_B = 1;
-const int ENCODERTICKS = 250;
-const double PI = 3.141593;
-const int HASBALLSENSOR = 6;
-
-//Auto Values
-
-const double AUTODRIVESTRAIGHTSPEED = 0.4;
-
 //Drive Train
 
-const int LEFTDRIVEMOTORMASTER = 1;
-const int LEFTDRIVEMOTORSLAVE = 5;
-const int RIGHTDRIVEMOTORMASTER = 2;
-const int RIGHTDRIVEMOTORSLAVE = 3;
+const int LEFT_DRIVE_MOTOR_MASTER = 1;
+const int LEFT_DRIVE_MOTOR_SLAVE = 5;
+const int RIGHT_DRIVE_MOTOR_MASTER = 2;
+const int RIGHT_DRIVE_MOTOR_SLAVE = 3;
+
+const int ENCODER_PIN_A = 0;
+const int ENCODER_PIN_B = 1;
+
+const int ENCODER_TICKS = 250;
+const double PI = 3.141593;
+const double AUTO_DRIVESTRAIGHT_SPEED = 0.4;
+
 
 //Shooter
 
-const int INTAKEMOTOR = 0;
-const int WHEELMOTOR = 4;
+const int INTAKE_MOTOR = 0;
+const int WHEEL_MOTOR = 4;
 
-const int RPMTOLERANCE = 50;
+const int HAS_BALL_SENSOR = 6;
+
+const int RPM_TOLERANCE = 50;
+
 
 //Collector
 
-const int ROLLERMOTOR = 5;
+const int ROLLER_MOTOR = 5;
+
 const int TOP_CYLINDER_A = 2;
 const int TOP_CYLINDER_B = 3;
 const int BOTTOM_CYLINDER_A = 0;
 const int BOTTOM_CYLINDER_B = 1;
+
 
 //Buttons
 
@@ -44,16 +45,16 @@ const int BOTTOM_CYLINDER_B = 1;
 //const int FORWARDINTAKEMOTORBUTTON = 7;
 //const int REVERSEINTAKEMOTORBUTTON = 9;
 //const int STOPINTAKEMOTORBUTTON = 11;
-const int LOADBALLBUTTON = 2;
 //const int SPINSHOOTERBUTTON = 6;
 //const int FASTSHOOTERBUTTON = 8;
 //const int STOPSHOOTERBUTTON = 4;
-const int SHOOTBUTTON = 1;
-const int COLLECTOR_RUN = 9;
-const int COLLECTOR_GROUND = 8;
-const int COLLECTOR_COLLECT = 10;
-const int COLLECTOR_SAFE = 12;
-const int COLLECTOR_MAX = 11;
+const int SHOOT_BUTTON = 1;
+const int LOAD_BALL_BUTTON = 2;
 const int COLLECT_BALL_BUTTON = 5;
+const int COLLECTOR_GROUND_BUTTON = 8;
+const int RUN_COLLECTOR_BUTTON = 9;
+const int COLLECTOR_COLLECT_BUTTON = 10;
+const int COLLECTOR_MAX_BUTTON = 11;
+const int COLLECTOR_SAFE_BUTTON = 12;
 
 #endif
