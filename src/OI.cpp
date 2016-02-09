@@ -7,6 +7,7 @@
 #include "Commands/Shooter/LoadBall.h"
 #include "Commands/Shooter/WaitForBall.h"
 #include "Commands/Shooter/SetShooterSpeed.h"
+#include "Commands/Shooter/Shoot.h"
 
 OI::OI()
 {
@@ -21,6 +22,7 @@ OI::OI()
 	spinShooter = new JoystickButton(stick, SPINSHOOTERBUTTON);
 	anotherSpinShooter = new JoystickButton(stick, FASTSHOOTERBUTTON);
 	stopSpinShooter = new JoystickButton(stick, STOPSHOOTERBUTTON);
+	shoot = new JoystickButton(stick, SHOOTBUTTON);
 
 	printStuff->WhenPressed(new PrintStuff());
 	resetEncoder->WhenPressed(new ResetEncoder());
@@ -33,6 +35,7 @@ OI::OI()
 	spinShooter->WhenPressed(new SetShooterSpeed(3500));
 	anotherSpinShooter->WhenPressed(new SetShooterSpeed(5000));
 	stopSpinShooter->WhenPressed(new SetShooterSpeed(0));
+	shoot->WhenPressed(new Shoot());
 }
 
 Joystick* OI::getStick()

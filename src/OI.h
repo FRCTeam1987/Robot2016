@@ -17,6 +17,7 @@ private:
 	JoystickButton *spinShooter;
 	JoystickButton *anotherSpinShooter;
 	JoystickButton *stopSpinShooter;
+	JoystickButton *shoot;
 
 public:
 	OI();

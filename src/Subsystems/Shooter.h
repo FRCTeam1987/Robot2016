@@ -19,6 +19,7 @@ public:
 	void SetIntake(IntakeMode mode);
 	void SetWheel(float rpm);
 	bool HasBall();
+	float GetRPM();
 };
 
 #endif

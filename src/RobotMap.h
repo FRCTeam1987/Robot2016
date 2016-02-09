@@ -27,6 +27,8 @@ const int RIGHTDRIVEMOTORSLAVE = 3;
 const int INTAKEMOTOR = 0;
 const int WHEELMOTOR = 4;
 
+const int RPMTOLERANCE = 50;
+
 //Buttons
 
 const int PRINTSTUFFBUTTON = 3;
@@ -38,5 +40,6 @@ const int LOADBALLBUTTON = 2;
 const int SPINSHOOTERBUTTON = 6;
 const int FASTSHOOTERBUTTON = 8;
 const int STOPSHOOTERBUTTON = 4;
+const int SHOOTBUTTON = 1;
 
 #endif
