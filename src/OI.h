@@ -10,14 +10,18 @@ private:
 	BroncoJoy *stick;
 	JoystickButton *printStuff;
 	JoystickButton *resetEncoder;
-	JoystickButton *forwardIntakeMotor;
-	JoystickButton *reverseIntakeMotor;
-	JoystickButton *stopIntakeMotor;
+//	JoystickButton *forwardIntakeMotor;
+//	JoystickButton *reverseIntakeMotor;
+//	JoystickButton *stopIntakeMotor;
 	JoystickButton *loadBall;
-	JoystickButton *spinShooter;
-	JoystickButton *anotherSpinShooter;
-	JoystickButton *stopSpinShooter;
+//	JoystickButton *spinShooter;
+//	JoystickButton *anotherSpinShooter;
+//	JoystickButton *stopSpinShooter;
 	JoystickButton *shoot;
+	JoystickButton *collectorGround;
+	JoystickButton *collectorCollect;
+	JoystickButton *collectorSafe;
+	JoystickButton *collectorMax;
 
 public:
 	OI();

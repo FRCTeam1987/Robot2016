@@ -32,18 +32,26 @@ const int RPMTOLERANCE = 50;
 //Collector
 
 const int ROLLERMOTOR = 1;
+const int TOP_CYLINDER_A = 2;
+const int TOP_CYLINDER_B = 3;
+const int BOTTOM_CYLINDER_A = 0;
+const int BOTTOM_CYLINDER_B = 1;
 
 //Buttons
 
 const int PRINTSTUFFBUTTON = 3;
 const int RESETENCODERBUTTON = 5;
-const int FORWARDINTAKEMOTORBUTTON = 7;
-const int REVERSEINTAKEMOTORBUTTON = 9;
-const int STOPINTAKEMOTORBUTTON = 11;
+//const int FORWARDINTAKEMOTORBUTTON = 7;
+//const int REVERSEINTAKEMOTORBUTTON = 9;
+//const int STOPINTAKEMOTORBUTTON = 11;
 const int LOADBALLBUTTON = 2;
-const int SPINSHOOTERBUTTON = 6;
-const int FASTSHOOTERBUTTON = 8;
-const int STOPSHOOTERBUTTON = 4;
+//const int SPINSHOOTERBUTTON = 6;
+//const int FASTSHOOTERBUTTON = 8;
+//const int STOPSHOOTERBUTTON = 4;
 const int SHOOTBUTTON = 1;
+const int COLLECTOR_GROUND = 8;
+const int COLLECTOR_COLLECT = 10;
+const int COLLECTOR_SAFE = 12;
+const int COLLECTOR_MAX = 11;
 
 #endif

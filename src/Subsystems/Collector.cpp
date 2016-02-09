@@ -5,15 +5,41 @@ Collector::Collector() :
 		Subsystem("ExampleSubsystem")
 {
 	roller = new Talon(ROLLERMOTOR);
+	topCylinder = new DoubleSolenoid(TOP_CYLINDER_A, TOP_CYLINDER_B);
+	bottomCylinder = new DoubleSolenoid(BOTTOM_CYLINDER_A, BOTTOM_CYLINDER_B);
+
 }
 
 void Collector::InitDefaultCommand()
 {
-	// Set the default command for a subsystem here.
-	//SetDefaultCommand(new MySpecialCommand());
+
 }
 
 void Collector::RunRoller(float speed)
 {
 	roller->Set(speed);
+}
+
+void Collector::SetTopCylinderDirection(CylinderDirection direction)
+{
+	if(direction == Collector::kExtendCylinder)
+	{
+		topCylinder->Set(DoubleSolenoid::kForward);
+	}
+	else
+	{
+		topCylinder->Set(DoubleSolenoid::kReverse);
+	}
+}
+
+void Collector::SetBottomCylinderDirection(CylinderDirection direction)
+{
+	if(direction == Collector::kExtendCylinder)
+	{
+		bottomCylinder->Set(DoubleSolenoid::kForward);
+	}
+	else
+	{
+		bottomCylinder->Set(DoubleSolenoid::kReverse);
+	}
 }
