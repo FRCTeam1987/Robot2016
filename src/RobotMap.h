@@ -36,11 +36,12 @@ const int TOP_CYLINDER_A = 2;
 const int TOP_CYLINDER_B = 3;
 const int BOTTOM_CYLINDER_A = 0;
 const int BOTTOM_CYLINDER_B = 1;
+const int TOP_CYLINDER_EXTENDED_SENSOR = 7;
+const int BOTTOM_CYLINDER_EXTENDED_SENSOR = 8;
 
 
 //Buttons
 
-//const int PRINTSTUFFBUTTON = 3;
 //const int RESETENCODERBUTTON = 5;
 //const int FORWARDINTAKEMOTORBUTTON = 7;
 //const int REVERSEINTAKEMOTORBUTTON = 9;
@@ -50,6 +51,7 @@ const int BOTTOM_CYLINDER_B = 1;
 //const int STOPSHOOTERBUTTON = 4;
 const int SHOOT_BUTTON = 1;
 const int LOAD_BALL_BUTTON = 2;
+const int PRINTSTUFFBUTTON = 3;
 const int COLLECT_BALL_BUTTON = 5;
 const int COLLECTOR_GROUND_BUTTON = 8;
 const int RUN_COLLECTOR_BUTTON = 9;

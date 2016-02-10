@@ -7,6 +7,8 @@ Collector::Collector() :
 	roller = new Talon(ROLLER_MOTOR);
 	topCylinder = new DoubleSolenoid(TOP_CYLINDER_A, TOP_CYLINDER_B);
 	bottomCylinder = new DoubleSolenoid(BOTTOM_CYLINDER_A, BOTTOM_CYLINDER_B);
+	topCylinderExtended = new DigitalInput(TOP_CYLINDER_EXTENDED_SENSOR);
+	bottomCylinderExtended = new DigitalInput(BOTTOM_CYLINDER_EXTENDED_SENSOR);
 
 }
 
@@ -42,4 +44,39 @@ void Collector::SetBottomCylinderDirection(CylinderDirection direction)
 	{
 		bottomCylinder->Set(DoubleSolenoid::kForward);
 	}
+}
+
+bool Collector::isTopCylinderExtended()
+{
+	return topCylinderExtended->Get();
+}
+
+bool Collector::isBottomCylinderExtended()
+{
+	return bottomCylinderExtended->Get();
+}
+
+Collector::ArmPosition Collector::getArmPosition()
+{
+	if(isTopCylinderExtended() == true && isBottomCylinderExtended() == true)
+	{
+		return Collector::kMax;
+	}
+	else if(isTopCylinderExtended() == false && isBottomCylinderExtended() == true)
+	{
+		return Collector::kSafe;
+	}
+	else if(isTopCylinderExtended() == true && isBottomCylinderExtended() == false)
+	{
+		return Collector::kCollect;
+	}
+	else if(isTopCylinderExtended() == false && isBottomCylinderExtended() == false)
+	{
+		return Collector::kGround;
+	}
+	else
+	{
+		return Collector::kUnknown;
+	}
+
 }

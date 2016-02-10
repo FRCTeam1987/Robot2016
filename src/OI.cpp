@@ -16,7 +16,7 @@ OI::OI()
 {
 //	stick = new BroncoXbox(0, 2, 2);
 	stick = new BroncoJoy(0, 2, 2);
-//	printStuff = new JoystickButton(stick, PRINTSTUFFBUTTON);
+	printStuff = new JoystickButton(stick, PRINTSTUFFBUTTON);
 //	resetEncoder = new JoystickButton(stick, RESETENCODERBUTTON);
 //	forwardIntakeMotor = new JoystickButton(stick, FORWARDINTAKEMOTORBUTTON);
 //	reverseIntakeMotor = new JoystickButton(stick, REVERSEINTAKEMOTORBUTTON);
@@ -33,7 +33,7 @@ OI::OI()
 	collectorRun = new JoystickButton(stick, RUN_COLLECTOR_BUTTON);
 	collectBall = new JoystickButton(stick, COLLECT_BALL_BUTTON);
 
-//	printStuff->WhenPressed(new PrintStuff());
+	printStuff->WhenPressed(new PrintStuff());
 //	resetEncoder->WhenPressed(new ResetEncoder());
 //	forwardIntakeMotor->WhileHeld(new SetIntake(Shooter::kIntakeForward));
 //	forwardIntakeMotor->WhenReleased(new SetIntake(Shooter::kIntakeOff));
