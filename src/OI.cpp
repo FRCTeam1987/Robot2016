@@ -8,6 +8,7 @@
 #include "Commands/Shooter/WaitForBall.h"
 #include "Commands/Shooter/SetShooterSpeed.h"
 #include "Commands/Shooter/Shoot.h"
+#include "Commands/Shooter/SetHoodPosition.h"
 #include "Commands/Collector/SetArmPosition.h"
 #include "Commands/Collector/SetCollectorSpeed.h"
 #include "Commands/Collector/CollectBall.h"
@@ -16,7 +17,7 @@ OI::OI()
 {
 //	stick = new BroncoXbox(0, 2, 2);
 	stick = new BroncoJoy(0, 2, 2);
-	printStuff = new JoystickButton(stick, PRINTSTUFFBUTTON);
+//	printStuff = new JoystickButton(stick, PRINT_STUFF_BUTTON);
 //	resetEncoder = new JoystickButton(stick, RESETENCODERBUTTON);
 //	forwardIntakeMotor = new JoystickButton(stick, FORWARDINTAKEMOTORBUTTON);
 //	reverseIntakeMotor = new JoystickButton(stick, REVERSEINTAKEMOTORBUTTON);
@@ -32,8 +33,11 @@ OI::OI()
 	collectorMax = new JoystickButton(stick, COLLECTOR_MAX_BUTTON);
 	collectorRun = new JoystickButton(stick, RUN_COLLECTOR_BUTTON);
 	collectBall = new JoystickButton(stick, COLLECT_BALL_BUTTON);
+	hoodNear = new JoystickButton(stick, HOOD_NEAR_BUTTON);
+	hoodMiddle = new JoystickButton(stick, HOOD_MIDDLE_BUTTON);
+	hoodFar = new JoystickButton(stick, HOOD_FAR_BUTTON);
 
-	printStuff->WhenPressed(new PrintStuff());
+//	printStuff->WhenPressed(new PrintStuff());
 //	resetEncoder->WhenPressed(new ResetEncoder());
 //	forwardIntakeMotor->WhileHeld(new SetIntake(Shooter::kIntakeForward));
 //	forwardIntakeMotor->WhenReleased(new SetIntake(Shooter::kIntakeOff));
@@ -52,6 +56,9 @@ OI::OI()
 	collectorRun->WhenPressed(new SetCollectorSpeed(.25));
 	collectorRun->WhenReleased(new SetCollectorSpeed(0));
 	collectBall->WhenPressed(new CollectBall());
+	hoodNear->WhenPressed(new SetHoodPosition(Shooter::kNear));
+	hoodMiddle->WhenPressed(new SetHoodPosition(Shooter::kMiddle));
+	hoodFar->WhenPressed(new SetHoodPosition(Shooter::kFar));
 }
 
 Joystick* OI::getStick()

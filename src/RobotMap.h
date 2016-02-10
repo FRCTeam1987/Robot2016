@@ -23,6 +23,9 @@ const double AUTO_DRIVESTRAIGHT_SPEED = 0.4;
 const int INTAKE_MOTOR = 0;
 const int WHEEL_MOTOR = 4;
 
+const int TOP_CYLINDER = 5;
+const int BOTTOM_CYLINDER = 4;
+
 const int HAS_BALL_SENSOR = 6;
 
 const int RPM_TOLERANCE = 50;
@@ -49,14 +52,17 @@ const int BOTTOM_CYLINDER_EXTENDED_SENSOR = 8;
 //const int SPINSHOOTERBUTTON = 6;
 //const int FASTSHOOTERBUTTON = 8;
 //const int STOPSHOOTERBUTTON = 4;
+//const int PRINT_STUFF_BUTTON = 3;
 const int SHOOT_BUTTON = 1;
 const int LOAD_BALL_BUTTON = 2;
-const int PRINTSTUFFBUTTON = 3;
-const int COLLECT_BALL_BUTTON = 5;
-const int COLLECTOR_GROUND_BUTTON = 8;
-const int RUN_COLLECTOR_BUTTON = 9;
-const int COLLECTOR_COLLECT_BUTTON = 10;
-const int COLLECTOR_MAX_BUTTON = 11;
-const int COLLECTOR_SAFE_BUTTON = 12;
+const int COLLECTOR_COLLECT_BUTTON = 3;
+const int COLLECTOR_SAFE_BUTTON = 4;
+const int COLLECTOR_GROUND_BUTTON = 5;
+const int COLLECTOR_MAX_BUTTON = 6;
+const int HOOD_FAR_BUTTON = 7;
+const int COLLECT_BALL_BUTTON = 8;
+const int HOOD_MIDDLE_BUTTON = 9;
+const int RUN_COLLECTOR_BUTTON = 10;
+const int HOOD_NEAR_BUTTON = 11;
 
 #endif

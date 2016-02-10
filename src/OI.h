@@ -8,8 +8,8 @@ class OI
 {
 private:
 	BroncoJoy *stick;
-	JoystickButton *printStuff;
-	JoystickButton *resetEncoder;
+//	JoystickButton *printStuff;
+//	JoystickButton *resetEncoder;
 //	JoystickButton *forwardIntakeMotor;
 //	JoystickButton *reverseIntakeMotor;
 //	JoystickButton *stopIntakeMotor;
@@ -24,6 +24,10 @@ private:
 	JoystickButton *collectorMax;
 	JoystickButton *collectorRun;
 	JoystickButton *collectBall;
+	JoystickButton *hoodNear;
+	JoystickButton *hoodMiddle;
+	JoystickButton *hoodFar;
+
 
 public:
 	OI();
