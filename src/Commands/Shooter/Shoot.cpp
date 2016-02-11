@@ -6,7 +6,7 @@
 
 Shoot::Shoot()
 {
-	AddSequential(new SetShooterSpeed(3500));
+	AddSequential(new SetShooterSpeed(5100));//previously 4650
 	AddSequential(new SetIntake(Shooter::kIntakeForward));
 	AddSequential(new WaitForNoBall());
 	AddSequential(new WaitCommand(1));

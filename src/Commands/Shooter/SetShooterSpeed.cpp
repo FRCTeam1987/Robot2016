@@ -18,13 +18,14 @@ void SetShooterSpeed::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void SetShooterSpeed::Execute()
 {
+	printf("Shooter Speed %f\n", shooter->GetRPM());
 
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool SetShooterSpeed::IsFinished()
 {
-	return m_rpm - RPM_TOLERANCE < shooter->GetRPM() && shooter->GetRPM() > m_rpm + RPM_TOLERANCE;
+	return m_rpm - RPM_TOLERANCE < shooter->GetRPM() && shooter->GetRPM() < m_rpm + RPM_TOLERANCE;
 }
 
 // Called once after isFinished returns true

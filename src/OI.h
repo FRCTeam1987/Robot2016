@@ -10,7 +10,7 @@ private:
 	BroncoJoy *stick;
 //	JoystickButton *printStuff;
 //	JoystickButton *resetEncoder;
-//	JoystickButton *forwardIntakeMotor;
+	JoystickButton *forwardIntakeMotor;
 //	JoystickButton *reverseIntakeMotor;
 //	JoystickButton *stopIntakeMotor;
 	JoystickButton *loadBall;

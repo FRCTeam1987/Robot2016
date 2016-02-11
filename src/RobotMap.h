@@ -28,6 +28,7 @@ const int BOTTOM_CYLINDER = 4;
 
 const int HAS_BALL_SENSOR = 6;
 
+
 const int RPM_TOLERANCE = 50;
 
 
@@ -64,5 +65,6 @@ const int COLLECT_BALL_BUTTON = 8;
 const int HOOD_MIDDLE_BUTTON = 9;
 const int RUN_COLLECTOR_BUTTON = 10;
 const int HOOD_NEAR_BUTTON = 11;
+const int FORWARD_INTAKE_MOTOR_BUTTON = 12;
 
 #endif
