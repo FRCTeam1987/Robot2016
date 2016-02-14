@@ -6,6 +6,7 @@
 #include "Commands/DriveTrain/CrossLowBar.h"
 #include "Commands/DriveTrain/WaitForPitch.h"
 #include "Commands/Shooter/WaitForBall.h"
+#include "Commands/DriveTrain/DriveUntilPitchAndDark.h"
 #include "CommandBase.h"
 
 class Robot: public IterativeRobot
@@ -29,6 +30,7 @@ private:
 		chooser->AddObject("Drive Straight PID 100\%", new DriveStraight(0, 100, 1.0));
 		chooser->AddObject("Cross Low Bar", new CrossLowBar());
 		chooser->AddObject("Wait For Pitch", new WaitForPitch(8,0.6));
+		chooser->AddObject("Wait For Pitch And Dark", new DriveUntilPitchAndDark(0.0, 0.0, -.65));
 		SmartDashboard::PutData("Auto Modes", chooser);
 		SmartDashboard::PutData("Wait For Ball", new WaitForBall());
 	}

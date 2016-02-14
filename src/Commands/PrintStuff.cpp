@@ -5,35 +5,39 @@ PrintStuff::PrintStuff()
 {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(chassis);
-	Requires (collector);
+	Requires (driveTrain);
 }
 
 // Called just before this Command runs the first time
 void PrintStuff::Initialize()
 {
-	if(collector->getArmPosition() == Collector::kCollect)
-	{
-		printf("Cylinder Sensor - Collect \n");
-	}
-	else if(collector->getArmPosition() == Collector::kGround)
-	{
-		printf("Cylinder Sensor - Ground \n");
-	}
-	else if(collector->getArmPosition() == Collector::kMax)
-	{
-		printf("Cylinder Sensor - Max \n");
-	}
-	else if(collector->getArmPosition() == Collector::kSafe)
-	{
-		printf("Cylinder Sensor - Safe \n");
-	}
-	else
-	{
-		printf("Cylinder Sensor - Error (See Jon) \n");
-	}
+	driveTrain->PrintLeftEncoder();
 
-	printf(collector->isTopCylinderExtended() ? "Top - Extended \n" : "Top - Retracted \n");
-	printf(collector->isBottomCylinderExtended() ? "Bottom - Extended \n" : "Bottom - Retracted \n");
+//	printf(driveTrain->getRampSensor() ? "Ramp Sensor - True \t" : "Ramp Sensor - False \t");
+//	printf("Pitch: %f \t Roll: %f\n", driveTrain->GetRoll(), driveTrain->GetPitch());
+//	if(collector->getArmPosition() == Collector::kCollect)
+//	{
+//		printf("Cylinder Sensor - Collect \n");
+//	}
+//	else if(collector->getArmPosition() == Collector::kGround)
+//	{
+//		printf("Cylinder Sensor - Ground \n");
+//	}
+//	else if(collector->getArmPosition() == Collector::kMax)
+//	{
+//		printf("Cylinder Sensor - Max \n");
+//	}
+//	else if(collector->getArmPosition() == Collector::kSafe)
+//	{
+//		printf("Cylinder Sensor - Safe \n");
+//	}
+//	else
+//	{
+//		printf("Cylinder Sensor - Error (See Jon) \n");
+//	}
+//
+//	printf(collector->isTopCylinderExtended() ? "Top - Extended \n" : "Top - Retracted \n");
+//	printf(collector->isBottomCylinderExtended() ? "Bottom - Extended \n" : "Bottom - Retracted \n");
 //printf("Gyro Angle - %f\tEncoder Distance - %f\n", driveTrain->GetGyroAngle(), driveTrain->GetEncoderDistance());
 //
 //	std::shared_ptr<NetworkTable> table = driveTrain->GetNetworkTable();

@@ -11,7 +11,7 @@ WaitForPitch::WaitForPitch(float setPitch, double speed)
 void WaitForPitch::Initialize()
 {
 	driveTrain->ResetGyro();
-	driveTrain->ResetEncoder();
+	driveTrain->ResetLeftEncoder();
 	driveTrain->setPID(-0.06, -0.004, 0.0);
 	driveTrain->SetAutoSpeed(motorSpeed);
 	driveTrain->SetAutoMode(driveTrain->DRIVE_STRAIGHT);

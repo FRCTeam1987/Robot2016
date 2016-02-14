@@ -46,6 +46,7 @@ void CommandBase::init()
 	driveTrain = new DriveTrain();
 	shooter = new Shooter();
 	collector = new Collector();
+	//ourElectrical = new OurElectrical();
 	oi = new OI();
 
 	driveTrain->SetNetworkTable(table);

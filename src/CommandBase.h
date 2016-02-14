@@ -8,6 +8,7 @@
 #include "Subsystems/DriveTrain.h"
 #include "Subsystems/Shooter.h"
 #include "Subsystems/Collector.h"
+#include "Subsystems/OurElectrical.h"
 
 /**
  * The base for all commands. All atomic commands should subclass CommandBase.
@@ -24,6 +25,7 @@ public:
 	static DriveTrain *driveTrain;
 	static Shooter *shooter;
 	static Collector *collector;
+	static OurElectrical *ourElectrical;
 	static std::shared_ptr<NetworkTable> table;
 	static OI *oi;
 };

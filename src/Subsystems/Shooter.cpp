@@ -2,6 +2,8 @@
 #include "../RobotMap.h"
 #include "SmartDashboard/SmartDashboard.h"
 #include "LiveWindow/LiveWindow.h"
+#include "Commands/Shooter/ReadJoystickSlider.h"
+#include "Commands/PrintCurrent.h"
 
 Shooter::Shooter() : Subsystem("ExampleSubsystem")
 {
@@ -19,11 +21,12 @@ Shooter::Shooter() : Subsystem("ExampleSubsystem")
 	//Do not delete the line below
 	//wheelMotor->SetPID(0.02, 0.0001, 0.0, 0.0425);
 
+	RPMCopy = 0;
 }
 
 void Shooter::InitDefaultCommand()
 {
-
+	this->SetDefaultCommand(new ReadJoystickSlider());
 }
 
 void Shooter::SetIntake(IntakeMode mode)
@@ -48,13 +51,30 @@ bool Shooter::HasBall()
 
 void Shooter::SetWheel(float rpm)
 {
+	RPMCopy=rpm;
 	wheelMotor->SetControlMode(CANTalon::kSpeed);
 	wheelMotor->Set(rpm);
+}
+
+void Shooter::SetWheelRaw(float speed)
+{
+	wheelMotor->SetControlMode(CANTalon::kPercentVbus);
+	wheelMotor->Set(speed);
 }
 
 float Shooter::GetRPM()
 {
 	return wheelMotor->Get();
+}
+
+int Shooter::GetEncoderVel()
+{
+	return wheelMotor->GetEncVel();
+}
+
+float Shooter::GetTargetRPM()
+{
+	return RPMCopy;
 }
 
 void Shooter::SetTopCylinderDirection(Shooter::CylinderDirection direction)

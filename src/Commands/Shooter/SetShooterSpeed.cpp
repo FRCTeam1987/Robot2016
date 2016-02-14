@@ -19,6 +19,7 @@ void SetShooterSpeed::Initialize()
 void SetShooterSpeed::Execute()
 {
 	printf("Shooter Speed %f\n", shooter->GetRPM());
+	std::cout << " RPM: " << shooter->GetRPM() << " Encoder Velocity: " << shooter->GetEncoderVel() << std::endl;
 
 }
 

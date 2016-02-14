@@ -12,6 +12,7 @@ private:
 	DigitalInput *hasBall;
 	Solenoid *topCylinder;
 	Solenoid *bottomCylinder;
+	float RPMCopy;
 
 public:
 	enum IntakeMode {kIntakeForward = 0, kIntakeReverse = 1, kIntakeOff = 2};
@@ -22,8 +23,11 @@ public:
 	void InitDefaultCommand();
 	void SetIntake(IntakeMode mode);
 	void SetWheel(float rpm);
+	void SetWheelRaw(float speed);
 	bool HasBall();
 	float GetRPM();
+	float GetTargetRPM();
+	int GetEncoderVel();
 	void SetTopCylinderDirection(Shooter::CylinderDirection direction);
 	void SetBottomCylinderDirection(Shooter::CylinderDirection direction);
 };

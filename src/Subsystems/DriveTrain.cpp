@@ -29,7 +29,10 @@ DriveTrain::DriveTrain() :
 	robotDrive = new RobotDrive(leftDriveMaster, rightDriveMaster);
 	robotDrive->SetSafetyEnabled(false);
 	navx = new AHRS(SPI::Port::kMXP);
-	encoder = new Encoder(ENCODER_PIN_A, ENCODER_PIN_B);
+	leftEncoder = new Encoder(LEFT_ENCODER_PIN_A, LEFT_ENCODER_PIN_B);
+	rightEncoder = new Encoder(RIGHT_ENCODER_PIN_A, RIGHT_ENCODER_PIN_B);
+
+	rampSensor = new DigitalInput(RAMP_SENSOR_PIN);
 
 	GetPIDController()->SetAbsoluteTolerance(2.0);
 	GetPIDController()->SetContinuous(true);
@@ -45,9 +48,12 @@ DriveTrain::DriveTrain() :
 	m_offset = 0; //make this number positive
 
 	//Might need more refinement, doesn't seem to be actual wheel diameter, but works pretty well
-	m_wheelDiameter = 9.0;
+	m_wheelDiameter = 8.446;
 
-	encoder->SetDistancePerPulse((PI * m_wheelDiameter) / ENCODER_TICKS);
+	leftEncoder->SetDistancePerPulse((PI * m_wheelDiameter) / ENCODER_TICKS);
+	this->Disable();
+
+	rightEncoder->SetDistancePerPulse((PI * m_wheelDiameter) / ENCODER_TICKS);
 	this->Disable();
 }
 
@@ -59,23 +65,23 @@ double DriveTrain::ReturnPIDInput()
 void DriveTrain::UsePIDOutput(double output)
 {
 //	output>0 ? output += m_offset : output -= m_offset;
-	m_output = output;
+//	m_output = output;
+//
+//	if(m_output < 0)
+//	{
+//		m_output = m_output - m_offset;
+//	}else{
+//		m_output = m_output + m_offset;
+//	}
 
-	if(m_output < 0)
-	{
-		m_output = m_output - m_offset;
-	}else{
-		m_output = m_output + m_offset;
-	}
-
-	if(m_autoMode == DRIVE_STRAIGHT)
-	{
+//	if(m_autoMode == DRIVE_STRAIGHT)
+//	{
 		AutoDrive(m_autoSpeed, output);
-	}
-	else if(m_autoMode == AUTO_TURN)
-	{
-		AutoDrive(0, output);
-	}
+//	}
+//	else if(m_autoMode == AUTO_TURN)
+//	{
+//		AutoDrive(0, output);
+//	}
 }
 
 void DriveTrain::InitDefaultCommand()
@@ -180,14 +186,20 @@ void DriveTrain::setPID(double P, double I, double D)
 	GetPIDController()->SetPID(P, I, D);
 }
 
-void DriveTrain::ResetEncoder()
+void DriveTrain::ResetLeftEncoder()
 {
-	encoder->Reset();
+	printf("Encoder Reseted");
+	leftEncoder->Reset();
 }
 
-double DriveTrain::GetEncoderDistance()
+double DriveTrain::GetLeftEncoderDistance()
 {
-	return encoder->GetDistance();
+	return leftEncoder->GetDistance();
+}
+
+void DriveTrain::PrintLeftEncoder()
+{
+	printf("Left Encoder Distance - %f\n", leftEncoder->GetDistance());
 }
 
 void DriveTrain::SetOffset(double offset)
@@ -208,4 +220,9 @@ void DriveTrain::SetCoast() {
 	rightDriveMaster->ConfigNeutralMode(CANSpeedController::NeutralMode::kNeutralMode_Coast);
 	leftDriveSlave->ConfigNeutralMode(CANSpeedController::NeutralMode::kNeutralMode_Coast);
 	rightDriveSlave->ConfigNeutralMode(CANSpeedController::NeutralMode::kNeutralMode_Coast);
+}
+
+bool DriveTrain::getRampSensor()
+{
+	return rampSensor->Get();
 }

@@ -3,6 +3,11 @@
 #include "BroncoXbox.h"
 #include "Commands/PrintStuff.h"
 #include "Commands/DriveTrain/ResetEncoder.h"
+#include "Commands/DriveTrain/AutoLowBar.h"
+#include "Commands/DriveTrain/AutoRockWall.h"
+#include "Commands/DriveTrain/DriveByEncoder.h"
+#include "Commands/DriveTrain/AutoPortcullis.h"
+#include "Commands/DriveTrain/AutoChevalDeFrise.h"
 #include "Commands/Shooter/SetIntake.h"
 #include "Commands/Shooter/LoadBall.h"
 #include "Commands/Shooter/WaitForBall.h"
@@ -12,14 +17,17 @@
 #include "Commands/Collector/SetArmPosition.h"
 #include "Commands/Collector/SetCollectorSpeed.h"
 #include "Commands/Collector/CollectBall.h"
+#include "Commands/Shooter/ShootFar.h"
+#include "Commands/Shooter/ShootClose.h"
+
 
 OI::OI()
 {
-//	stick = new BroncoXbox(0, 2, 2);
+//	stick = new BroncoXbox(2, 2, 2);
 	stick = new BroncoJoy(0, 2, 2);
-//	printStuff = new JoystickButton(stick, PRINT_STUFF_BUTTON);
+	m_btnBox = new Joystick(1);
 //	resetEncoder = new JoystickButton(stick, RESETENCODERBUTTON);
-	forwardIntakeMotor = new JoystickButton(stick, FORWARD_INTAKE_MOTOR_BUTTON);
+	forwardIntakeMotor = new JoystickButton(m_btnBox, FORWARD_INTAKE_MOTOR_BUTTON);
 //	reverseIntakeMotor = new JoystickButton(stick, REVERSEINTAKEMOTORBUTTON);
 //	stopIntakeMotor = new JoystickButton(stick, STOPINTAKEMOTORBUTTON);
 	loadBall = new JoystickButton(stick, LOAD_BALL_BUTTON);
@@ -37,9 +45,16 @@ OI::OI()
 	hoodMiddle = new JoystickButton(stick, HOOD_MIDDLE_BUTTON);
 	hoodFar = new JoystickButton(stick, HOOD_FAR_BUTTON);
 
-//	printStuff->WhenPressed(new PrintStuff());
+
+	shootClose = new JoystickButton(m_btnBox, SHOOT_CLOSE_BUTTON);
+	shootFar = new JoystickButton(m_btnBox, SHOOT_FAR_BUTTON);
+	printStuff = new JoystickButton(m_btnBox, PRINT_STUFF_BUTTON);
+	autoTestDef = new JoystickButton(m_btnBox, AUTO_DRIVE_UNTIL_RAMP_SENSOR_BUTTON);
+
+	printStuff->WhenPressed(new PrintStuff());
 //	resetEncoder->WhenPressed(new ResetEncoder());
-	forwardIntakeMotor->WhileHeld(new SetIntake(Shooter::kIntakeForward));
+	forwardIntakeMotor->WhenPressed(new SetIntake(Shooter::kIntakeForward));
+	forwardIntakeMotor->WhenReleased(new SetIntake(Shooter::kIntakeOff));
 //	forwardIntakeMotor->WhenReleased(new SetIntake(Shooter::kIntakeOff));
 //	reverseIntakeMotor->WhileHeld(new SetIntake(Shooter::kIntakeReverse));
 //	reverseIntakeMotor->WhenReleased(new SetIntake(Shooter::kIntakeOff));
@@ -59,9 +74,17 @@ OI::OI()
 	hoodNear->WhenPressed(new SetHoodPosition(Shooter::kNear));
 	hoodMiddle->WhenPressed(new SetHoodPosition(Shooter::kMiddle));
 	hoodFar->WhenPressed(new SetHoodPosition(Shooter::kFar));
+	autoTestDef->WhenPressed(new AutoChevalDeFrise());
+
+	shootClose->WhenPressed(new ShootClose());
+	shootFar->WhenPressed(new ShootFar());
 }
 
 Joystick* OI::getStick()
 {
-	return (Joystick *)stick;
+	return stick;
+}
+Joystick* OI::getBtnBox()
+{
+	return m_btnBox;
 }

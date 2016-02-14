@@ -17,8 +17,10 @@ private:
 	CANTalon *rightDriveMaster;
 	CANTalon *rightDriveSlave;
 	RobotDrive *robotDrive;
-	Encoder *encoder;
+	Encoder *leftEncoder;
+	Encoder *rightEncoder;
     AHRS *navx;
+    DigitalInput *rampSensor;
     double m_output;
     double m_autoSpeed;
     AutoType m_autoMode;
@@ -55,12 +57,15 @@ public:
 	void SetAutoSpeed(double autoSpeed);
 	double GetOutput();
 	void setPID (double P, double I, double D);
-	void ResetEncoder();
-	double GetEncoderDistance();
+	void ResetLeftEncoder();
+	void PrintLeftEncoder();
+	double GetLeftEncoderDistance();
 	void SetOffset(double offset);
 
 	void SetBrake();
 	void SetCoast();
+
+	bool getRampSensor();
 };
 
 #endif

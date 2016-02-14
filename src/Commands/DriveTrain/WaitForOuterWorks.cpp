@@ -1,37 +1,39 @@
-#include "ResetEncoder.h"
+#include "WaitForOuterWorks.h"
 
-ResetEncoder::ResetEncoder()
+WaitForOuterWorks::WaitForOuterWorks()
 {
+	// Use Requires() here to declare subsystem dependencies
+	// eg. Requires(chassis);
 	Requires(driveTrain);
 }
 
 // Called just before this Command runs the first time
-void ResetEncoder::Initialize()
+void WaitForOuterWorks::Initialize()
 {
-	driveTrain->ResetLeftEncoder();
+
 }
 
 // Called repeatedly when this Command is scheduled to run
-void ResetEncoder::Execute()
+void WaitForOuterWorks::Execute()
 {
 
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool ResetEncoder::IsFinished()
+bool WaitForOuterWorks::IsFinished()
 {
-	return true;
+
 }
 
 // Called once after isFinished returns true
-void ResetEncoder::End()
+void WaitForOuterWorks::End()
 {
 
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void ResetEncoder::Interrupted()
+void WaitForOuterWorks::Interrupted()
 {
 
 }
