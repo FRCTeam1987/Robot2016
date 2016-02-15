@@ -1,9 +1,9 @@
 #include "AutoLowBar.h"
-#include "AutoDriveUntilRampSensor.h"
-#include "AutoDriveAfterRampSensor.h"
+#include "DriveStraightUntilRampSensor.h"
+#include "DriveStraightAfterRampSensor.h"
 
 AutoLowBar::AutoLowBar()
 {
-	AddSequential(new AutoDriveUntilRampSensor(0.6));
-	AddSequential(new AutoDriveAfterRampSensor(0.6));
+	AddSequential(new DriveStraightUntilRampSensor(0.6));
+	AddSequential(new DriveStraightAfterRampSensor(0.6));
 }

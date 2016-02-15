@@ -1,10 +1,6 @@
 #include "WPILib.h"
 #include "Commands/Command.h"
 #include "Commands/DriveTrain/AutoTurn.h"
-#include "Commands/DriveTrain/AutoDrive.h"
-#include "Commands/DriveTrain/DriveStraight.h"
-#include "Commands/DriveTrain/CrossLowBar.h"
-#include "Commands/DriveTrain/WaitForPitch.h"
 #include "Commands/Shooter/WaitForBall.h"
 #include "Commands/DriveTrain/DriveUntilPitchAndDark.h"
 #include "CommandBase.h"
@@ -22,17 +18,11 @@ private:
 	{
 		CommandBase::init();
 		chooser = new SendableChooser();
-		chooser->AddObject("Auto Drive", new AutoDrive());
 		chooser->AddObject("Auto Turn - 030", new AutoTurn(30));
 		chooser->AddObject("Auto Turn - 060", new AutoTurn(60));
 		chooser->AddObject("Auto Turn - 090", new AutoTurn(90));
 		chooser->AddObject("Auto Turn - 120", new AutoTurn(120));
 		chooser->AddObject("Auto Turn - 150", new AutoTurn(150));
-		chooser->AddDefault("Drive Straight PID 050\%", new DriveStraight(0, 100, 0.5));
-		chooser->AddObject("Drive Straight PID 075\%", new DriveStraight(0, 100, 0.75));
-		chooser->AddObject("Drive Straight PID 100\%", new DriveStraight(0, 100, 1.0));
-		chooser->AddObject("Cross Low Bar", new CrossLowBar());
-		chooser->AddObject("Wait For Pitch", new WaitForPitch(8,0.6));
 //		chooser->AddObject("Wait For Pitch And Dark", new DriveUntilPitchAndDark(0.0, 0.0, -.65));
 		SmartDashboard::PutData("Auto Modes", chooser);
 		SmartDashboard::PutData("Wait For Ball", new WaitForBall());

@@ -5,7 +5,6 @@
 #include "Commands/DriveTrain/ResetEncoder.h"
 #include "Commands/DriveTrain/AutoLowBar.h"
 #include "Commands/DriveTrain/AutoRockWall.h"
-#include "Commands/DriveTrain/DriveByEncoder.h"
 #include "Commands/DriveTrain/AutoPortcullis.h"
 #include "Commands/DriveTrain/AutoChevalDeFrise.h"
 #include "Commands/Shooter/SetIntake.h"
