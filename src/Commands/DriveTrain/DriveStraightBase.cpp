@@ -1,4 +1,5 @@
 #include "DriveStraightBase.h"
+#include "RobotMap.h"
 
 DriveStraightBase::DriveStraightBase(double speed)
 {
@@ -9,7 +10,14 @@ DriveStraightBase::DriveStraightBase(double speed)
 // Called just before this Command runs the first time
 void DriveStraightBase::Initialize()
 {
-	driveTrain->setPID(-0.06, -0.004, 0.0);
+	if(CommandBase::IsPracticeBot())
+	{
+		driveTrain->setPID(DRIVE_STRAIGHT_P_PRAC, DRIVE_STRAIGHT_I_PRAC, DRIVE_STRAIGHT_D_PRAC);
+	}
+	else
+	{
+		driveTrain->setPID(DRIVE_STRAIGHT_P_COMP, DRIVE_STRAIGHT_I_COMP, DRIVE_STRAIGHT_D_COMP);
+	}
 	driveTrain->SetAutoSpeed(m_speed);
 	driveTrain->SetAutoMode(driveTrain->DRIVE_STRAIGHT);
 

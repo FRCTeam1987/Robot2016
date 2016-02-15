@@ -26,6 +26,7 @@ private:
     AutoType m_autoMode;
     double m_wheelDiameter;
     double m_offset;
+    bool m_isPracticeBot;
 
     std::shared_ptr<NetworkTable> nt;
 

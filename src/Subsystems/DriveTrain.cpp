@@ -33,7 +33,6 @@ DriveTrain::DriveTrain() :
 	rightEncoder = new Encoder(RIGHT_ENCODER_PIN_A, RIGHT_ENCODER_PIN_B);
 
 	rampSensor = new DigitalInput(RAMP_SENSOR_PIN);
-
 	GetPIDController()->SetAbsoluteTolerance(2.0);
 	GetPIDController()->SetContinuous(true);
 	GetPIDController()->SetInputRange(0, 360);
@@ -55,6 +54,7 @@ DriveTrain::DriveTrain() :
 
 	rightEncoder->SetDistancePerPulse((PI * m_wheelDiameter) / ENCODER_TICKS);
 	this->Disable();
+
 }
 
 double DriveTrain::ReturnPIDInput()
@@ -226,3 +226,4 @@ bool DriveTrain::getRampSensor()
 {
 	return rampSensor->Get();
 }
+

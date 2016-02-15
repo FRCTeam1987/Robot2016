@@ -28,6 +28,11 @@ public:
 	static OurElectrical *ourElectrical;
 	static std::shared_ptr<NetworkTable> table;
 	static OI *oi;
+
+	static bool IsPracticeBot();
+
+private:
+	static bool m_isPracticeBot;
 };
 
 #endif

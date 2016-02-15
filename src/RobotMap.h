@@ -15,12 +15,20 @@ const int LEFT_ENCODER_PIN_B = 1;
 const int RIGHT_ENCODER_PIN_A = 2;
 const int RIGHT_ENCODER_PIN_B = 3;
 const int RAMP_SENSOR_PIN = 4;
+const int PRACTICE_JUMPER = 5;
 
 const int ENCODER_TICKS = 250;
 const double PI = 3.141593;
 const double AUTO_DRIVESTRAIGHT_SPEED = 0.4;
 const float ANGLE_TOLERANCE = 2.0;
 
+const double DRIVE_STRAIGHT_P_PRAC = -0.06;
+const double DRIVE_STRAIGHT_I_PRAC = -0.004;
+const double DRIVE_STRAIGHT_D_PRAC =  0.0;
+
+const double DRIVE_STRAIGHT_P_COMP = -0.06;
+const double DRIVE_STRAIGHT_I_COMP = -0.004;
+const double DRIVE_STRAIGHT_D_COMP =  0.0;
 
 //Shooter
 

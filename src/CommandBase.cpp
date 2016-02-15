@@ -1,5 +1,6 @@
 #include "CommandBase.h"
 #include "Commands/Scheduler.h"
+#include "RobotMap.h"
 
 // Initialize a single static instance of all of your subsystems to NULL
 Shooter* CommandBase::shooter = NULL;
@@ -7,11 +8,14 @@ DriveTrain* CommandBase::driveTrain = NULL;
 Collector* CommandBase::collector = NULL;
 std::shared_ptr<NetworkTable> CommandBase::table = NULL;
 OI* CommandBase::oi = NULL;
+bool CommandBase::m_isPracticeBot = false;
 
 CommandBase::CommandBase(const std::string &name) :
 		Command(name)
 {
 	//table = NetworkTable::GetTable("GRIP");
+	DigitalInput practiceBotSensor(PRACTICE_JUMPER);
+	m_isPracticeBot = practiceBotSensor.Get();
 }
 
 CommandBase::CommandBase() :
@@ -54,4 +58,9 @@ void CommandBase::init()
 
 //	table = NetworkTable::GetTable("GRIP/myContoursReport");
 
+}
+
+bool CommandBase::IsPracticeBot()
+{
+	return m_isPracticeBot;
 }
