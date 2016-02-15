@@ -1,7 +1,6 @@
 #include "AutoPortcullis.h"
 #include "Commands/DriveTrain/SetBrake.h"
 #include "Commands/Collector/SetArmPosition.h"
-#include "Commands/DriveTrain/AutoEncoderDrive.h"
 #include "Commands/DriveTrain/AutoTurn.h"
 #include "Commands/Shooter/Shoot.h"
 #include "Commands/DriveTrain/SetCoast.h"

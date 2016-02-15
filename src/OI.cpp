@@ -2,7 +2,6 @@
 #include "RobotMap.h"
 #include "BroncoXbox.h"
 #include "Commands/PrintStuff.h"
-#include "Commands/DriveTrain/ResetEncoder.h"
 #include "Commands/DriveTrain/AutoLowBar.h"
 #include "Commands/DriveTrain/AutoRockWall.h"
 #include "Commands/DriveTrain/AutoPortcullis.h"
