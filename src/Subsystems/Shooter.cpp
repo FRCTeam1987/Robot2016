@@ -2,7 +2,7 @@
 #include "../RobotMap.h"
 #include "SmartDashboard/SmartDashboard.h"
 #include "LiveWindow/LiveWindow.h"
-#include "Commands/Shooter/ReadJoystickSlider.h"
+//#include "Commands/Shooter/ReadJoystickSlider.h"
 #include "Commands/PrintCurrent.h"
 
 Shooter::Shooter() : Subsystem("ExampleSubsystem")
@@ -26,7 +26,7 @@ Shooter::Shooter() : Subsystem("ExampleSubsystem")
 
 void Shooter::InitDefaultCommand()
 {
-	this->SetDefaultCommand(new ReadJoystickSlider());
+//	this->SetDefaultCommand(new ReadJoystickSlider());
 }
 
 void Shooter::SetIntake(IntakeMode mode)

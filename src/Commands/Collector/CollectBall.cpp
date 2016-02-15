@@ -7,11 +7,11 @@
 CollectBall::CollectBall()
 {
 	AddSequential(new SetArmPosition(Collector::kCollect));
-	AddSequential(new SetCollectorSpeed(0.5));
+	AddSequential(new SetCollectorSpeed(0.75));
 	AddSequential(new SetIntake(Shooter::kIntakeForward));
 	AddSequential(new WaitForBall());
 	AddSequential(new SetIntake(Shooter::kIntakeOff));
 	AddSequential(new SetCollectorSpeed(0));
-	AddSequential(new SetArmPosition(Collector::kSafe));
+	AddSequential(new SetArmPosition(Collector::kCollect));
 }
 

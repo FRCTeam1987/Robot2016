@@ -30,7 +30,7 @@ OI::OI()
 	forwardIntakeMotor = new JoystickButton(m_btnBox, FORWARD_INTAKE_MOTOR_BUTTON);
 //	reverseIntakeMotor = new JoystickButton(stick, REVERSEINTAKEMOTORBUTTON);
 //	stopIntakeMotor = new JoystickButton(stick, STOPINTAKEMOTORBUTTON);
-	loadBall = new JoystickButton(stick, LOAD_BALL_BUTTON);
+//	loadBall = new JoystickButton(stick, LOAD_BALL_BUTTON);
 //	spinShooter = new JoystickButton(stick, SPINSHOOTERBUTTON);
 //	anotherSpinShooter = new JoystickButton(stick, FASTSHOOTERBUTTON);
 //	stopSpinShooter = new JoystickButton(stick, STOPSHOOTERBUTTON);
@@ -46,10 +46,13 @@ OI::OI()
 	hoodFar = new JoystickButton(stick, HOOD_FAR_BUTTON);
 
 
-	shootClose = new JoystickButton(m_btnBox, SHOOT_CLOSE_BUTTON);
-	shootFar = new JoystickButton(m_btnBox, SHOOT_FAR_BUTTON);
+//	shootClose = new JoystickButton(m_btnBox, SHOOT_CLOSE_BUTTON);
+//	shootFar = new JoystickButton(m_btnBox, SHOOT_FAR_BUTTON);
 	printStuff = new JoystickButton(m_btnBox, PRINT_STUFF_BUTTON);
 	autoTestDef = new JoystickButton(m_btnBox, AUTO_DRIVE_UNTIL_RAMP_SENSOR_BUTTON);
+	autoPortcullis = new JoystickButton(m_btnBox, AUTO_PORTCULLIS_BUTTON);
+	autoChevalDeFrise = new JoystickButton(m_btnBox, AUTO_CHEVAL_DEFRISE_BUTTON);
+	autoRockWall = new JoystickButton(m_btnBox, AUTO_ROCK_WALL_BUTTON);
 
 	printStuff->WhenPressed(new PrintStuff());
 //	resetEncoder->WhenPressed(new ResetEncoder());
@@ -59,7 +62,7 @@ OI::OI()
 //	reverseIntakeMotor->WhileHeld(new SetIntake(Shooter::kIntakeReverse));
 //	reverseIntakeMotor->WhenReleased(new SetIntake(Shooter::kIntakeOff));
 //	stopIntakeMotor->WhenPressed(new SetIntake(Shooter::kIntakeOff));
-	loadBall->WhenPressed(new LoadBall());
+//	loadBall->WhenPressed(new LoadBall());
 //	spinShooter->WhenPressed(new SetShooterSpeed(3500));
 //	anotherSpinShooter->WhenPressed(new SetShooterSpeed(5000));
 //	stopSpinShooter->WhenPressed(new SetShooterSpeed(0));
@@ -74,10 +77,12 @@ OI::OI()
 	hoodNear->WhenPressed(new SetHoodPosition(Shooter::kNear));
 	hoodMiddle->WhenPressed(new SetHoodPosition(Shooter::kMiddle));
 	hoodFar->WhenPressed(new SetHoodPosition(Shooter::kFar));
-	autoTestDef->WhenPressed(new AutoChevalDeFrise());
+	autoChevalDeFrise->WhenPressed(new AutoChevalDeFrise());
+	autoPortcullis->WhenPressed(new AutoPortcullis());
+	autoRockWall->WhenPressed(new AutoRockWall());
 
-	shootClose->WhenPressed(new ShootClose());
-	shootFar->WhenPressed(new ShootFar());
+	//shootClose->WhenPressed(new ShootClose());
+	//shootFar->WhenPressed(new ShootFar());
 }
 
 Joystick* OI::getStick()

@@ -15,6 +15,9 @@ private:
 	std::unique_ptr<Command> autonomousCommand;
 	SendableChooser *chooser;
 
+	SendableChooser *defenseTypeChooser;
+	SendableChooser *defensePositionChooser;
+
 	void RobotInit()
 	{
 		CommandBase::init();
@@ -30,9 +33,29 @@ private:
 		chooser->AddObject("Drive Straight PID 100\%", new DriveStraight(0, 100, 1.0));
 		chooser->AddObject("Cross Low Bar", new CrossLowBar());
 		chooser->AddObject("Wait For Pitch", new WaitForPitch(8,0.6));
-		chooser->AddObject("Wait For Pitch And Dark", new DriveUntilPitchAndDark(0.0, 0.0, -.65));
+//		chooser->AddObject("Wait For Pitch And Dark", new DriveUntilPitchAndDark(0.0, 0.0, -.65));
 		SmartDashboard::PutData("Auto Modes", chooser);
 		SmartDashboard::PutData("Wait For Ball", new WaitForBall());
+
+		defenseTypeChooser = new SendableChooser();
+		defenseTypeChooser->AddDefault("Low", new std::string("LOW"));
+		defenseTypeChooser->AddObject("Rock Wall", new std::string("ROCK_WALL"));
+		defenseTypeChooser->AddObject("Rough Terrain", new std::string("ROUGH_TERRAIN"));
+		defenseTypeChooser->AddObject("Port", new std::string("PORT"));
+		defenseTypeChooser->AddObject("Chival", new std::string("CHIVAL"));
+		defenseTypeChooser->AddObject("Ramparts", new std::string("RAMPARTS"));
+		defenseTypeChooser->AddObject("Moat", new std::string("MOAT"));
+		defenseTypeChooser->AddObject("Sally Port", new std::string("SALLY_PORT"));
+		defenseTypeChooser->AddObject("Draw Bridge", new std::string("DRAW_BRIDGE"));
+		SmartDashboard::PutData("Defense Type", defenseTypeChooser);
+
+		defensePositionChooser = new SendableChooser();
+		defensePositionChooser->AddDefault("1", new std::uint16_t(1));
+		defensePositionChooser->AddObject("2", new std::uint16_t(2));
+		defensePositionChooser->AddObject("3", new std::uint16_t(3));
+		defensePositionChooser->AddObject("4", new std::uint16_t(4));
+		defensePositionChooser->AddObject("5", new std::uint16_t(5));
+		SmartDashboard::PutData("Defense Position", defensePositionChooser);
 	}
 
 	/**

@@ -3,6 +3,7 @@
 #include "../Collector/SetArmPosition.h"
 #include "AutoDriveUntilRampSensor.h"
 #include "DriveUntilPitchAndDark.h"
+#include "DriveStraight.h"
 
 
 AutoChevalDeFrise::AutoChevalDeFrise()
@@ -11,6 +12,8 @@ AutoChevalDeFrise::AutoChevalDeFrise()
 	AddSequential(new SetArmPosition(Collector::kSafe));
 	AddSequential(new AutoDriveUntilRampSensor(-0.5));
 	AddSequential(new SetArmPosition(Collector::kGround));
-	AddSequential(new WaitCommand(2.0));
-	AddSequential(new DriveUntilPitchAndDark(0.0, 0.0, 0.50));
+	AddSequential(new WaitCommand(1));
+	AddSequential(new DriveStraight(0, 6, .80));
+	AddSequential(new SetArmPosition(Collector::kCollect));
+	AddSequential(new DriveUntilPitchAndDark(0.0, 0.0, -0.75));
 }

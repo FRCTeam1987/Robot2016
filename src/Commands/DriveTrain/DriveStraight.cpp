@@ -28,14 +28,14 @@ void DriveStraight::Initialize()
 void DriveStraight::Execute()
 {
 //	printf("Error - %f \t Output - %f \n", driveTrain->GetGyroAngle() - angleSetpoint, driveTrain->GetOutput());
-	printf("Angle Setpoint - %f \t Error - %f \t Output - %f \t", angleSetpoint, (angleSetpoint - driveTrain->GetGyroAngle()), driveTrain->GetOutput());
-	printf(" Distance Setpoint - %f \t Distance Driven - %f\n", distanceSetpoint, driveTrain->GetLeftEncoderDistance());
+	//printf("Angle Setpoint - %f \t Error - %f \t Output - %f \t", angleSetpoint, (angleSetpoint - driveTrain->GetGyroAngle()), driveTrain->GetOutput());
+	//printf(" Distance Setpoint - %f \t Distance Driven - %f\n", distanceSetpoint, driveTrain->GetLeftEncoderDistance());
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool DriveStraight::IsFinished()
 {
-	return driveTrain->GetLeftEncoderDistance()>=distanceSetpoint;
+	return abs(driveTrain->GetLeftEncoderDistance())>= abs(distanceSetpoint);
 }
 
 // Called once after isFinished returns true

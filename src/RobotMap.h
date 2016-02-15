@@ -58,24 +58,28 @@ const int BOTTOM_CYLINDER_EXTENDED_SENSOR = 8;
 //const int FASTSHOOTERBUTTON = 8;
 //const int STOPSHOOTERBUTTON = 4;
 const int SHOOT_BUTTON = 1;
-const int LOAD_BALL_BUTTON = 2;
+//const int LOAD_BALL_BUTTON = 2;
+const int COLLECT_BALL_BUTTON = 2;
 const int COLLECTOR_COLLECT_BUTTON = 3;
 const int COLLECTOR_SAFE_BUTTON = 4;
 const int COLLECTOR_GROUND_BUTTON = 5;
 const int COLLECTOR_MAX_BUTTON = 6;
 const int HOOD_FAR_BUTTON = 7;
-const int COLLECT_BALL_BUTTON = 8;
 const int HOOD_MIDDLE_BUTTON = 9;
 const int RUN_COLLECTOR_BUTTON = 10;
 const int HOOD_NEAR_BUTTON = 11;
-const int FORWARD_INTAKE_MOTOR_BUTTON = 1;
-const int PRINT_STUFF_BUTTON = 4;
-const int AUTO_DRIVE_UNTIL_RAMP_SENSOR_BUTTON = 5;
 
 //button box buttons below
 //button box has 11 bts and 2 switches
 
+const int FORWARD_INTAKE_MOTOR_BUTTON = 1;
 const int SHOOT_FAR_BUTTON = 2;
 const int SHOOT_CLOSE_BUTTON = 3;
+const int PRINT_STUFF_BUTTON = 4;
+const int AUTO_DRIVE_UNTIL_RAMP_SENSOR_BUTTON = 5;
+const int AUTO_CHEVAL_DEFRISE_BUTTON = 7;
+const int AUTO_PORTCULLIS_BUTTON = 11;
+const int AUTO_ROCK_WALL_BUTTON = 9;
+
 
 #endif

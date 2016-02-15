@@ -14,7 +14,7 @@ private:
 	JoystickButton *forwardIntakeMotor;
 //	JoystickButton *reverseIntakeMotor;
 //	JoystickButton *stopIntakeMotor;
-	JoystickButton *loadBall;
+//	JoystickButton *loadBall;
 //	JoystickButton *spinShooter;
 //	JoystickButton *anotherSpinShooter;
 //	JoystickButton *stopSpinShooter;
@@ -30,9 +30,12 @@ private:
 	JoystickButton *hoodFar;
 	JoystickButton *readJoystickSlider;
 
-	JoystickButton *shootFar;
-	JoystickButton *shootClose;
+//	JoystickButton *shootFar;
+//	JoystickButton *shootClose;
 	JoystickButton *autoTestDef;
+	JoystickButton *autoPortcullis;
+	JoystickButton *autoChevalDeFrise;
+	JoystickButton *autoRockWall;
 
 
 public:
