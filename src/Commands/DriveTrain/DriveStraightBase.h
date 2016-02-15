@@ -4,6 +4,9 @@
 #include "../../CommandBase.h"
 #include "WPILib.h"
 
+/**
+ * \class DriveStraightBase
+ */
 class DriveStraightBase: public CommandBase
 {
 private:

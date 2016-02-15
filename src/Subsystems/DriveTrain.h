@@ -27,6 +27,7 @@ private:
     double m_wheelDiameter;
     double m_offset;
     bool m_isPracticeBot;
+    bool m_isReversedOn;
 
     std::shared_ptr<NetworkTable> nt;
 
@@ -35,6 +36,7 @@ public:
 	double ReturnPIDInput();
 	void UsePIDOutput(double output);
 	void InitDefaultCommand();
+	void ToggleReverse();
 
 	void SetNetworkTable(std::shared_ptr<NetworkTable> nt);
 	std::shared_ptr<NetworkTable> GetNetworkTable();

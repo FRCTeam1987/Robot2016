@@ -40,6 +40,7 @@ DriveTrain::DriveTrain() :
 
 	GetPIDController()->SetOutputRange(-1, 1);
 
+	m_isReversedOn = false;
 
 	m_autoMode = DRIVE_STRAIGHT;
 	m_autoSpeed = 0;
@@ -101,7 +102,8 @@ std::shared_ptr<NetworkTable> DriveTrain::GetNetworkTable()
 
 void DriveTrain::DriveArcade(Joystick *stick)
 {
-	robotDrive->ArcadeDrive(-stick->GetY(), -stick->GetX());
+	int multiplier = m_isReversedOn ? 1 : -1;
+	robotDrive->ArcadeDrive(stick->GetY()*multiplier, stick->GetX()*multiplier);
 }
 
 void DriveTrain::AutoDrive(float move, float rotate)
@@ -227,3 +229,7 @@ bool DriveTrain::getRampSensor()
 	return rampSensor->Get();
 }
 
+void DriveTrain::ToggleReverse()
+{
+	m_isReversedOn = !m_isReversedOn;
+}

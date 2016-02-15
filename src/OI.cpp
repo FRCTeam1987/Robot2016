@@ -6,6 +6,7 @@
 #include "Commands/DriveTrain/AutoRockWall.h"
 #include "Commands/DriveTrain/AutoPortcullis.h"
 #include "Commands/DriveTrain/AutoChevalDeFrise.h"
+#include "Commands/DriveTrain/ToggleDriverControls.h"
 #include "Commands/Shooter/SetIntake.h"
 #include "Commands/Shooter/LoadBall.h"
 #include "Commands/Shooter/WaitForBall.h"
@@ -42,6 +43,7 @@ OI::OI()
 	hoodNear = new JoystickButton(stick, HOOD_NEAR_BUTTON);
 	hoodMiddle = new JoystickButton(stick, HOOD_MIDDLE_BUTTON);
 	hoodFar = new JoystickButton(stick, HOOD_FAR_BUTTON);
+	toggleReverse = new JoystickButton(m_btnBox, TOGGLE_CONTROLS);
 
 
 //	shootClose = new JoystickButton(m_btnBox, SHOOT_CLOSE_BUTTON);
@@ -78,6 +80,8 @@ OI::OI()
 	autoChevalDeFrise->WhenPressed(new AutoChevalDeFrise());
 	autoPortcullis->WhenPressed(new AutoPortcullis());
 	autoRockWall->WhenPressed(new AutoRockWall());
+	toggleReverse->WhenPressed(new ToggleDriverControls());
+
 
 	//shootClose->WhenPressed(new ShootClose());
 	//shootFar->WhenPressed(new ShootFar());

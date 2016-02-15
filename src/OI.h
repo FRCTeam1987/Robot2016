@@ -36,6 +36,7 @@ private:
 	JoystickButton *autoPortcullis;
 	JoystickButton *autoChevalDeFrise;
 	JoystickButton *autoRockWall;
+	JoystickButton *toggleReverse;
 
 
 public:
