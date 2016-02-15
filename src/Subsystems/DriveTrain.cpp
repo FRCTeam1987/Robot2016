@@ -102,8 +102,7 @@ std::shared_ptr<NetworkTable> DriveTrain::GetNetworkTable()
 
 void DriveTrain::DriveArcade(Joystick *stick)
 {
-	int multiplier = m_isReversedOn ? 1 : -1;
-	robotDrive->ArcadeDrive(stick->GetY()*multiplier, stick->GetX()*multiplier);
+	robotDrive->ArcadeDrive(stick->GetY()*(m_isReversedOn ? 1 : -1), -stick->GetX());
 }
 
 void DriveTrain::AutoDrive(float move, float rotate)

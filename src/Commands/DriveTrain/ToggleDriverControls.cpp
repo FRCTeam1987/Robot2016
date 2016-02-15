@@ -3,13 +3,12 @@
 ToggleDriverControls::ToggleDriverControls()
 {
 	Requires(driveTrain);
-	driveTrain->ToggleReverse();
 }
 
 // Called just before this Command runs the first time
 void ToggleDriverControls::Initialize()
 {
-
+	driveTrain->ToggleReverse();
 }
 
 // Called repeatedly when this Command is scheduled to run

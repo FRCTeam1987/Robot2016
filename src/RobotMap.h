@@ -90,7 +90,7 @@ const int AUTO_PORTCULLIS_BUTTON = 11;
 const int AUTO_ROCK_WALL_BUTTON = 9;
 //const int FORWARD_CONTROLS = ;
 //const int BACKWARD_CONTROLS = ;      unused unless driver prefers
-const int TOGGLE_CONTROLS = 2;
+const int TOGGLE_CONTROLS = 10;
 
 
 #endif
