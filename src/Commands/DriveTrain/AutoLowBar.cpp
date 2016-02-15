@@ -4,6 +4,6 @@
 
 AutoLowBar::AutoLowBar()
 {
-	AddSequential(new DriveStraightUntilRampSensor(0.6));
-	AddSequential(new DriveStraightAfterRampSensor(0.6));
+	AddSequential(new DriveStraightUntilRampSensor(-0.6));
+	AddSequential(new DriveStraightAfterRampSensor(-0.6));
 }
