@@ -71,7 +71,7 @@ OI::OI()
 	collectorCollect->WhenPressed(new SetArmPosition(Collector::kCollect));
 	collectorSafe->WhenPressed(new SetArmPosition(Collector::kSafe));
 	collectorMax->WhenPressed(new SetArmPosition(Collector::kMax));
-	collectorRun->WhenPressed(new SetCollectorSpeed(.25));
+	collectorRun->WhenPressed(new SetCollectorSpeed(.15));
 	collectorRun->WhenReleased(new SetCollectorSpeed(0));
 	collectBall->WhenPressed(new CollectBall());
 	hoodNear->WhenPressed(new SetHoodPosition(Shooter::kNear));
