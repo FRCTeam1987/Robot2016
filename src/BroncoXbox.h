@@ -7,6 +7,26 @@ class BroncoXbox : public BroncoJoy
 
 {
 public:
+	enum Axis{
+		LS_X,
+		LS_Y,
+		RS_X,
+		RS_Y,
+		TRIGGERS
+	};
+	enum Button{
+			A = 1,
+			B = 2,
+			X = 3,
+			Y = 4,
+			LB = 5,
+			RB = 6,
+			BACK = 7,
+			START = 8,
+			LSB = 9,
+			RSB = 10
+	};
+
 	explicit BroncoXbox(uint32_t port,
 			float expodrive, float expoturn,
 			float deadzone=0.05);
@@ -15,6 +35,8 @@ public:
 			float expodrive, float expoturn,
 			float deadzone=0.05);
 
+	void SetX(const Axis ax);
+	void SetY(const Axis ax);
 	virtual float GetX(JoystickHand hand = kRightHand) const;
 	virtual float GetY(JoystickHand hand = kRightHand) const;
 
@@ -34,8 +56,12 @@ public:
 	float GetLeftJoyY() const;
 	float GetRightJoyX() const;
 	float GetRightJoyY() const;
+	float GetAxis(const Axis ax) const;
 
 private:
+	Axis X_AXIS;
+	Axis Y_AXIS;
+
 	float CalcExpo(float value, float expo) const;
 };
 
