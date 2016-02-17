@@ -40,7 +40,6 @@ const int BOTTOM_CYLINDER = 5;
 
 const int HAS_BALL_SENSOR = 6;
 
-
 const int RPM_TOLERANCE = 50;
 
 
@@ -57,7 +56,30 @@ const int BOTTOM_CYLINDER_EXTENDED_SENSOR = 8;
 
 
 //Buttons
+namespace XboxButton
+{
+	const int A = 1,
+			  B = 2,
+			  X = 3,
+			  Y = 4,
+			  LB = 5,
+			  RB = 6,
+			  Back = 7,
+			  Start = 8,
+			  LSB = 9,
+			  RSB = 10;
+};
 
+//Xbox
+enum LayoutType
+{
+	kGTADrive = 0,
+	kSpencerDrive = 1,
+	kLucasDrive = 2
+};
+const LayoutType BUTTON_LAYOUT = kLucasDrive;
+
+//Joystick
 //const int RESETENCODERBUTTON = 5;
 //const int FORWARDINTAKEMOTORBUTTON = 7;
 //const int REVERSEINTAKEMOTORBUTTON = 9;

@@ -35,10 +35,11 @@ public:
 			float expodrive, float expoturn,
 			float deadzone=0.05);
 
-	void SetX(const Axis ax);
-	void SetY(const Axis ax);
 	virtual float GetX(JoystickHand hand = kRightHand) const;
 	virtual float GetY(JoystickHand hand = kRightHand) const;
+
+	void SetX(const Axis ax);
+	void SetY(const Axis ax);
 
 	float GetLeftTrigger() const;
 	float GetRightTrigger() const;
@@ -56,12 +57,12 @@ public:
 	float GetLeftJoyY() const;
 	float GetRightJoyX() const;
 	float GetRightJoyY() const;
-	float GetAxis(const Axis ax) const;
 
 private:
 	Axis X_AXIS;
 	Axis Y_AXIS;
 
+	float GetAxis(const Axis ax) const;
 	float CalcExpo(float value, float expo) const;
 };
 

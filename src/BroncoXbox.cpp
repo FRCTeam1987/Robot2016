@@ -5,8 +5,8 @@ BroncoXbox::BroncoXbox(uint32_t port,
 		float deadzone) :
 	BroncoJoy(port, expodrive, expoturn, deadzone) {
 
-	X_AXIS = BroncoXbox::TRIGGERS;
-	Y_AXIS = BroncoXbox::RS_Y;
+	X_AXIS = BroncoXbox::LS_X;
+	Y_AXIS = BroncoXbox::TRIGGERS;
 }
 
 float BroncoXbox::GetLeftTrigger() const {
@@ -20,8 +20,18 @@ float BroncoXbox::GetRightTrigger() const {
 BroncoXbox::BroncoXbox(uint32_t port, uint32_t numAxisTypes, uint32_t numButtonTypes,
 		float expodrive, float expoturn, float deadzone) :
 	BroncoJoy(port, numAxisTypes, numButtonTypes, expodrive, expoturn, deadzone) {
-	X_AXIS = BroncoXbox::TRIGGERS;
-	Y_AXIS = BroncoXbox::RS_Y;
+	X_AXIS = BroncoXbox::LS_X;
+	Y_AXIS = BroncoXbox::TRIGGERS;
+}
+
+void BroncoXbox::SetX(const Axis ax)
+{
+	X_AXIS = ax;
+}
+
+void BroncoXbox::SetY(const Axis ax)
+{
+	Y_AXIS = ax;
 }
 
 float BroncoXbox::GetX(JoystickHand hand) const {
@@ -33,11 +43,11 @@ float BroncoXbox::GetY(JoystickHand hand) const {
 }
 
 float BroncoXbox::GetLeftJoyX()const{
-	return CalcExpo(GetRawAxis(1), m_expoturn);
+	return CalcExpo(GetRawAxis(0), m_expoturn);
 }
 
 float BroncoXbox::GetLeftJoyY() const{
-	return CalcExpo(GetRawAxis(2), m_expodrive);
+	return CalcExpo(GetRawAxis(1), m_expodrive);
 }
 
 float BroncoXbox::GetRightJoyX()const{

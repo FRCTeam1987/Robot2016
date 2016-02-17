@@ -24,7 +24,8 @@ void Drive::Execute()
 //			driveTrain->GetVelocityX(),
 //			driveTrain->GetVelocityY(),
 //			driveTrain->GetVelocityZ());
-	driveTrain->DriveArcade(oi->getStick());
+//	driveTrain->DriveArcade(oi->getStick());
+	driveTrain->DriveArcade(oi->getXbox());
 	//printf("Roll: %6.3f\n", driveTrain->GetRoll());
 
 }

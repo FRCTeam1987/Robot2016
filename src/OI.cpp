@@ -22,9 +22,26 @@
 
 OI::OI()
 {
-//	stick = new BroncoXbox(2, 2, 2);
+	setLayout(BUTTON_LAYOUT);
+	xbox = new BroncoXbox(2, 2, 2, .075);
 	stick = new BroncoJoy(0, 2, 2);
 	m_btnBox = new Joystick(1);
+
+	xbox->SetX(X_AXIS);
+	xbox->SetY(Y_AXIS);
+
+	//Xbox 360 (If you don't like it make your own layout.)
+	hoodNearXbox = new JoystickButton(xbox, HOOD_NEAR_XBOXBUTTON);
+	hoodMiddleXbox = new JoystickButton(xbox, HOOD_MIDDLE_XBOXBUTTON);
+	collectorSafeXbox = new JoystickButton(xbox, COLLECTOR_SAFE_XBOXBUTTON);
+	hoodFarXbox = new JoystickButton(xbox, HOOD_FAR_XBOXBUTTON);
+	collectXbox = new JoystickButton(xbox, COLLECTOR_XBOXBUTTON);
+	shootXbox = new JoystickButton(xbox, SHOOT_XBOXBUTTON);
+	collectorGroundXbox = new JoystickButton(xbox, COLLECTOR_GROUND_XBOXBUTTON);
+	toggleReverseXboxA = new JoystickButton(xbox, TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_A);
+	toggleReverseXboxB = new JoystickButton(xbox, TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_B);
+	toggleReverseXboxC = new JoystickButton(xbox, TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_C);
+
 //	resetEncoder = new JoystickButton(stick, RESETENCODERBUTTON);
 	forwardIntakeMotor = new JoystickButton(m_btnBox, FORWARD_INTAKE_MOTOR_BUTTON);
 //	reverseIntakeMotor = new JoystickButton(stick, REVERSEINTAKEMOTORBUTTON);
@@ -53,6 +70,18 @@ OI::OI()
 	autoPortcullis = new JoystickButton(m_btnBox, AUTO_PORTCULLIS_BUTTON);
 	autoChevalDeFrise = new JoystickButton(m_btnBox, AUTO_CHEVAL_DEFRISE_BUTTON);
 	autoRockWall = new JoystickButton(m_btnBox, AUTO_ROCK_WALL_BUTTON);
+
+	//Xbox 360 (If you don't like it make your own layout.)
+	hoodNearXbox->WhenPressed(new SetHoodPosition(Shooter::kNear));
+	hoodMiddleXbox->WhenPressed(new SetHoodPosition(Shooter::kMiddle));
+	collectorSafeXbox->WhenPressed(new SetArmPosition(Collector::kSafe));
+	hoodFarXbox->WhenPressed(new SetHoodPosition(Shooter::kFar));
+	collectXbox->WhenPressed(new CollectBall());
+	shootXbox->WhenPressed(new Shoot());
+	collectorGroundXbox->WhenPressed(new SetArmPosition(Collector::kGround));
+	toggleReverseXboxA->WhenPressed(new ToggleDriverControls());
+	toggleReverseXboxB->WhenPressed(new ToggleDriverControls());
+	toggleReverseXboxC->WhenPressed(new ToggleDriverControls());
 
 	printStuff->WhenPressed(new PrintStuff());
 //	resetEncoder->WhenPressed(new ResetEncoder());
@@ -87,9 +116,63 @@ OI::OI()
 	//shootFar->WhenPressed(new ShootFar());
 }
 
+void OI::setLayout(LayoutType layout)
+{
+	switch(layout)
+	{
+	case kGTADrive:
+		HOOD_NEAR_XBOXBUTTON = BroncoXbox::Button::A;
+		HOOD_MIDDLE_XBOXBUTTON = BroncoXbox::Button::B;
+		COLLECTOR_SAFE_XBOXBUTTON = BroncoXbox::Button::X;
+		HOOD_FAR_XBOXBUTTON = BroncoXbox::Button::Y;
+		COLLECTOR_XBOXBUTTON = BroncoXbox::Button::LB;
+		SHOOT_XBOXBUTTON = BroncoXbox::Button::RB;
+		COLLECTOR_GROUND_XBOXBUTTON = BroncoXbox::Button::BACK;
+		TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_A = BroncoXbox::Button::START;
+		TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_B = BroncoXbox::Button::LSB;
+		TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_C = BroncoXbox::Button::RSB;
+		X_AXIS = BroncoXbox::Axis::LS_X;
+		Y_AXIS = BroncoXbox::Axis::TRIGGERS;
+		break;
+	case kSpencerDrive:
+		HOOD_NEAR_XBOXBUTTON = BroncoXbox::Button::Y;
+		HOOD_MIDDLE_XBOXBUTTON = BroncoXbox::Button::B;
+		COLLECTOR_SAFE_XBOXBUTTON = BroncoXbox::Button::X;
+		HOOD_FAR_XBOXBUTTON = BroncoXbox::Button::A;
+		COLLECTOR_XBOXBUTTON = BroncoXbox::Button::LB;
+		SHOOT_XBOXBUTTON = BroncoXbox::Button::RB;
+		COLLECTOR_GROUND_XBOXBUTTON = BroncoXbox::Button::BACK;
+		TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_A = BroncoXbox::Button::START;
+		TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_B = BroncoXbox::Button::LSB;
+		TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_C = BroncoXbox::Button::RSB;
+		X_AXIS = BroncoXbox::Axis::LS_X;
+		Y_AXIS = BroncoXbox::Axis::TRIGGERS;
+		break;
+	case kLucasDrive:
+		HOOD_NEAR_XBOXBUTTON = BroncoXbox::Button::A;
+		HOOD_MIDDLE_XBOXBUTTON = BroncoXbox::Button::B;
+		COLLECTOR_SAFE_XBOXBUTTON = BroncoXbox::Button::X;
+		HOOD_FAR_XBOXBUTTON = BroncoXbox::Button::Y;
+		COLLECTOR_XBOXBUTTON = BroncoXbox::Button::LB;
+		SHOOT_XBOXBUTTON = BroncoXbox::Button::RB;
+		COLLECTOR_GROUND_XBOXBUTTON = BroncoXbox::Button::BACK;
+		TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_A = BroncoXbox::Button::START;
+		TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_B = BroncoXbox::Button::LSB;
+		TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_C = BroncoXbox::Button::RSB;
+		X_AXIS = BroncoXbox::Axis::RS_X;
+		Y_AXIS = BroncoXbox::Axis::LS_Y;
+		break;
+	}
+	return;
+}
+
 Joystick* OI::getStick()
 {
 	return stick;
+}
+Joystick* OI::getXbox()
+{
+	return xbox;
 }
 Joystick* OI::getBtnBox()
 {
