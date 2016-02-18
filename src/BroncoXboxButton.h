@@ -19,7 +19,7 @@ public:
 		START = 8,
 		LSB = 9,
 		RSB = 10,
-		D_U = 0, // Need to figure out what the DPAD (POV hat)
+		D_U = 0,
 		D_UR = 45,
 		D_R = 90,
 		D_DR = 135,
@@ -34,11 +34,13 @@ public:
 	BroncoXboxButton(GenericHID *xbox, Button btn);
 
 	void Set(const Button newButton);
+	void SetTrigger(const Button newButton, const float triggerPoint = 0.25);
 	bool Get() override;
 
 private:
 	GenericHID *m_xbox;
 	Button m_button;
+	float m_triggerPoint;   //The point at which the "whenPressed()" will fire. Can stack multiple commands on one trigger!
 
 };
 
