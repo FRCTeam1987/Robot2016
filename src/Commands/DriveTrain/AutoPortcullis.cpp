@@ -1,6 +1,7 @@
 #include "AutoPortcullis.h"
 #include "Commands/DriveTrain/SetBrake.h"
 #include "Commands/Collector/SetArmPosition.h"
+#include "Commands/Collector/CheckArmPosition.h"
 #include "Commands/DriveTrain/AutoTurn.h"
 #include "Commands/Shooter/Shoot.h"
 #include "Commands/DriveTrain/SetCoast.h"
@@ -14,6 +15,7 @@ AutoPortcullis::AutoPortcullis()
 {
 	AddSequential(new SetBrake());
 	AddSequential(new SetArmPosition(Collector::kGround));
+	AddSequential(new CheckArmPosition(Collector::kGround));
 	AddSequential(new DriveStraightUntilRampSensor(-0.5));
 	AddSequential(new DriveStraightForDistance(10, 0.5));
 	AddSequential(new SetDrive(0));
