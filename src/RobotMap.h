@@ -84,7 +84,7 @@ enum LayoutType
 	kLucasDrive = 2,
 	kOliviaDrive = 3
 };
-const LayoutType BUTTON_LAYOUT = kOliviaDrive;
+const LayoutType BUTTON_LAYOUT = kLucasDrive;
 
 //Joystick
 //const int RESETENCODERBUTTON = 5;

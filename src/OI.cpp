@@ -156,14 +156,12 @@ void OI::setLayout(LayoutType layout)
 	case kLucasDrive:
 		HOOD_NEAR_XBOXBUTTON = BroncoXboxButton::Button::A;
 		HOOD_MIDDLE_XBOXBUTTON = BroncoXboxButton::Button::B;
-		COLLECTOR_SAFE_XBOXBUTTON = BroncoXboxButton::Button::X;
+		STOP_COLLECT_XBOXBUTTON = BroncoXboxButton::Button::X;
 		HOOD_FAR_XBOXBUTTON = BroncoXboxButton::Button::Y;
 		COLLECTOR_XBOXBUTTON = BroncoXboxButton::Button::LB;
 		SHOOT_XBOXBUTTON = BroncoXboxButton::Button::RB;
 		COLLECTOR_GROUND_XBOXBUTTON = BroncoXboxButton::Button::BACK;
 		TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_A = BroncoXboxButton::Button::START;
-		TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_B = BroncoXboxButton::Button::LSB;
-		TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_C = BroncoXboxButton::Button::RSB;
 		X_AXIS = BroncoXbox::Axis::RS_X;
 		Y_AXIS = BroncoXbox::Axis::LS_Y;
 		break;
