@@ -1,6 +1,7 @@
 #include "OI.h"
 #include "RobotMap.h"
 #include "BroncoXbox.h"
+
 #include "Commands/PrintStuff.h"
 #include "Commands/DriveTrain/AutoLowBar.h"
 #include "Commands/DriveTrain/AutoRockWall.h"
@@ -16,6 +17,7 @@
 #include "Commands/Collector/SetArmPosition.h"
 #include "Commands/Collector/SetCollectorSpeed.h"
 #include "Commands/Collector/CollectBall.h"
+#include "Commands/Collector/StopIntakeAndCollector.h"
 #include "Commands/Shooter/ShootFar.h"
 #include "Commands/Shooter/ShootClose.h"
 
@@ -31,16 +33,18 @@ OI::OI()
 	xbox->SetY(Y_AXIS);
 
 	//Xbox 360 (If you don't like it make your own layout.)
-	hoodNearXbox = new JoystickButton(xbox, HOOD_NEAR_XBOXBUTTON);
-	hoodMiddleXbox = new JoystickButton(xbox, HOOD_MIDDLE_XBOXBUTTON);
-	collectorSafeXbox = new JoystickButton(xbox, COLLECTOR_SAFE_XBOXBUTTON);
-	hoodFarXbox = new JoystickButton(xbox, HOOD_FAR_XBOXBUTTON);
-	collectXbox = new JoystickButton(xbox, COLLECTOR_XBOXBUTTON);
-	shootXbox = new JoystickButton(xbox, SHOOT_XBOXBUTTON);
-	collectorGroundXbox = new JoystickButton(xbox, COLLECTOR_GROUND_XBOXBUTTON);
-	toggleReverseXboxA = new JoystickButton(xbox, TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_A);
-	toggleReverseXboxB = new JoystickButton(xbox, TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_B);
-	toggleReverseXboxC = new JoystickButton(xbox, TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_C);
+
+	hoodNearXbox = new BroncoXboxButton(xbox, HOOD_NEAR_XBOXBUTTON);
+	hoodMiddleXbox = new BroncoXboxButton(xbox, HOOD_MIDDLE_XBOXBUTTON);
+	collectorSafeXbox = new BroncoXboxButton(xbox, COLLECTOR_SAFE_XBOXBUTTON);
+	hoodFarXbox = new BroncoXboxButton(xbox, HOOD_FAR_XBOXBUTTON);
+	collectXbox = new BroncoXboxButton(xbox, COLLECTOR_XBOXBUTTON);
+	stopCollectXbox = new BroncoXboxButton(xbox, STOP_COLLECT_XBOXBUTTON);
+	shootXbox = new BroncoXboxButton(xbox, SHOOT_XBOXBUTTON);
+	collectorGroundXbox = new BroncoXboxButton(xbox, COLLECTOR_GROUND_XBOXBUTTON);
+	toggleReverseXboxA = new BroncoXboxButton(xbox, TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_A);
+	toggleReverseXboxB = new BroncoXboxButton(xbox, TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_B);
+	toggleReverseXboxC = new BroncoXboxButton(xbox, TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_C);
 
 //	resetEncoder = new JoystickButton(stick, RESETENCODERBUTTON);
 	forwardIntakeMotor = new JoystickButton(m_btnBox, FORWARD_INTAKE_MOTOR_BUTTON);
@@ -77,6 +81,7 @@ OI::OI()
 	collectorSafeXbox->WhenPressed(new SetArmPosition(Collector::kSafe));
 	hoodFarXbox->WhenPressed(new SetHoodPosition(Shooter::kFar));
 	collectXbox->WhenPressed(new CollectBall());
+	stopCollectXbox->WhenPressed(new StopIntakeAndCollector());
 	shootXbox->WhenPressed(new Shoot());
 	collectorGroundXbox->WhenPressed(new SetArmPosition(Collector::kGround));
 	toggleReverseXboxA->WhenPressed(new ToggleDriverControls());
@@ -121,47 +126,60 @@ void OI::setLayout(LayoutType layout)
 	switch(layout)
 	{
 	case kGTADrive:
-		HOOD_NEAR_XBOXBUTTON = BroncoXbox::Button::A;
-		HOOD_MIDDLE_XBOXBUTTON = BroncoXbox::Button::B;
-		COLLECTOR_SAFE_XBOXBUTTON = BroncoXbox::Button::X;
-		HOOD_FAR_XBOXBUTTON = BroncoXbox::Button::Y;
-		COLLECTOR_XBOXBUTTON = BroncoXbox::Button::LB;
-		SHOOT_XBOXBUTTON = BroncoXbox::Button::RB;
-		COLLECTOR_GROUND_XBOXBUTTON = BroncoXbox::Button::BACK;
-		TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_A = BroncoXbox::Button::START;
-		TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_B = BroncoXbox::Button::LSB;
-		TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_C = BroncoXbox::Button::RSB;
+		HOOD_NEAR_XBOXBUTTON = BroncoXboxButton::Button::A;
+		HOOD_MIDDLE_XBOXBUTTON = BroncoXboxButton::Button::B;
+		COLLECTOR_SAFE_XBOXBUTTON = BroncoXboxButton::Button::X;
+		HOOD_FAR_XBOXBUTTON = BroncoXboxButton::Button::Y;
+		COLLECTOR_XBOXBUTTON = BroncoXboxButton::Button::LB;
+		SHOOT_XBOXBUTTON = BroncoXboxButton::Button::RB;
+		COLLECTOR_GROUND_XBOXBUTTON = BroncoXboxButton::Button::BACK;
+		TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_A = BroncoXboxButton::Button::START;
+		TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_B = BroncoXboxButton::Button::LSB;
+		TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_C = BroncoXboxButton::Button::RSB;
 		X_AXIS = BroncoXbox::Axis::LS_X;
 		Y_AXIS = BroncoXbox::Axis::TRIGGERS;
 		break;
 	case kSpencerDrive:
-		HOOD_NEAR_XBOXBUTTON = BroncoXbox::Button::Y;
-		HOOD_MIDDLE_XBOXBUTTON = BroncoXbox::Button::B;
-		COLLECTOR_SAFE_XBOXBUTTON = BroncoXbox::Button::X;
-		HOOD_FAR_XBOXBUTTON = BroncoXbox::Button::A;
-		COLLECTOR_XBOXBUTTON = BroncoXbox::Button::LB;
-		SHOOT_XBOXBUTTON = BroncoXbox::Button::RB;
-		COLLECTOR_GROUND_XBOXBUTTON = BroncoXbox::Button::BACK;
-		TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_A = BroncoXbox::Button::START;
-		TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_B = BroncoXbox::Button::LSB;
-		TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_C = BroncoXbox::Button::RSB;
+		HOOD_NEAR_XBOXBUTTON = BroncoXboxButton::Button::Y;
+		HOOD_MIDDLE_XBOXBUTTON = BroncoXboxButton::Button::B;
+		COLLECTOR_SAFE_XBOXBUTTON = BroncoXboxButton::Button::X;
+		HOOD_FAR_XBOXBUTTON = BroncoXboxButton::Button::A;
+		COLLECTOR_XBOXBUTTON = BroncoXboxButton::Button::LB;
+		SHOOT_XBOXBUTTON = BroncoXboxButton::Button::RB;
+		COLLECTOR_GROUND_XBOXBUTTON = BroncoXboxButton::Button::BACK;
+		TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_A = BroncoXboxButton::Button::START;
+		TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_B = BroncoXboxButton::Button::LSB;
+		TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_C = BroncoXboxButton::Button::RSB;
 		X_AXIS = BroncoXbox::Axis::LS_X;
 		Y_AXIS = BroncoXbox::Axis::TRIGGERS;
 		break;
 	case kLucasDrive:
-		HOOD_NEAR_XBOXBUTTON = BroncoXbox::Button::A;
-		HOOD_MIDDLE_XBOXBUTTON = BroncoXbox::Button::B;
-		COLLECTOR_SAFE_XBOXBUTTON = BroncoXbox::Button::X;
-		HOOD_FAR_XBOXBUTTON = BroncoXbox::Button::Y;
-		COLLECTOR_XBOXBUTTON = BroncoXbox::Button::LB;
-		SHOOT_XBOXBUTTON = BroncoXbox::Button::RB;
-		COLLECTOR_GROUND_XBOXBUTTON = BroncoXbox::Button::BACK;
-		TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_A = BroncoXbox::Button::START;
-		TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_B = BroncoXbox::Button::LSB;
-		TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_C = BroncoXbox::Button::RSB;
+		HOOD_NEAR_XBOXBUTTON = BroncoXboxButton::Button::A;
+		HOOD_MIDDLE_XBOXBUTTON = BroncoXboxButton::Button::B;
+		COLLECTOR_SAFE_XBOXBUTTON = BroncoXboxButton::Button::X;
+		HOOD_FAR_XBOXBUTTON = BroncoXboxButton::Button::Y;
+		COLLECTOR_XBOXBUTTON = BroncoXboxButton::Button::LB;
+		SHOOT_XBOXBUTTON = BroncoXboxButton::Button::RB;
+		COLLECTOR_GROUND_XBOXBUTTON = BroncoXboxButton::Button::BACK;
+		TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_A = BroncoXboxButton::Button::START;
+		TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_B = BroncoXboxButton::Button::LSB;
+		TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_C = BroncoXboxButton::Button::RSB;
 		X_AXIS = BroncoXbox::Axis::RS_X;
 		Y_AXIS = BroncoXbox::Axis::LS_Y;
 		break;
+	case kOliviaDrive:
+		HOOD_NEAR_XBOXBUTTON = BroncoXboxButton::Button::B;
+		HOOD_MIDDLE_XBOXBUTTON = BroncoXboxButton::Button::A;
+		COLLECTOR_SAFE_XBOXBUTTON = BroncoXboxButton::Button::START;
+		HOOD_FAR_XBOXBUTTON = BroncoXboxButton::Button::Y;
+		COLLECTOR_XBOXBUTTON = BroncoXboxButton::Button::X;
+		SHOOT_XBOXBUTTON = BroncoXboxButton::Button::RB;
+		COLLECTOR_GROUND_XBOXBUTTON = BroncoXboxButton::Button::BACK;
+		TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_A = BroncoXboxButton::Button::LSB;
+		X_AXIS = BroncoXbox::Axis::RS_X;
+		Y_AXIS = BroncoXbox::Axis::LS_Y;
+	break;
+
 	}
 	return;
 }

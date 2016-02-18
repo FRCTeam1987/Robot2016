@@ -67,7 +67,13 @@ namespace XboxButton
 			  Back = 7,
 			  Start = 8,
 			  LSB = 9,
-			  RSB = 10;
+			  RSB = 10,
+			  D_UP = 1, // Need to figure out what the DPAD (POV hat)
+			  D_DN = 2, // numbers are.
+			  D_LF = 3,
+		      D_RI = 4,
+			  LT = 2,
+			  RT = 3;
 };
 
 //Xbox
@@ -75,9 +81,10 @@ enum LayoutType
 {
 	kGTADrive = 0,
 	kSpencerDrive = 1,
-	kLucasDrive = 2
+	kLucasDrive = 2,
+	kOliviaDrive = 3
 };
-const LayoutType BUTTON_LAYOUT = kLucasDrive;
+const LayoutType BUTTON_LAYOUT = kOliviaDrive;
 
 //Joystick
 //const int RESETENCODERBUTTON = 5;

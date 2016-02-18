@@ -4,6 +4,7 @@
 #include "WPILib.h"
 #include "BroncoJoy.h"
 #include "BroncoXbox.h"
+#include "BroncoXboxButton.h"
 #include "RobotMap.h"
 
 class OI
@@ -14,16 +15,18 @@ private:
 	Joystick *m_btnBox;
 
 	//Xbox 360 (If you don't like it make your own layout.)
-	JoystickButton *hoodNearXbox;
-	JoystickButton *hoodMiddleXbox;
-	JoystickButton *collectorGroundXbox;
-	JoystickButton *hoodFarXbox;
-	JoystickButton *collectXbox;
-	JoystickButton *shootXbox;
-	JoystickButton *collectorSafeXbox;
-	JoystickButton *toggleReverseXboxA;
-	JoystickButton *toggleReverseXboxB;
-	JoystickButton *toggleReverseXboxC;
+
+	BroncoXboxButton *hoodNearXbox;
+	BroncoXboxButton *hoodMiddleXbox;
+	BroncoXboxButton *collectorGroundXbox;
+	BroncoXboxButton *hoodFarXbox;
+	BroncoXboxButton *collectXbox;
+	BroncoXboxButton *shootXbox;
+	BroncoXboxButton *stopCollectXbox;
+	BroncoXboxButton *collectorSafeXbox;
+	BroncoXboxButton *toggleReverseXboxA;
+	BroncoXboxButton *toggleReverseXboxB;
+	BroncoXboxButton *toggleReverseXboxC;
 
 
 	JoystickButton *printStuff;
@@ -55,16 +58,17 @@ private:
 	JoystickButton *autoRockWall;
 	JoystickButton *toggleReverse;
 
-	int HOOD_NEAR_XBOXBUTTON;
-	int HOOD_MIDDLE_XBOXBUTTON;
-	int COLLECTOR_SAFE_XBOXBUTTON;
-	int HOOD_FAR_XBOXBUTTON;
-	int COLLECTOR_XBOXBUTTON;
-	int SHOOT_XBOXBUTTON;
-	int COLLECTOR_GROUND_XBOXBUTTON;
-	int TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_A;
-	int TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_B;
-	int TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_C;
+	BroncoXboxButton::Button HOOD_NEAR_XBOXBUTTON;
+	BroncoXboxButton::Button HOOD_MIDDLE_XBOXBUTTON;
+	BroncoXboxButton::Button COLLECTOR_SAFE_XBOXBUTTON;
+	BroncoXboxButton::Button HOOD_FAR_XBOXBUTTON;
+	BroncoXboxButton::Button COLLECTOR_XBOXBUTTON;
+	BroncoXboxButton::Button STOP_COLLECT_XBOXBUTTON;
+	BroncoXboxButton::Button SHOOT_XBOXBUTTON;
+	BroncoXboxButton::Button COLLECTOR_GROUND_XBOXBUTTON;
+	BroncoXboxButton::Button TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_A;
+	BroncoXboxButton::Button TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_B;
+	BroncoXboxButton::Button TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_C;
 	BroncoXbox::Axis X_AXIS;
 	BroncoXbox::Axis Y_AXIS;
 
