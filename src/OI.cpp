@@ -14,6 +14,7 @@
 #include "Commands/Shooter/SetShooterSpeed.h"
 #include "Commands/Shooter/Shoot.h"
 #include "Commands/Shooter/SetHoodPosition.h"
+#include "Commands/Shooter/LineUpBatterShot.h"
 #include "Commands/Collector/SetArmPosition.h"
 #include "Commands/Collector/SetCollectorSpeed.h"
 #include "Commands/Collector/CollectBall.h"
@@ -45,6 +46,7 @@ OI::OI()
 	toggleReverseXboxA = new BroncoXboxButton(xbox, TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_A);
 	toggleReverseXboxB = new BroncoXboxButton(xbox, TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_B);
 	toggleReverseXboxC = new BroncoXboxButton(xbox, TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_C);
+	lineUpBatterShotXbox = new BroncoXboxButton(xbox, LINE_UP_BATTER_SHOT_XBOXBUTTON);
 
 //	resetEncoder = new JoystickButton(stick, RESETENCODERBUTTON);
 	forwardIntakeMotor = new JoystickButton(m_btnBox, FORWARD_INTAKE_MOTOR_BUTTON);
@@ -87,6 +89,7 @@ OI::OI()
 	toggleReverseXboxA->WhenPressed(new ToggleDriverControls());
 	toggleReverseXboxB->WhenPressed(new ToggleDriverControls());
 	toggleReverseXboxC->WhenPressed(new ToggleDriverControls());
+	lineUpBatterShotXbox->WhenPressed(new LineUpBatterShot());
 
 	printStuff->WhenPressed(new PrintStuff());
 //	resetEncoder->WhenPressed(new ResetEncoder());
@@ -162,6 +165,7 @@ void OI::setLayout(LayoutType layout)
 		SHOOT_XBOXBUTTON = BroncoXboxButton::Button::RB;
 		COLLECTOR_GROUND_XBOXBUTTON = BroncoXboxButton::Button::BACK;
 		TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_A = BroncoXboxButton::Button::START;
+		LINE_UP_BATTER_SHOT_XBOXBUTTON = BroncoXboxButton::Button::RSB;
 		X_AXIS = BroncoXbox::Axis::RS_X;
 		Y_AXIS = BroncoXbox::Axis::LS_Y;
 		break;

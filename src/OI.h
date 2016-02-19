@@ -27,6 +27,7 @@ private:
 	BroncoXboxButton *toggleReverseXboxA;
 	BroncoXboxButton *toggleReverseXboxB;
 	BroncoXboxButton *toggleReverseXboxC;
+	BroncoXboxButton *lineUpBatterShotXbox;
 
 
 	JoystickButton *printStuff;
@@ -69,6 +70,7 @@ private:
 	BroncoXboxButton::Button TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_A;
 	BroncoXboxButton::Button TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_B;
 	BroncoXboxButton::Button TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_C;
+	BroncoXboxButton::Button LINE_UP_BATTER_SHOT_XBOXBUTTON;
 	BroncoXbox::Axis X_AXIS;
 	BroncoXbox::Axis Y_AXIS;
 

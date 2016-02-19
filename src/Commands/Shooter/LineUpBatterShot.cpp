@@ -1,13 +1,14 @@
-#include "Shoot.h"
-#include "../PrintStuff.h"
+#include "LineUpBatterShot.h"
 #include "SetShooterSpeed.h"
+#include "../DriveTrain/DriveStraightForDistance.h"
+#include "Shoot.h"
 #include "SetIntake.h"
 #include "WaitForNoBall.h"
-#include "SetHoodPosition.h"
 
-Shoot::Shoot()
+LineUpBatterShot::LineUpBatterShot()
 {
-	AddSequential(new SetShooterSpeed(3800)); //Thursday = 4300
+	AddSequential(new SetShooterSpeed(3800));
+	AddSequential(new DriveStraightForDistance(6, 0.2));
 	AddSequential(new SetIntake(Shooter::kIntakeForward));
 	AddSequential(new WaitForNoBall());
 	AddSequential(new WaitCommand(1));

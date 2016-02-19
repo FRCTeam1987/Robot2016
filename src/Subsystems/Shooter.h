@@ -30,6 +30,8 @@ public:
 	int GetEncoderVel();
 	void SetTopCylinderDirection(Shooter::CylinderDirection direction);
 	void SetBottomCylinderDirection(Shooter::CylinderDirection direction);
+	void DisableWheel();
+	void EnableWheel();
 };
 
 #endif

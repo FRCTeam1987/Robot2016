@@ -43,6 +43,7 @@ bool DriveStraightBase::IsFinished()
 void DriveStraightBase::End()
 {
 	driveTrain->Disable();
+	driveTrain->AutoDrive(0, 0);
 }
 
 // Called when another command which requires one or more of the same
@@ -50,4 +51,5 @@ void DriveStraightBase::End()
 void DriveStraightBase::Interrupted()
 {
 	driveTrain->Disable();
+	driveTrain->AutoDrive(0, 0);
 }

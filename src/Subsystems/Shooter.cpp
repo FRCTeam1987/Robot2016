@@ -86,3 +86,13 @@ void Shooter::SetBottomCylinderDirection(Shooter::CylinderDirection direction)
 {
 	bottomCylinder->Set(direction == Shooter::kExtendCylinder);
 }
+
+void Shooter::DisableWheel()
+{
+	wheelMotor->Disable();
+}
+
+void Shooter::EnableWheel()
+{
+	wheelMotor->Enable();
+}

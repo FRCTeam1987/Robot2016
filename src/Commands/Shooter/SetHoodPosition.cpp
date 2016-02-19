@@ -16,8 +16,8 @@ void SetHoodPosition::Initialize()
 		shooter->SetBottomCylinderDirection(Shooter::kRetractCylinder);
 		break;
 	case Shooter::kMiddle:
-		shooter->SetTopCylinderDirection(Shooter::kExtendCylinder);
-		shooter->SetBottomCylinderDirection(Shooter::kRetractCylinder);
+		shooter->SetTopCylinderDirection(Shooter::kRetractCylinder);
+		shooter->SetBottomCylinderDirection(Shooter::kExtendCylinder);
 		break;
 	case Shooter::kFar:
 		shooter->SetTopCylinderDirection(Shooter::kExtendCylinder);
