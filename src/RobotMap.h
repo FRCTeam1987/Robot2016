@@ -51,30 +51,9 @@ const int TOP_CYLINDER_A = 2;
 const int TOP_CYLINDER_B = 3;
 const int BOTTOM_CYLINDER_A = 0;
 const int BOTTOM_CYLINDER_B = 1;
+
 const int TOP_CYLINDER_EXTENDED_SENSOR = 7;
 const int BOTTOM_CYLINDER_EXTENDED_SENSOR = 8;
-
-
-//Buttons
-namespace XboxButton
-{
-	const int A = 1,
-			  B = 2,
-			  X = 3,
-			  Y = 4,
-			  LB = 5,
-			  RB = 6,
-			  Back = 7,
-			  Start = 8,
-			  LSB = 9,
-			  RSB = 10,
-			  D_UP = 1, // Need to figure out what the DPAD (POV hat)
-			  D_DN = 2, // numbers are.
-			  D_LF = 3,
-		      D_RI = 4,
-			  LT = 2,
-			  RT = 3;
-};
 
 //Xbox
 enum LayoutType
@@ -82,9 +61,16 @@ enum LayoutType
 	kGTADrive = 0,
 	kSpencerDrive = 1,
 	kLucasDrive = 2,
-	kOliviaDrive = 3
+	kOliviaDrive = 3,
+	kConnieDrive = 4,
+	kKenzieDrive = 5,
+	kSierraDrive = 6,
+	kLeviDrive = 7,
+	kIanDrive = 8,
+	kTreyDrive = 9
 };
-const LayoutType BUTTON_LAYOUT = kLucasDrive;
+
+const LayoutType BUTTON_LAYOUT = kSierraDrive;
 
 //Joystick
 //const int RESETENCODERBUTTON = 5;
@@ -117,6 +103,7 @@ const int AUTO_DRIVE_UNTIL_RAMP_SENSOR_BUTTON = 5;
 const int AUTO_CHEVAL_DEFRISE_BUTTON = 7;
 const int AUTO_PORTCULLIS_BUTTON = 11;
 const int AUTO_ROCK_WALL_BUTTON = 9;
+const int READJUST_BALL_BUTTON = 8;
 //const int FORWARD_CONTROLS = ;
 //const int BACKWARD_CONTROLS = ;      unused unless driver prefers
 const int TOGGLE_CONTROLS = 10;

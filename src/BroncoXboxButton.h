@@ -27,8 +27,9 @@ public:
 		D_DL = 225,
 		D_L = 270,
 		D_UL = 315,
-		LT,
-		RT
+		LT = 11,
+		RT = 12,
+		UNASSIGNED = 42
 	};
 
 	BroncoXboxButton(GenericHID *xbox, Button btn);

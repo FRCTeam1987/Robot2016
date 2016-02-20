@@ -35,6 +35,9 @@ void BroncoXbox::SetY(const Axis ax)
 }
 
 float BroncoXbox::GetX(JoystickHand hand) const {
+	if(X_AXIS == BroncoXbox::TRIGGERS){
+		return -GetAxis(X_AXIS);
+	}
 	return GetAxis(X_AXIS);
 }
 

@@ -46,6 +46,9 @@ private:
 		defensePositionChooser->AddObject("4", new std::uint16_t(4));
 		defensePositionChooser->AddObject("5", new std::uint16_t(5));
 		SmartDashboard::PutData("Defense Position", defensePositionChooser);
+
+		CameraServer::GetInstance()->SetQuality(50);
+		CameraServer::GetInstance()->StartAutomaticCapture("cam0");
 	}
 
 	/**

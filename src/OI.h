@@ -10,66 +10,62 @@
 class OI
 {
 private:
+	bool IS_USING_JOYSTICK;
 	BroncoJoy *stick;
 	BroncoXbox *xbox;
 	Joystick *m_btnBox;
 
 	//Xbox 360 (If you don't like it make your own layout.)
 
-	BroncoXboxButton *hoodNearXbox;
-	BroncoXboxButton *hoodMiddleXbox;
-	BroncoXboxButton *collectorGroundXbox;
-	BroncoXboxButton *hoodFarXbox;
-	BroncoXboxButton *collectXbox;
-	BroncoXboxButton *shootXbox;
-	BroncoXboxButton *stopCollectXbox;
-	BroncoXboxButton *collectorSafeXbox;
-	BroncoXboxButton *toggleReverseXboxA;
-	BroncoXboxButton *toggleReverseXboxB;
-	BroncoXboxButton *toggleReverseXboxC;
-	BroncoXboxButton *lineUpBatterShotXbox;
+	JoystickButton *hoodNearXbox;
+	JoystickButton *hoodMiddleXbox;
+	JoystickButton *collectorGroundXbox;
+	JoystickButton *collectorCollectXbox;
+	JoystickButton *collectorSafeXbox;
+	JoystickButton *collectorMaxXbox;
+	JoystickButton *hoodFarXbox;
+	JoystickButton *collectXbox;
+	JoystickButton *shootXbox;
+	JoystickButton *stopCollectXbox;
+	JoystickButton *toggleReverseXboxA;
+	JoystickButton *toggleReverseXboxB;
+	JoystickButton *toggleReverseXboxC;
+	JoystickButton *lineUpBatterShotXbox;
 
 
 	JoystickButton *printStuff;
-//	JoystickButton *resetEncoder;
 	JoystickButton *forwardIntakeMotor;
-//	JoystickButton *reverseIntakeMotor;
-//	JoystickButton *stopIntakeMotor;
-//	JoystickButton *loadBall;
-//	JoystickButton *spinShooter;
-//	JoystickButton *anotherSpinShooter;
-//	JoystickButton *stopSpinShooter;
-	JoystickButton *shoot;
-	JoystickButton *collectorGround;
-	JoystickButton *collectorCollect;
-	JoystickButton *collectorSafe;
-	JoystickButton *collectorMax;
-	JoystickButton *collectorRun;
-	JoystickButton *collectBall;
-	JoystickButton *hoodNear;
-	JoystickButton *hoodMiddle;
-	JoystickButton *hoodFar;
-//	JoystickButton *readJoystickSlider;
-
-//	JoystickButton *shootFar;
-//	JoystickButton *shootClose;
 	JoystickButton *autoTestDef;
 	JoystickButton *autoPortcullis;
 	JoystickButton *autoChevalDeFrise;
 	JoystickButton *autoRockWall;
 	JoystickButton *toggleReverse;
+	JoystickButton *readjustBall;
+
+	int HOOD_NEAR_BUTTON;
+	int HOOD_MIDDLE_BUTTON;
+	int HOOD_FAR_BUTTON;
+	int COLLECTOR_BUTTON;
+	int STOP_COLLECT_BUTTON;
+	int SHOOT_BUTTON;
+	int COLLECTOR_GROUND_BUTTON;
+	int COLLECTOR_COLLECT_BUTTON;
+	int COLLECTOR_SAFE_BUTTON;
+	int COLLECTOR_MAX_BUTTON;
+	int TOGGLE_DRIVE_DIRECTION_BUTTON_A;
+	int LINE_UP_BATTER_SHOT_BUTTON;
 
 	BroncoXboxButton::Button HOOD_NEAR_XBOXBUTTON;
 	BroncoXboxButton::Button HOOD_MIDDLE_XBOXBUTTON;
+	BroncoXboxButton::Button COLLECTOR_GROUND_XBOXBUTTON;
+	BroncoXboxButton::Button COLLECTOR_COLLECT_XBOXBUTTON;
 	BroncoXboxButton::Button COLLECTOR_SAFE_XBOXBUTTON;
+	BroncoXboxButton::Button COLLECTOR_MAX_XBOXBUTTON;
 	BroncoXboxButton::Button HOOD_FAR_XBOXBUTTON;
 	BroncoXboxButton::Button COLLECTOR_XBOXBUTTON;
 	BroncoXboxButton::Button STOP_COLLECT_XBOXBUTTON;
 	BroncoXboxButton::Button SHOOT_XBOXBUTTON;
-	BroncoXboxButton::Button COLLECTOR_GROUND_XBOXBUTTON;
 	BroncoXboxButton::Button TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_A;
-	BroncoXboxButton::Button TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_B;
-	BroncoXboxButton::Button TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_C;
 	BroncoXboxButton::Button LINE_UP_BATTER_SHOT_XBOXBUTTON;
 	BroncoXbox::Axis X_AXIS;
 	BroncoXbox::Axis Y_AXIS;
@@ -78,6 +74,7 @@ private:
 
 public:
 	OI();
+	Joystick* getControls();
 	Joystick *getStick();
 	Joystick *getXbox();
 	Joystick *getBtnBox();
