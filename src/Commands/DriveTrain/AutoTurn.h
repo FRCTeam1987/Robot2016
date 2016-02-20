@@ -7,9 +7,11 @@
 class AutoTurn: public CommandBase
 {
 private:
-	double m_setpoint;
+	double m_angle;
+	double m_turnAngleAdjust;
+
 public:
-	AutoTurn(double setpoint);
+	AutoTurn(double angle);
 	void Initialize();
 	void Execute();
 	bool IsFinished();

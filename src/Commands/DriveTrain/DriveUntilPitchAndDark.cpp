@@ -33,10 +33,10 @@ void DriveUntilPitchAndDark::Execute()
 // Make this return true when this Command no longer needs to run execute()
 bool DriveUntilPitchAndDark::IsFinished()
 {
-	return driveTrain->GetRoll() <= (targetPitch + ANGLE_TOLERANCE)
-			&& driveTrain->GetRoll() >= (targetPitch - ANGLE_TOLERANCE)
-			&& driveTrain->GetPitch() <= (targetRoll + ANGLE_TOLERANCE)
-			&& driveTrain->GetPitch() >= (targetRoll - ANGLE_TOLERANCE)
+	return driveTrain->GetRoll() <= (targetPitch + PITCH_ANGLE_TOLERANCE)
+			&& driveTrain->GetRoll() >= (targetPitch - PITCH_ANGLE_TOLERANCE)
+			&& driveTrain->GetPitch() <= (targetRoll + PITCH_ANGLE_TOLERANCE)
+			&& driveTrain->GetPitch() >= (targetRoll - PITCH_ANGLE_TOLERANCE)
 			&& !driveTrain->getRampSensor();
 }
 

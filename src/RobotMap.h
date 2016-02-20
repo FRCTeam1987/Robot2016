@@ -20,7 +20,10 @@ const int PRACTICE_JUMPER = 5;
 const int ENCODER_TICKS = 250;
 const double PI = 3.141593;
 const double AUTO_DRIVESTRAIGHT_SPEED = 0.4;
-const float ANGLE_TOLERANCE = 2.0;
+const double AUTO_BASE_TURN_SPEED = .3;    //Tune this value
+const double AUTO_ADJUST_TURN_SPEED = .01; //Tune this value
+const float PITCH_ANGLE_TOLERANCE = 2.0;
+const float TURN_ANGLE_TOLERANCE = 1.0;
 
 const double DRIVE_STRAIGHT_P_PRAC = -0.06;
 const double DRIVE_STRAIGHT_I_PRAC = -0.004;
@@ -70,7 +73,7 @@ enum LayoutType
 	kTreyDrive = 9
 };
 
-const LayoutType BUTTON_LAYOUT = kSierraDrive;
+const LayoutType BUTTON_LAYOUT = kLucasDrive;
 
 //Joystick
 //const int RESETENCODERBUTTON = 5;

@@ -1,35 +1,39 @@
 #include "AutoTurn.h"
 
-AutoTurn::AutoTurn(double setpoint)
+AutoTurn::AutoTurn(double angle)
 {
 	Requires(driveTrain);
-	m_setpoint = setpoint;
+	m_angle = angle;
+	m_turnAngleAdjust = 0;
 }
 
 void AutoTurn::Initialize()
 {
-	// 60 degrees PID: -0.015, 0.0, -0.025
-    // driveTrain->setPID(-0.02, 0.0, -0.02);
-	// driveTrain->setPID(-0.004, 0.0, 0.0);
-	driveTrain->setPID(-0.01, 0.0, 0.0);
-
 	driveTrain->ResetGyro();
-	driveTrain->SetAutoMode(driveTrain->AUTO_TURN);
-
-	// This offset value will change based on robot weight, may need to increase
-	driveTrain->SetOffset(0.0);
-	driveTrain->SetSetpoint(m_setpoint);
-	driveTrain->Enable();
 }
 
 void AutoTurn::Execute()
 {
-	printf("Error - %f \t Output - %f \t Current Angle - %f\n", (driveTrain->GetGyroAngle() - m_setpoint), driveTrain->GetOutput(), driveTrain->GetGyroAngle());
+	m_turnAngleAdjust = AUTO_ADJUST_TURN_SPEED * fabs(driveTrain->GetGyroAngle() - m_angle);
+
+	if(driveTrain->GetGyroAngle() > m_angle)
+	{
+		driveTrain->AutoDrive(0, -(AUTO_BASE_TURN_SPEED + m_turnAngleAdjust));
+	}
+	else if(driveTrain->GetGyroAngle() < m_angle)
+	{
+		driveTrain->AutoDrive(0, (AUTO_BASE_TURN_SPEED + m_turnAngleAdjust));
+	}
+	else
+	{
+		driveTrain->AutoDrive(0, 0);
+	}
 }
 
 bool AutoTurn::IsFinished()
 {
-	return driveTrain->OnTarget();
+	return driveTrain->GetGyroAngle() <= (m_angle + PITCH_ANGLE_TOLERANCE)
+		&& driveTrain->GetGyroAngle() >= (m_angle - PITCH_ANGLE_TOLERANCE);
 }
 
 void AutoTurn::End()
