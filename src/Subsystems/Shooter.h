@@ -13,6 +13,7 @@ private:
 	Solenoid *topCylinder;
 	Solenoid *bottomCylinder;
 	float RPMCopy;
+	bool shootHasTimedOut;
 
 public:
 	enum IntakeMode {kIntakeForward = 0, kIntakeReverse = 1, kIntakeOff = 2};
@@ -32,6 +33,8 @@ public:
 	void SetBottomCylinderDirection(Shooter::CylinderDirection direction);
 	void DisableWheel();
 	void EnableWheel();
+	void setHasTimedOut(bool timeout);
+	bool getHasTimedOut();
 };
 
 #endif

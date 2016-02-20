@@ -65,24 +65,7 @@ double DriveTrain::ReturnPIDInput()
 
 void DriveTrain::UsePIDOutput(double output)
 {
-//	output>0 ? output += m_offset : output -= m_offset;
-//	m_output = output;
-//
-//	if(m_output < 0)
-//	{
-//		m_output = m_output - m_offset;
-//	}else{
-//		m_output = m_output + m_offset;
-//	}
-
-//	if(m_autoMode == DRIVE_STRAIGHT)
-//	{
-		AutoDrive(m_autoSpeed, output);
-//	}
-//	else if(m_autoMode == AUTO_TURN)
-//	{
-//		AutoDrive(0, output);
-//	}
+	AutoDrive(m_autoSpeed, output);
 }
 
 void DriveTrain::InitDefaultCommand()

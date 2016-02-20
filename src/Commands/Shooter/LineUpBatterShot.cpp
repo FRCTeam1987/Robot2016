@@ -5,6 +5,7 @@
 #include "SetIntake.h"
 #include "WaitForNoBall.h"
 #include "SetHoodPosition.h"
+#include "ReadjustBallWithIntake.h"
 
 LineUpBatterShot::LineUpBatterShot()
 {
@@ -13,6 +14,7 @@ LineUpBatterShot::LineUpBatterShot()
 	AddSequential(new DriveStraightForDistance(6, 0.2));
 	AddSequential(new SetIntake(Shooter::kIntakeForward));
 	AddSequential(new WaitForNoBall());
+	AddSequential(new ReadjustBallWithIntake());
 	AddSequential(new WaitCommand(1));
 	AddSequential(new SetIntake(Shooter::kIntakeOff));
 	AddSequential(new SetHoodPosition(Shooter::kNear));

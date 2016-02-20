@@ -21,6 +21,8 @@ Shooter::Shooter() : Subsystem("ExampleSubsystem")
 	//Do not delete the line below
 	//wheelMotor->SetPID(0.02, 0.0001, 0.0, 0.0425);
 
+	shootHasTimedOut = false;
+
 	RPMCopy = 0;
 }
 
@@ -95,4 +97,14 @@ void Shooter::DisableWheel()
 void Shooter::EnableWheel()
 {
 	wheelMotor->Enable();
+}
+
+void Shooter::setHasTimedOut(bool timeout)
+{
+	shootHasTimedOut = timeout;
+}
+
+bool Shooter::getHasTimedOut()
+{
+	return shootHasTimedOut;
 }

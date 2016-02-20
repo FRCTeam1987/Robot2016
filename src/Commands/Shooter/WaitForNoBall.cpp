@@ -2,8 +2,7 @@
 
 WaitForNoBall::WaitForNoBall()
 {
-	// Use Requires() here to declare subsystem dependencies
-	// eg. Requires(chassis);
+	SetTimeout(2.0);
 }
 
 // Called just before this Command runs the first time
@@ -21,7 +20,12 @@ void WaitForNoBall::Execute()
 // Make this return true when this Command no longer needs to run execute()
 bool WaitForNoBall::IsFinished()
 {
-	return !shooter->HasBall();
+	if(IsTimedOut())
+	{
+		shooter->setHasTimedOut(true);
+		printf("No ball has timed out\n");
+	}
+	return !shooter->HasBall() || IsTimedOut();
 }
 
 // Called once after isFinished returns true
