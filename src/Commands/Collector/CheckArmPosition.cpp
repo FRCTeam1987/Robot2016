@@ -29,7 +29,7 @@ bool CheckArmPosition::IsFinished()
 // Called once after isFinished returns true
 void CheckArmPosition::End()
 {
-
+	printf("Check Arm Ended \n");
 }
 
 // Called when another command which requires one or more of the same

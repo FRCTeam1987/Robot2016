@@ -1,10 +1,10 @@
 #ifndef ReadjustBall_H
 #define ReadjustBall_H
 
-#include "../../CommandBase.h"
+#include "Commands/CommandGroup.h"
 #include "WPILib.h"
 
-class ReadjustBall: public CommandBase
+class ReadjustBall: public CommandGroup
 {
 public:
 	ReadjustBall();
@@ -13,6 +13,9 @@ public:
 	bool IsFinished();
 	void End();
 	void Interrupted();
+
+private:
+	Command* command1;
 };
 
 #endif

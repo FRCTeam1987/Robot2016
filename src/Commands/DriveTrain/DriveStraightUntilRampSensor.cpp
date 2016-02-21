@@ -11,3 +11,8 @@ bool DriveStraightUntilRampSensor::IsFinished()
 {
 	return driveTrain->getRampSensor();
 }
+
+void DriveStraightUntilRampSensor::End()
+{
+	return;
+}

@@ -75,6 +75,7 @@ OI::OI()
 	autoPortcullis = new JoystickButton(m_btnBox, AUTO_PORTCULLIS_BUTTON);
 	autoChevalDeFrise = new JoystickButton(m_btnBox, AUTO_CHEVAL_DEFRISE_BUTTON);
 	autoRockWall = new JoystickButton(m_btnBox, AUTO_ROCK_WALL_BUTTON);
+	autoLowBar = new JoystickButton(m_btnBox, AUTO_ROCK_WALL_BUTTON);
 	readjustBall = new JoystickButton(m_btnBox, READJUST_BALL_BUTTON);
 
 	hoodNearXbox->WhenPressed(new SetHoodPosition(Shooter::kNear));
@@ -88,7 +89,7 @@ OI::OI()
 	collectorSafeXbox->WhenPressed(new SetArmPosition(Collector::kSafe));
 	collectorMaxXbox->WhenPressed(new SetArmPosition(Collector::kMax));
 	toggleReverseXboxA->WhenPressed(new ToggleDriverControls());
-	lineUpBatterShotXbox->WhenPressed(new LineUpBatterShot());
+//	lineUpBatterShotXbox->WhenPressed(new LineUpBatterShot());
 
 	printStuff->WhenPressed(new PrintStuff());
 	forwardIntakeMotor->WhenPressed(new SetIntake(Shooter::kIntakeForward));
@@ -96,7 +97,8 @@ OI::OI()
 	autoChevalDeFrise->WhenPressed(new AutoChevalDeFrise());
 	autoPortcullis->WhenPressed(new AutoPortcullis());
 	autoRockWall->WhenPressed(new AutoRockWall());
-	readjustBall->WhenPressed(new ReadjustBall());
+	autoLowBar->WhenPressed(new AutoLowBar());
+//	readjustBall->WhenPressed(new ReadjustBall());
 
 //	shoot->WhenPressed(new Shoot());
 //	collectorGround->WhenPressed(new SetArmPosition(Collector::kGround));
@@ -135,16 +137,14 @@ void OI::setLayout(LayoutType layout)
 		IS_USING_JOYSTICK = false;
 		HOOD_NEAR_XBOXBUTTON = BroncoXboxButton::Button::A;
 		HOOD_MIDDLE_XBOXBUTTON = BroncoXboxButton::Button::UNASSIGNED;
-		STOP_COLLECT_XBOXBUTTON = BroncoXboxButton::Button::B;
 		HOOD_FAR_XBOXBUTTON = BroncoXboxButton::Button::Y;
+		STOP_COLLECT_XBOXBUTTON = BroncoXboxButton::Button::B;
 		COLLECTOR_XBOXBUTTON = BroncoXboxButton::Button::X;
 		SHOOT_XBOXBUTTON = BroncoXboxButton::Button::LB;
 		COLLECTOR_GROUND_XBOXBUTTON = BroncoXboxButton::Button::D_D;
 		COLLECTOR_COLLECT_XBOXBUTTON = BroncoXboxButton::Button::D_R;
 		COLLECTOR_SAFE_XBOXBUTTON = BroncoXboxButton::Button::D_L;
-		COLLECTOR_MAX_XBOXBUTTON = BroncoXboxButton::Button::D_R;
-		COLLECTOR_COLLECT_XBOXBUTTON = BroncoXboxButton::Button::UNASSIGNED;
-		COLLECTOR_MAX_XBOXBUTTON = BroncoXboxButton::Button::UNASSIGNED;
+		COLLECTOR_MAX_XBOXBUTTON = BroncoXboxButton::Button::D_U;
 		TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_A = BroncoXboxButton::Button::LSB;
 		LINE_UP_BATTER_SHOT_XBOXBUTTON = BroncoXboxButton::Button::RB;
 		X_AXIS = BroncoXbox::Axis::LS_X;
@@ -209,7 +209,7 @@ void OI::setLayout(LayoutType layout)
 		COLLECTOR_XBOXBUTTON = BroncoXboxButton::Button::X;
 		SHOOT_XBOXBUTTON = BroncoXboxButton::Button::RT;
 		COLLECTOR_GROUND_XBOXBUTTON = BroncoXboxButton::Button::D_D;
-		COLLECTOR_COLLECT_XBOXBUTTON = BroncoXboxButton::Button::UNASSIGNED;
+		COLLECTOR_COLLECT_XBOXBUTTON = BroncoXboxButton::Button::D_L;
 		COLLECTOR_MAX_XBOXBUTTON = BroncoXboxButton::Button::UNASSIGNED;
 		TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_A = BroncoXboxButton::Button::LB;
 		LINE_UP_BATTER_SHOT_XBOXBUTTON = BroncoXboxButton::Button::Y;
