@@ -50,10 +50,10 @@ const int RPM_TOLERANCE = 50;
 
 const int ROLLER_MOTOR = 5;
 
-const int TOP_CYLINDER_A = 2;
-const int TOP_CYLINDER_B = 3;
-const int BOTTOM_CYLINDER_A = 0;
-const int BOTTOM_CYLINDER_B = 1;
+const int TOP_CYLINDER_A = 3;
+const int TOP_CYLINDER_B = 2;
+const int BOTTOM_CYLINDER_A = 1;
+const int BOTTOM_CYLINDER_B = 0;
 
 const int TOP_CYLINDER_EXTENDED_SENSOR = 7;
 const int BOTTOM_CYLINDER_EXTENDED_SENSOR = 8;
@@ -73,7 +73,7 @@ enum LayoutType
 	kTreyDrive = 9
 };
 
-const LayoutType BUTTON_LAYOUT = kLucasDrive;
+const LayoutType BUTTON_LAYOUT = kSpencerDrive;
 
 //Joystick
 //const int RESETENCODERBUTTON = 5;
@@ -106,6 +106,7 @@ const int AUTO_DRIVE_UNTIL_RAMP_SENSOR_BUTTON = 5;
 const int AUTO_CHEVAL_DEFRISE_BUTTON = 7;
 const int AUTO_PORTCULLIS_BUTTON = 11;
 const int AUTO_ROCK_WALL_BUTTON = 9;
+const int AUTO_LOW_BAR_BUTTON = 12;
 const int READJUST_BALL_BUTTON = 8;
 //const int FORWARD_CONTROLS = ;
 //const int BACKWARD_CONTROLS = ;      unused unless driver prefers

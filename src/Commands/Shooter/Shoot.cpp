@@ -9,10 +9,10 @@
 Shoot::Shoot()
 {
 	AddSequential(new SetHoodPosition(Shooter::kFar));
-	AddSequential(new SetShooterSpeed(3800)); //Thursday = 4300
+	AddSequential(new SetShooterSpeed(4300)); //Thursday = 4300 Close - 3800
 	AddSequential(new SetIntake(Shooter::kIntakeForward));
 	AddSequential(new WaitForNoBall());
-	AddSequential(new ReadjustBallWithIntake());
+//	AddSequential(new ReadjustBallWithIntake());
 	AddSequential(new WaitCommand(1));
 	AddSequential(new SetIntake(Shooter::kIntakeOff));
 	AddSequential(new SetHoodPosition(Shooter::kNear));

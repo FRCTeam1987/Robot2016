@@ -5,13 +5,15 @@ PrintStuff::PrintStuff()
 {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(chassis);
-	Requires (driveTrain);
+	Requires (shooter);
 }
 
 // Called just before this Command runs the first time
 void PrintStuff::Initialize()
 {
-	driveTrain->PrintLeftEncoder();
+	printf(collector->isBottomCylinderExtended() ? "EXTENDED - True \n" : "RETRACTED - False \n");
+	printf(collector->isTopCylinderExtended() ? "EXTENDED - True \n" : "DOWN - RETRACTED \n");
+//	driveTrain->PrintLeftEncoder();
 
 //	printf(driveTrain->getRampSensor() ? "Ramp Sensor - True \t" : "Ramp Sensor - False \t");
 //	printf("Pitch: %f \t Roll: %f\n", driveTrain->GetRoll(), driveTrain->GetPitch());

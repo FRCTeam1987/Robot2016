@@ -39,6 +39,7 @@ private:
 	JoystickButton *autoPortcullis;
 	JoystickButton *autoChevalDeFrise;
 	JoystickButton *autoRockWall;
+	JoystickButton *autoLowBar;
 	JoystickButton *toggleReverse;
 	JoystickButton *readjustBall;
 
