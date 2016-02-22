@@ -112,6 +112,13 @@ OI::OI()
 //	hoodMiddle->WhenPressed(new SetHoodPosition(Shooter::kMiddle));
 //	hoodFar->WhenPressed(new SetHoodPosition(Shooter::kFar));
 //	toggleReverse->WhenPressed(new ToggleDriverControls());
+
+	SmartDashboard::PutData("Print Stuff", new PrintStuff());
+	SmartDashboard::PutData("Collector - Ground", new SetArmPosition(Collector::kGround));
+	SmartDashboard::PutData("Collector - Collect", new SetArmPosition(Collector::kCollect));
+	SmartDashboard::PutData("Collector - Safe", new SetArmPosition(Collector::kSafe));
+	SmartDashboard::PutData("Collector - Max", new SetArmPosition(Collector::kMax));
+	SmartDashboard::PutData("Shooter - Shoot", new Shoot());
 }
 
 void OI::setLayout(LayoutType layout)
