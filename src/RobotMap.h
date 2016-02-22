@@ -35,7 +35,7 @@ const double DRIVE_STRAIGHT_D_COMP =  0.0;
 
 //Shooter
 
-const int INTAKE_MOTOR = 0;
+const int INTAKE_MOTOR = 1;
 const int WHEEL_MOTOR = 4;
 
 const int TOP_CYLINDER = 4;
@@ -73,7 +73,7 @@ enum LayoutType
 	kTreyDrive = 9
 };
 
-const LayoutType BUTTON_LAYOUT = kSpencerDrive;
+const LayoutType BUTTON_LAYOUT = kConnieDrive;
 
 //Joystick
 //const int RESETENCODERBUTTON = 5;
