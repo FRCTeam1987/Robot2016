@@ -5,14 +5,33 @@ PrintStuff::PrintStuff()
 {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(chassis);
-	Requires (shooter);
+	Requires (collector);
+	Requires (driveTrain);
 }
 
 // Called just before this Command runs the first time
 void PrintStuff::Initialize()
 {
-	printf(collector->isBottomCylinderExtended() ? "EXTENDED - True \n" : "RETRACTED - False \n");
-	printf(collector->isTopCylinderExtended() ? "EXTENDED - True \n" : "DOWN - RETRACTED \n");
+	if(collector->getArmPosition() == Collector::kGround) {
+		printf("GROUND\n");
+	}
+	else if(collector->getArmPosition() == Collector::kCollect) {
+		printf("COLLECT\n");
+	}
+	else if(collector->getArmPosition() == Collector::kSafe) {
+		printf("SAFE\n");
+	}
+	else if(collector->getArmPosition() == Collector::kMax) {
+		printf("MAX\n");
+	}
+
+	printf(collector->isTopCylinderExtended() ? "Top Cylinder - True \n" : "Top Cylinder - False \n");;
+	printf(collector->isBottomCylinderExtended() ? "Bottom Cylinder - True \n" : "Bottom Cylinder - False \n");;
+
+	printf("Encoder - %f\n", driveTrain->GetLeftEncoderDistance());
+//	printf(driveTrain->getRampSensor() ? "Ramp Sensor - True \n" : "Ramp Sensor - False \n");
+//	printf(collector->isBottomCylinderExtended() ? "EXTENDED - True \n" : "RETRACTED - False \n");
+//	printf(collector->isTopCylinderExtended() ? "EXTENDED - True \n" : "DOWN - RETRACTED \n");
 //	driveTrain->PrintLeftEncoder();
 
 //	printf(driveTrain->getRampSensor() ? "Ramp Sensor - True \t" : "Ramp Sensor - False \t");
