@@ -32,15 +32,15 @@ private:
 	JoystickButton *toggleReverseXboxC;
 	JoystickButton *lineUpBatterShotXbox;
 
-
-	JoystickButton *printStuff;
-	JoystickButton *forwardIntakeMotor;
+	//Button box buttons
+//	JoystickButton *forwardIntakeMotor;
+//	JoystickButton *toggleReverse;
 	JoystickButton *autoTestDef;
+	JoystickButton *printStuff;
 	JoystickButton *autoPortcullis;
 	JoystickButton *autoChevalDeFrise;
 	JoystickButton *autoRockWall;
 	JoystickButton *autoLowBar;
-	JoystickButton *toggleReverse;
 	JoystickButton *readjustBall;
 
 	int HOOD_NEAR_BUTTON;

@@ -59,7 +59,8 @@ public:
 	AutoType GetAutoMode();
 	void SetAutoSpeed(double autoSpeed);
 	double GetOutput();
-	void setPID (double P, double I, double D);
+	void setPID(double P, double I, double D);
+	void setPIDf(double P, double I, double D, double f);
 	void ResetLeftEncoder();
 	void PrintLeftEncoder();
 	double GetLeftEncoderDistance();
