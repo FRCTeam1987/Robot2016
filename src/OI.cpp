@@ -10,6 +10,8 @@
 #include "Commands/DriveTrain/DriveStraightForDistance.h"
 #include "Commands/DriveTrain/ToggleDriverControls.h"
 #include "Commands/DriveTrain/AutoGroup.h"
+#include "Commands/DriveTrain/SetHeadingOffset.h"
+#include "Commands/DriveTrain/AutoTurn.h"
 #include "Commands/Shooter/SetIntake.h"
 #include "Commands/Shooter/LoadBall.h"
 #include "Commands/Shooter/WaitForBall.h"
@@ -33,7 +35,7 @@ OI::OI()
 	stick = new BroncoJoy(0, 2, 2);
 	xbox = new BroncoXbox(2, 2, 2, .075);
 
-//	m_btnBox = new Joystick(1);
+	m_btnBox = new Joystick(1);
 
 	if(IS_USING_JOYSTICK){
 
@@ -127,14 +129,17 @@ OI::OI()
 	SmartDashboard::PutData("Collector - Collect", new SetArmPosition(Collector::kCollect));
 	SmartDashboard::PutData("Collector - Safe", new SetArmPosition(Collector::kSafe));
 	SmartDashboard::PutData("Collector - Max", new SetArmPosition(Collector::kMax));
-	SmartDashboard::PutData("Shooter - Shoot", new Shoot());
 
+	SmartDashboard::PutData("Shooter - Shoot", new Shoot());
 	SmartDashboard::PutData("Shooter - Line Up Batter Shot", new LineUpBatterShot());
+	SmartDashboard::PutData("Shooter - Shoot Far", new ShootFar());
+	SmartDashboard::PutData("Shooter - Shoot Near", new ShootClose());
+	SmartDashboard::PutData("Shooter - Set Near Hood", new SetHoodPosition(Shooter::kMiddle));
+
 	SmartDashboard::PutData("DriveTrain - Drive Straight 60 in", new DriveStraightForDistance(60, -0.6));
 	SmartDashboard::PutData("DriveTrain - Drive Straight 120 in", new DriveStraightForDistance(120, -0.6));
 	SmartDashboard::PutData("DriveTrain - AutoPortcullis", new AutoPortcullis());
 	SmartDashboard::PutData("DriveTrain - AutoChevalle", new AutoChevalDeFrise());
-
 	SmartDashboard::PutData("DriveTrain - Rock Wall - 0.5", new AutoRockWall(0.5, 5.0, 2.0));
 	SmartDashboard::PutData("DriveTrain - Rock Wall - 0.7", new AutoRockWall(0.7, 5.0, 2.0));
 	SmartDashboard::PutData("DriveTrain - Rock Wall - 0.8", new AutoRockWall(0.8, 5.0, 2.0));
@@ -142,6 +147,14 @@ OI::OI()
 	SmartDashboard::PutData("DriveTrain - Rock Wall - 1.0", new AutoRockWall(1.0, 5.0, 2.0));
 	SmartDashboard::PutData("DriveTrain - Portcullis", new AutoPortcullis());
 	SmartDashboard::PutData("DriveTrain - Auto Group", new AutoGroup());
+	SmartDashboard::PutData("DriveTrain - Reset Heading", new SetHeadingOffset());
+	SmartDashboard::PutData("DriveTrain - Auto Turn 045", new AutoTurn(45));
+	SmartDashboard::PutData("DriveTrain - Auto Turn 090", new AutoTurn(90));
+	SmartDashboard::PutData("DriveTrain - Auto Turn 120", new AutoTurn(120));
+	SmartDashboard::PutData("DriveTrain - Auto Turn 150", new AutoTurn(150));
+	SmartDashboard::PutData("DriveTrain - Auto Turn 270", new AutoTurn(270));
+	SmartDashboard::PutData("DriveTrain - Auto Turn 315", new AutoTurn(315));
+
 
 	SmartDashboard::PutString("Current_Command", "");
 	SmartDashboard::PutNumber("Drive_P", 0);
@@ -176,7 +189,8 @@ void OI::setLayout(LayoutType layout)
 		HOOD_FAR_XBOXBUTTON = BroncoXboxButton::Button::Y;
 		STOP_COLLECT_XBOXBUTTON = BroncoXboxButton::Button::B;
 		COLLECTOR_XBOXBUTTON = BroncoXboxButton::Button::X;
-		SHOOT_XBOXBUTTON = BroncoXboxButton::Button::LB;
+		SHOOT_XBOXBUTTON = BroncoXboxButton::Button::UNASSIGNED;
+		SHOOT_FAR_XBOXBUTTON = BroncoXboxButton::Button::LB;
 		COLLECTOR_GROUND_XBOXBUTTON = BroncoXboxButton::Button::D_D;
 		COLLECTOR_COLLECT_XBOXBUTTON = BroncoXboxButton::Button::D_R;
 		COLLECTOR_SAFE_XBOXBUTTON = BroncoXboxButton::Button::D_L;

@@ -12,23 +12,25 @@ PrintStuff::PrintStuff()
 // Called just before this Command runs the first time
 void PrintStuff::Initialize()
 {
-	if(collector->getArmPosition() == Collector::kGround) {
-		printf("GROUND\n");
-	}
-	else if(collector->getArmPosition() == Collector::kCollect) {
-		printf("COLLECT\n");
-	}
-	else if(collector->getArmPosition() == Collector::kSafe) {
-		printf("SAFE\n");
-	}
-	else if(collector->getArmPosition() == Collector::kMax) {
-		printf("MAX\n");
-	}
+	printf("Fused Heading = %f \t Change in Heading = %f\n", driveTrain->GetFusedHeading(), driveTrain->GetHeadingChange());
 
-	printf(collector->isTopCylinderExtended() ? "Top Cylinder - True \n" : "Top Cylinder - False \n");;
-	printf(collector->isBottomCylinderExtended() ? "Bottom Cylinder - True \n" : "Bottom Cylinder - False \n");;
+//	if(collector->getArmPosition() == Collector::kGround) {
+//		printf("GROUND\n");
+//	}
+//	else if(collector->getArmPosition() == Collector::kCollect) {
+//		printf("COLLECT\n");
+//	}
+//	else if(collector->getArmPosition() == Collector::kSafe) {
+//		printf("SAFE\n");
+//	}
+//	else if(collector->getArmPosition() == Collector::kMax) {
+//		printf("MAX\n");
+//	}
 
-	printf("Encoder - %f\n", driveTrain->GetLeftEncoderDistance());
+//	printf(collector->isTopCylinderExtended() ? "Top Cylinder - True \n" : "Top Cylinder - False \n");;
+//	printf(collector->isBottomCylinderExtended() ? "Bottom Cylinder - True \n" : "Bottom Cylinder - False \n");;
+
+//	printf("Encoder - %f\n", driveTrain->GetLeftEncoderDistance());
 //	printf(driveTrain->getRampSensor() ? "Ramp Sensor - True \n" : "Ramp Sensor - False \n");
 //	printf(collector->isBottomCylinderExtended() ? "EXTENDED - True \n" : "RETRACTED - False \n");
 //	printf(collector->isTopCylinderExtended() ? "EXTENDED - True \n" : "DOWN - RETRACTED \n");

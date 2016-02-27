@@ -13,7 +13,7 @@ private:
 	bool IS_USING_JOYSTICK;
 	BroncoJoy *stick;
 	BroncoXbox *xbox;
-//	Joystick *m_btnBox;
+	Joystick *m_btnBox;
 
 	//Xbox 360 (If you don't like it make your own layout.)
 

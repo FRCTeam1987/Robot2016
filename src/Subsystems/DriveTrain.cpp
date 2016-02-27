@@ -46,6 +46,7 @@ DriveTrain::DriveTrain() :
 	m_autoSpeed = 0;
 	m_output = 0;
 	m_offset = 0; //make this number positive
+	m_headingOffset = GetFusedHeading();
 
 	//Might need more refinement, doesn't seem to be actual wheel diameter, but works pretty well
 	if(CommandBase::IsPracticeBot())
@@ -107,6 +108,18 @@ double DriveTrain::GetGyroAngle()
 	return navx->GetAngle();
 }
 
+double DriveTrain::GetHeadingChange()
+{
+	if((GetFusedHeading() - m_headingOffset) < 0)
+	{
+		return (GetFusedHeading() - m_headingOffset) + 360;
+	}
+	else
+	{
+		return (GetFusedHeading() - m_headingOffset);
+	}
+}
+
 float DriveTrain::GetFusedHeading()
 {
 	return navx->GetFusedHeading();
@@ -162,6 +175,11 @@ void DriveTrain::ResetGyro()
 	navx->Reset();
 	//Definitely dont use the line under this, sets an offset so the gyro doesnt zero
 	//navx->ZeroYaw(); read the comment above
+}
+
+void DriveTrain::ResetHeadingOffset()
+{
+	m_headingOffset = GetFusedHeading();
 }
 
 void DriveTrain::SetAutoMode(AutoType autoMode)

@@ -26,6 +26,7 @@ private:
     AutoType m_autoMode;
     double m_wheelDiameter;
     double m_offset;
+    double m_headingOffset;
     bool m_isPracticeBot;
     bool m_isReversedOn;
 
@@ -44,6 +45,7 @@ public:
 	void DriveArcade(Joystick *stick);
 	void AutoDrive(float move, float rotate);
 	double GetGyroAngle();
+	double GetHeadingChange();
 
 	float GetFusedHeading();
 	bool IsMagneticDisturbance(); //Probably need to check for a disturbance before using fused heading.
@@ -58,6 +60,7 @@ public:
 	float GetRoll();
 
 	void ResetGyro();
+	void ResetHeadingOffset();
 	void SetAutoMode(AutoType autoMode);
 	AutoType GetAutoMode();
 	void SetAutoSpeed(double autoSpeed);
