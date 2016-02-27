@@ -10,8 +10,11 @@ private:
 	float targetPitch;
 	float targetRoll;
 	double motorSpeed;
+	float m_pitchTolerance;
+	float m_rollTolerance;
+
 public:
-	DriveUntilPitchAndDark(float setPitch, float setRoll, double speed);
+	DriveUntilPitchAndDark(float setPitch, float setRoll, double speed, float pitchTolerance, float rollTolerance);
 	void Initialize();
 	void Execute();
 	bool IsFinished();

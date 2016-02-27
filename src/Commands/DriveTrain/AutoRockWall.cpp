@@ -5,10 +5,10 @@
 #include "SetBrake.h"
 #include "../PrintStuff.h"
 
-AutoRockWall::AutoRockWall()
+AutoRockWall::AutoRockWall(float speed, float pitchTolerance, float rollTolerance)
 {
 	AddSequential(new SetBrake());
-	AddSequential(new DriveStraightUntilRampSensor(0.80));
-	AddSequential(new DriveUntilPitchAndDark(0.0, 0.0, 0.80));
-	AddSequential(new DriveStraightUntilRampSensor(-.5));
+	AddSequential(new DriveStraightUntilRampSensor(-speed));
+	AddSequential(new DriveUntilPitchAndDark(0.0, 0.0, speed, pitchTolerance, rollTolerance));
+	AddSequential(new DriveStraightUntilRampSensor(0.5));
 }

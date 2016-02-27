@@ -9,7 +9,6 @@ class DriveStraightUntilRampSensor: public DriveStraightBase
 public:
 	DriveStraightUntilRampSensor(double speed);
 	bool IsFinished();
-	void End();
 };
 
 #endif

@@ -23,14 +23,15 @@ const double AUTO_DRIVESTRAIGHT_SPEED = 0.4;
 const double AUTO_BASE_TURN_SPEED = .3;    //Tune this value
 const double AUTO_ADJUST_TURN_SPEED = .01; //Tune this value
 const float PITCH_ANGLE_TOLERANCE = 2.0;
+const float ROLL_ANGLE_TOLERANCE = 2.0;
 const float TURN_ANGLE_TOLERANCE = 1.0;
 
 const double DRIVE_STRAIGHT_P_PRAC = -0.06;
 const double DRIVE_STRAIGHT_I_PRAC = -0.004;
 const double DRIVE_STRAIGHT_D_PRAC =  0.0;
 
-const double DRIVE_STRAIGHT_P_COMP = -0.06;
-const double DRIVE_STRAIGHT_I_COMP = -0.004;
+const double DRIVE_STRAIGHT_P_COMP = -0.07;
+const double DRIVE_STRAIGHT_I_COMP =  0.0;
 const double DRIVE_STRAIGHT_D_COMP =  0.0;
 
 //Shooter
@@ -73,7 +74,7 @@ enum LayoutType
 	kTreyDrive = 9
 };
 
-const LayoutType BUTTON_LAYOUT = kConnieDrive;
+const LayoutType BUTTON_LAYOUT = kSpencerDrive;
 
 //Joystick
 //const int RESETENCODERBUTTON = 5;

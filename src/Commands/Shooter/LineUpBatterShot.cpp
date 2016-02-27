@@ -10,8 +10,8 @@
 LineUpBatterShot::LineUpBatterShot()
 {
 	AddSequential(new SetHoodPosition(Shooter::kMiddle));
-	AddSequential(new SetShooterSpeed(3800));
-	AddSequential(new DriveStraightForDistance(6, 0.2));
+	AddSequential(new SetShooterSpeed(3700)); //3500
+	AddSequential(new DriveStraightForDistance(10, 0.2));
 	AddSequential(new SetIntake(Shooter::kIntakeForward));
 	AddSequential(new WaitForNoBall());
 	AddSequential(new ReadjustBallWithIntake());

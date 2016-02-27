@@ -11,7 +11,7 @@ CheckArmPosition::CheckArmPosition(Collector::ArmPosition position)
 // Called just before this Command runs the first time
 void CheckArmPosition::Initialize()
 {
-
+	SmartDashboard::PutString("Current_Command", "CheckArmPosition");
 }
 
 // Called repeatedly when this Command is scheduled to run

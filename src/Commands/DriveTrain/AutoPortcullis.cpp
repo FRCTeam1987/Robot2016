@@ -15,12 +15,12 @@ AutoPortcullis::AutoPortcullis()
 {
 	AddSequential(new SetBrake());
 	AddSequential(new SetArmPosition(Collector::kGround));
-	AddSequential(new CheckArmPosition(Collector::kGround));
+//	AddSequential(new CheckArmPosition(Collector::kGround));
 	AddSequential(new DriveStraightUntilRampSensor(0.5));
 	AddSequential(new DriveStraightForDistance(10, 0.5));
 	AddSequential(new SetDrive(0));
-	AddSequential(new SetArmPosition(Collector::kSafe));
-	AddSequential(new CheckArmPosition(Collector::kSafe));
+	AddSequential(new SetArmPosition(Collector::kCollect));
+//	AddSequential(new CheckArmPosition(Collector::kSafe));
 //	AddSequential(new WaitCommand(5));
 //	AddSequential(new DriveStraight(0, -2, -0.5));
 //	AddSequential(new SetDrive(0));
