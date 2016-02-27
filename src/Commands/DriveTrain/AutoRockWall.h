@@ -7,7 +7,7 @@
 class AutoRockWall: public CommandGroup
 {
 public:
-	AutoRockWall();
+	AutoRockWall(float speed, float pitchTolerance, float rollTolerance);
 };
 
 #endif

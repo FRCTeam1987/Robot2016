@@ -2,17 +2,20 @@
 #include "../../RobotMap.h"
 #include "../PrintStuff.h"
 
-DriveUntilPitchAndDark::DriveUntilPitchAndDark(float setPitch, float setRoll, double speed)
+DriveUntilPitchAndDark::DriveUntilPitchAndDark(float setPitch, float setRoll, double speed, float pitchTolerance, float rollTolerance)
 {
 	Requires(driveTrain);
 	targetPitch = setPitch;
 	targetRoll = setRoll;
 	motorSpeed = speed;
+	m_pitchTolerance = pitchTolerance;
+	m_rollTolerance = rollTolerance;
 }
 
 // Called just before this Command runs the first time
 void DriveUntilPitchAndDark::Initialize()
 {
+	SmartDashboard::PutString("Current_Command", "DriveUntilPitchAndDark");
 	driveTrain->ResetGyro();
 	driveTrain->ResetLeftEncoder();
 	driveTrain->setPID(-0.06, -0.004, 0.0);
@@ -33,10 +36,10 @@ void DriveUntilPitchAndDark::Execute()
 // Make this return true when this Command no longer needs to run execute()
 bool DriveUntilPitchAndDark::IsFinished()
 {
-	return driveTrain->GetRoll() <= (targetPitch + PITCH_ANGLE_TOLERANCE)
-			&& driveTrain->GetRoll() >= (targetPitch - PITCH_ANGLE_TOLERANCE)
-			&& driveTrain->GetPitch() <= (targetRoll + PITCH_ANGLE_TOLERANCE)
-			&& driveTrain->GetPitch() >= (targetRoll - PITCH_ANGLE_TOLERANCE)
+	return driveTrain->GetRoll() <= (targetPitch + m_pitchTolerance)
+			&& driveTrain->GetRoll() >= (targetPitch - m_pitchTolerance)
+			&& driveTrain->GetPitch() <= (targetRoll + m_rollTolerance)
+			&& driveTrain->GetPitch() >= (targetRoll - m_rollTolerance)
 			&& !driveTrain->getRampSensor();
 }
 

@@ -5,18 +5,26 @@ DriveStraightBase::DriveStraightBase(double speed)
 {
 	Requires(driveTrain);
 	m_speed = speed;
+	m_P = 0;
+	m_I = 0;
+	m_D = 0;
 }
 
 // Called just before this Command runs the first time
 void DriveStraightBase::Initialize()
 {
+	SmartDashboard::PutString("Current_Command", "DriveStraightBase");
+	m_P = SmartDashboard::GetNumber("Drive_P", -0.06);
+	m_I = SmartDashboard::GetNumber("Drive_I", -0.004);
+	m_D = SmartDashboard::GetNumber("Drive_D", 0);
+
 	if(CommandBase::IsPracticeBot())
 	{
 		driveTrain->setPID(DRIVE_STRAIGHT_P_PRAC, DRIVE_STRAIGHT_I_PRAC, DRIVE_STRAIGHT_D_PRAC);
 	}
 	else
 	{
-		driveTrain->setPID(DRIVE_STRAIGHT_P_COMP, DRIVE_STRAIGHT_I_COMP, DRIVE_STRAIGHT_D_COMP);
+		driveTrain->setPIDf(m_P, m_I, m_D, 0.6);
 	}
 	driveTrain->SetAutoSpeed(m_speed);
 	driveTrain->SetAutoMode(driveTrain->DRIVE_STRAIGHT);
@@ -30,7 +38,7 @@ void DriveStraightBase::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void DriveStraightBase::Execute()
 {
-
+	printf("Gyro - %f  PID - %f\n", driveTrain->GetGyroAngle(), driveTrain->GetOutput());
 }
 
 // Make this return true when this Command no longer needs to run execute()

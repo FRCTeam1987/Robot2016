@@ -11,6 +11,8 @@ class DriveStraightBase: public CommandBase
 {
 private:
 	double m_speed;
+	float m_P, m_I, m_D;
+
 public:
 	DriveStraightBase(double speed);
 	void Initialize();
