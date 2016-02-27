@@ -9,6 +9,7 @@
 #include "Commands/DriveTrain/AutoChevalDeFrise.h"
 #include "Commands/DriveTrain/DriveStraightForDistance.h"
 #include "Commands/DriveTrain/ToggleDriverControls.h"
+#include "Commands/DriveTrain/AutoGroup.h"
 #include "Commands/Shooter/SetIntake.h"
 #include "Commands/Shooter/LoadBall.h"
 #include "Commands/Shooter/WaitForBall.h"
@@ -73,13 +74,15 @@ OI::OI()
 //	forwardIntakeMotor = new JoystickButton(m_btnBox, FORWARD_INTAKE_MOTOR_BUTTON);
 //	toggleReverse = new JoystickButton(m_btnBox, TOGGLE_CONTROLS);
 
-//	printStuff = new JoystickButton(m_btnBox, PRINT_STUFF_BUTTON);
-//	autoTestDef = new JoystickButton(m_btnBox, AUTO_DRIVE_UNTIL_RAMP_SENSOR_BUTTON);
-//	autoPortcullis = new JoystickButton(m_btnBox, AUTO_PORTCULLIS_BUTTON);
-//	autoChevalDeFrise = new JoystickButton(m_btnBox, AUTO_CHEVAL_DEFRISE_BUTTON);
-//	autoRockWall = new JoystickButton(m_btnBox, AUTO_ROCK_WALL_BUTTON);
-//	autoLowBar = new JoystickButton(m_btnBox, AUTO_ROCK_WALL_BUTTON);
-//	readjustBall = new JoystickButton(m_btnBox, READJUST_BALL_BUTTON);
+
+	printStuff = new JoystickButton(m_btnBox, PRINT_STUFF_BUTTON);
+	autoTestDef = new JoystickButton(m_btnBox, AUTO_DRIVE_UNTIL_RAMP_SENSOR_BUTTON);
+	autoPortcullis = new JoystickButton(m_btnBox, AUTO_PORTCULLIS_BUTTON);
+	autoChevalDeFrise = new JoystickButton(m_btnBox, AUTO_CHEVAL_DEFRISE_BUTTON);
+	autoRockWall = new JoystickButton(m_btnBox, AUTO_ROCK_WALL_BUTTON);
+	autoLowBar = new JoystickButton(m_btnBox, AUTO_LOW_BAR_BUTTON);
+	readjustBall = new JoystickButton(m_btnBox, READJUST_BALL_BUTTON);
+
 
 	hoodNearXbox->WhenPressed(new SetHoodPosition(Shooter::kNear));
 	hoodMiddleXbox->WhenPressed(new SetHoodPosition(Shooter::kMiddle));
@@ -96,11 +99,12 @@ OI::OI()
 	toggleReverseXboxA->WhenPressed(new ToggleDriverControls());
 	lineUpBatterShotXbox->WhenPressed(new LineUpBatterShot());
 
-//	printStuff->WhenPressed(new PrintStuff());
+
+	printStuff->WhenPressed(new PrintStuff());
 //	forwardIntakeMotor->WhenPressed(new SetIntake(Shooter::kIntakeForward));
 //	forwardIntakeMotor->WhenReleased(new SetIntake(Shooter::kIntakeOff));
-//	autoChevalDeFrise->WhenPressed(new AutoChevalDeFrise());
-//	autoPortcullis->WhenPressed(new AutoPortcullis());
+	autoChevalDeFrise->WhenPressed(new AutoChevalDeFrise());
+	autoPortcullis->WhenPressed(new AutoPortcullis());
 //	autoRockWall->WhenPressed(new AutoRockWall());
 //	autoLowBar->WhenPressed(new AutoLowBar());
 //	readjustBall->WhenPressed(new ReadjustBall());
@@ -124,11 +128,26 @@ OI::OI()
 	SmartDashboard::PutData("Collector - Safe", new SetArmPosition(Collector::kSafe));
 	SmartDashboard::PutData("Collector - Max", new SetArmPosition(Collector::kMax));
 	SmartDashboard::PutData("Shooter - Shoot", new Shoot());
+
 	SmartDashboard::PutData("Shooter - Line Up Batter Shot", new LineUpBatterShot());
 	SmartDashboard::PutData("DriveTrain - Drive Straight 60 in", new DriveStraightForDistance(60, -0.6));
 	SmartDashboard::PutData("DriveTrain - Drive Straight 120 in", new DriveStraightForDistance(120, -0.6));
 	SmartDashboard::PutData("DriveTrain - AutoPortcullis", new AutoPortcullis());
 	SmartDashboard::PutData("DriveTrain - AutoChevalle", new AutoChevalDeFrise());
+
+	SmartDashboard::PutData("DriveTrain - Rock Wall - 0.5", new AutoRockWall(0.5, 5.0, 2.0));
+	SmartDashboard::PutData("DriveTrain - Rock Wall - 0.7", new AutoRockWall(0.7, 5.0, 2.0));
+	SmartDashboard::PutData("DriveTrain - Rock Wall - 0.8", new AutoRockWall(0.8, 5.0, 2.0));
+	SmartDashboard::PutData("DriveTrain - Rock Wall - 0.9", new AutoRockWall(0.9, 5.0, 2.0));
+	SmartDashboard::PutData("DriveTrain - Rock Wall - 1.0", new AutoRockWall(1.0, 5.0, 2.0));
+	SmartDashboard::PutData("DriveTrain - Portcullis", new AutoPortcullis());
+	SmartDashboard::PutData("DriveTrain - Auto Group", new AutoGroup());
+
+	SmartDashboard::PutString("Current_Command", "");
+	SmartDashboard::PutNumber("Drive_P", 0);
+	SmartDashboard::PutNumber("Drive_I", 0);
+	SmartDashboard::PutNumber("Drive_D", 0);
+
 }
 
 void OI::setLayout(LayoutType layout)
@@ -152,8 +171,8 @@ void OI::setLayout(LayoutType layout)
 		break;
 	case kSpencerDrive:
 		IS_USING_JOYSTICK = false;
-		HOOD_NEAR_XBOXBUTTON = BroncoXboxButton::Button::A;
-		HOOD_MIDDLE_XBOXBUTTON = BroncoXboxButton::Button::UNASSIGNED;
+		HOOD_NEAR_XBOXBUTTON = BroncoXboxButton::Button::A; //UNASSIGNED
+		HOOD_MIDDLE_XBOXBUTTON = BroncoXboxButton::Button::UNASSIGNED; //A
 		HOOD_FAR_XBOXBUTTON = BroncoXboxButton::Button::Y;
 		STOP_COLLECT_XBOXBUTTON = BroncoXboxButton::Button::B;
 		COLLECTOR_XBOXBUTTON = BroncoXboxButton::Button::X;
@@ -199,6 +218,7 @@ void OI::setLayout(LayoutType layout)
 		COLLECTOR_COLLECT_XBOXBUTTON = BroncoXboxButton::Button::D_L;
 		COLLECTOR_MAX_XBOXBUTTON = BroncoXboxButton::Button::D_U;
 		TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_A = BroncoXboxButton::Button::LSB;
+		LINE_UP_BATTER_SHOT_XBOXBUTTON = BroncoXboxButton::Button::LB;
 		X_AXIS = BroncoXbox::Axis::RS_X;
 		Y_AXIS = BroncoXbox::Axis::LS_Y;
 		break;
@@ -214,8 +234,8 @@ void OI::setLayout(LayoutType layout)
 		COLLECTOR_COLLECT_BUTTON = 3;
 		COLLECTOR_SAFE_BUTTON = 4;
 		COLLECTOR_MAX_BUTTON = 6;
-		TOGGLE_DRIVE_DIRECTION_BUTTON_A = 12;
-		LINE_UP_BATTER_SHOT_BUTTON = 10;
+		TOGGLE_DRIVE_DIRECTION_BUTTON_A = 10;
+		LINE_UP_BATTER_SHOT_BUTTON = 12;
 		break;
 	case kKenzieDrive:
 		IS_USING_JOYSTICK = false;
@@ -323,5 +343,5 @@ Joystick* OI::getXbox()
 Joystick* OI::getBtnBox()
 {
 //	return m_btnBox;
-	return this->getControls();
+	return xbox;
 }

@@ -72,6 +72,8 @@ double DriveTrain::ReturnPIDInput()
 
 void DriveTrain::UsePIDOutput(double output)
 {
+	m_output = output;
+
 	AutoDrive(m_autoSpeed, output);
 }
 
@@ -185,6 +187,11 @@ double DriveTrain::GetOutput()
 void DriveTrain::setPID(double P, double I, double D)
 {
 	GetPIDController()->SetPID(P, I, D);
+}
+
+void DriveTrain::setPIDf(double P, double I, double D, double f)
+{
+	GetPIDController()->SetPID(P, I, D, f);
 }
 
 void DriveTrain::ResetLeftEncoder()
