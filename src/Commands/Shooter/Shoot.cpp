@@ -4,15 +4,12 @@
 #include "SetIntake.h"
 #include "WaitForNoBall.h"
 #include "SetHoodPosition.h"
-#include "ReadjustBallWithIntake.h"
 
 Shoot::Shoot()
 {
-	AddSequential(new SetHoodPosition(Shooter::kFar));
-	AddSequential(new SetShooterSpeed(4300)); //Thursday = 4300 Close - 3800
+	AddSequential(new SetShooterSpeed(4500)); //Far - 4300 :: Close - 3800
 	AddSequential(new SetIntake(Shooter::kIntakeForward));
 	AddSequential(new WaitForNoBall());
-//	AddSequential(new ReadjustBallWithIntake());
 	AddSequential(new WaitCommand(1));
 	AddSequential(new SetIntake(Shooter::kIntakeOff));
 	AddSequential(new SetHoodPosition(Shooter::kNear));

@@ -2,13 +2,16 @@
 #include "SetHoodPosition.h"
 #include "SetShooterSpeed.h"
 #include "SetIntake.h"
+#include "WaitForNoBall.h"
 
 ShootFar::ShootFar()
 {
 	AddSequential(new SetHoodPosition(Shooter::kFar));
-	AddSequential(new SetShooterSpeed(5050));
+	AddSequential(new SetShooterSpeed(4300));
 	AddSequential(new SetIntake(Shooter::kIntakeForward));
-	AddSequential(new SetShooterSpeed(0));
+	AddSequential(new WaitForNoBall());
+	AddSequential(new WaitCommand(1));
 	AddSequential(new SetIntake(Shooter::kIntakeOff));
 	AddSequential(new SetHoodPosition(Shooter::kNear));
+	AddSequential(new SetShooterSpeed(0));
 }
