@@ -13,7 +13,7 @@ private:
 	bool IS_USING_JOYSTICK;
 	BroncoJoy *stick;
 	BroncoXbox *xbox;
-	Joystick *m_btnBox;
+//	Joystick *m_btnBox;
 
 	//Xbox 360 (If you don't like it make your own layout.)
 
@@ -26,6 +26,8 @@ private:
 	JoystickButton *hoodFarXbox;
 	JoystickButton *collectXbox;
 	JoystickButton *shootXbox;
+	JoystickButton *shootFarXbox;
+	JoystickButton *shootCloseXbox;
 	JoystickButton *stopCollectXbox;
 	JoystickButton *toggleReverseXboxA;
 	JoystickButton *toggleReverseXboxB;
@@ -33,15 +35,15 @@ private:
 	JoystickButton *lineUpBatterShotXbox;
 
 
-	JoystickButton *printStuff;
-	JoystickButton *forwardIntakeMotor;
-	JoystickButton *autoTestDef;
-	JoystickButton *autoPortcullis;
-	JoystickButton *autoChevalDeFrise;
-	JoystickButton *autoRockWall;
-	JoystickButton *autoLowBar;
-	JoystickButton *toggleReverse;
-	JoystickButton *readjustBall;
+//	JoystickButton *printStuff;
+//	JoystickButton *forwardIntakeMotor;
+//	JoystickButton *autoTestDef;
+//	JoystickButton *autoPortcullis;
+//	JoystickButton *autoChevalDeFrise;
+//	JoystickButton *autoRockWall;
+//	JoystickButton *autoLowBar;
+//	JoystickButton *toggleReverse;
+//	JoystickButton *readjustBall;
 
 	int HOOD_NEAR_BUTTON;
 	int HOOD_MIDDLE_BUTTON;
@@ -66,6 +68,8 @@ private:
 	BroncoXboxButton::Button COLLECTOR_XBOXBUTTON;
 	BroncoXboxButton::Button STOP_COLLECT_XBOXBUTTON;
 	BroncoXboxButton::Button SHOOT_XBOXBUTTON;
+	BroncoXboxButton::Button SHOOT_FAR_XBOXBUTTON;
+	BroncoXboxButton::Button SHOOT_CLOSE_XBOXBUTTON;
 	BroncoXboxButton::Button TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_A;
 	BroncoXboxButton::Button LINE_UP_BATTER_SHOT_XBOXBUTTON;
 	BroncoXbox::Axis X_AXIS;

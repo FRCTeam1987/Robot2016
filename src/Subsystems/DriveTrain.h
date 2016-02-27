@@ -45,6 +45,9 @@ public:
 	void AutoDrive(float move, float rotate);
 	double GetGyroAngle();
 
+	float GetFusedHeading();
+	bool IsMagneticDisturbance(); //Probably need to check for a disturbance before using fused heading.
+
 	float GetGyroX();
 	float GetGyroY();
 	float GetGyroZ();

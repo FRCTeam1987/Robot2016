@@ -48,7 +48,14 @@ DriveTrain::DriveTrain() :
 	m_offset = 0; //make this number positive
 
 	//Might need more refinement, doesn't seem to be actual wheel diameter, but works pretty well
-	m_wheelDiameter = 8.446;
+	if(CommandBase::IsPracticeBot())
+	{
+		m_wheelDiameter = 8.446;
+	}
+	else
+	{
+		m_wheelDiameter = 9.22;
+	}
 
 	leftEncoder->SetDistancePerPulse((PI * m_wheelDiameter) / ENCODER_TICKS);
 	this->Disable();
@@ -96,6 +103,16 @@ void DriveTrain::AutoDrive(float move, float rotate)
 double DriveTrain::GetGyroAngle()
 {
 	return navx->GetAngle();
+}
+
+float DriveTrain::GetFusedHeading()
+{
+	return navx->GetFusedHeading();
+}
+
+bool DriveTrain::IsMagneticDisturbance()
+{
+	return navx->IsMagneticDisturbance();
 }
 
 float DriveTrain::GetGyroX()
