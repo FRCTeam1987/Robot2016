@@ -3,6 +3,7 @@
 #include "Commands/DriveTrain/AutoTurn.h"
 #include "Commands/Shooter/WaitForBall.h"
 #include "Commands/DriveTrain/DriveUntilPitchAndDark.h"
+#include "Commands/DriveTrain/AutoGroup.h"
 #include "CommandBase.h"
 
 class Robot: public IterativeRobot
@@ -88,7 +89,7 @@ private:
 //		autonomousCommand->Start();
 
 		autonomousCommand.reset((Command *)chooser->GetSelected());
-//		autonomousCommand.reset(new DriveStraight(0, 120, .70));
+		autonomousCommand.reset(new AutoGroup());
 
 		if (autonomousCommand != NULL)
 			autonomousCommand->Start();

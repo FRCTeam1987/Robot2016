@@ -13,7 +13,8 @@ PrintStuff::PrintStuff()
 void PrintStuff::Initialize()
 {
 	printf("Fused Heading = %f \t Change in Heading = %f\n", driveTrain->GetFusedHeading(), driveTrain->GetHeadingChange());
-
+//	printf(driveTrain->getRampSensor() ? "True /n" : "False /n");
+//	SmartDashboard::PutString("RAMP SENSORS", driveTrain->getRampSensor() ? "True" : "False");
 //	if(collector->getArmPosition() == Collector::kGround) {
 //		printf("GROUND\n");
 //	}
@@ -34,7 +35,7 @@ void PrintStuff::Initialize()
 //	printf(driveTrain->getRampSensor() ? "Ramp Sensor - True \n" : "Ramp Sensor - False \n");
 //	printf(collector->isBottomCylinderExtended() ? "EXTENDED - True \n" : "RETRACTED - False \n");
 //	printf(collector->isTopCylinderExtended() ? "EXTENDED - True \n" : "DOWN - RETRACTED \n");
-//	driveTrain->PrintLeftEncoder();
+	driveTrain->PrintLeftEncoder();
 
 //	printf(driveTrain->getRampSensor() ? "Ramp Sensor - True \t" : "Ramp Sensor - False \t");
 //	printf("Pitch: %f \t Roll: %f\n", driveTrain->GetRoll(), driveTrain->GetPitch());

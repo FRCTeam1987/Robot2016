@@ -8,6 +8,7 @@
 DriveTrain::DriveTrain() :
 		PIDSubsystem("DriveTrain", 1.0, 0.0, 0.0)
 {
+
 	leftDriveMaster = new CANTalon(LEFT_DRIVE_MOTOR_MASTER);
 	leftDriveMaster->SetControlMode(CANTalon::kPercentVbus);
 	leftDriveMaster->Set(0);
@@ -51,11 +52,12 @@ DriveTrain::DriveTrain() :
 	//Might need more refinement, doesn't seem to be actual wheel diameter, but works pretty well
 	if(CommandBase::IsPracticeBot())
 	{
-		m_wheelDiameter = 8.446;
+		//m_wheelDiameter = 9.155;//PRACTICE
 	}
 	else
 	{
-		m_wheelDiameter = 9.22;
+		//m_wheelDiameter = 9.22;//COMP
+		m_wheelDiameter = 9.155;//PRACTICE
 	}
 
 	leftEncoder->SetDistancePerPulse((PI * m_wheelDiameter) / ENCODER_TICKS);
@@ -64,11 +66,15 @@ DriveTrain::DriveTrain() :
 	rightEncoder->SetDistancePerPulse((PI * m_wheelDiameter) / ENCODER_TICKS);
 	this->Disable();
 
+
+//	distancePID = new PIDController(0,0,0,0, leftEncoder, )
+
 }
 
 double DriveTrain::ReturnPIDInput()
 {
-	return GetGyroAngle();
+	//return GetGyroAngle();
+	return GetHeadingChange();
 }
 
 void DriveTrain::UsePIDOutput(double output)
@@ -101,6 +107,15 @@ void DriveTrain::DriveArcade(Joystick *stick)
 void DriveTrain::AutoDrive(float move, float rotate)
 {
 	robotDrive->ArcadeDrive(-move, rotate);
+}
+
+void DriveTrain::Turn(float speed)
+{
+
+	// Might need this.
+	//robotDrive->TankDrive()
+	robotDrive->TankDrive(-speed, speed);
+	printf("Turning with TankDrive at %f\n", speed);
 }
 
 double DriveTrain::GetGyroAngle()
@@ -202,6 +217,11 @@ double DriveTrain::GetOutput()
 	return m_output;
 }
 
+float DriveTrain::GetPIDError()
+{
+	return GetPIDController()->GetError();
+}
+
 void DriveTrain::setPID(double P, double I, double D)
 {
 	GetPIDController()->SetPID(P, I, D);
@@ -232,6 +252,11 @@ void DriveTrain::SetOffset(double offset)
 {
 	abs(offset);
 	m_offset = offset;
+}
+
+void DriveTrain::SetSetpoint(double setpoint)
+{
+	GetPIDController()->SetSetpoint(setpoint);
 }
 
 void DriveTrain::SetBrake() {

@@ -1,22 +1,16 @@
-#ifndef AutoTurn_H
-#define AutoTurn_H
+#ifndef AutoTurnPID_H
+#define AutoTurnPID_H
 
 #include "../../CommandBase.h"
 #include "WPILib.h"
 
-class AutoTurn: public CommandBase
+class AutoTurnPID: public CommandBase
 {
 private:
 	double m_angle;
-	double m_turnAngleAdjust;
-	float m_headingChange;
-	float m_baseTurnSpeed;
-	float m_adjustSpeed;
-	bool m_clockWise;
 	bool m_reset;
-
 public:
-	AutoTurn(double angle, bool reset = false);
+	AutoTurnPID(double angle = 0, bool reset = true);
 	void setAngle(double angle);
 	void Initialize();
 	void Execute();

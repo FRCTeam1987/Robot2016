@@ -9,7 +9,7 @@ DriveStraightForDistance::DriveStraightForDistance(double distance, double speed
 void DriveStraightForDistance::Initialize()
 {
 	DriveStraightBase::Initialize();
-	driveTrain->ResetLeftEncoder();
+	m_distance = SmartDashboard::GetNumber("Drive_Distance", 60);
 }
 
 // Make this return true when this Command no longer needs to run execute()

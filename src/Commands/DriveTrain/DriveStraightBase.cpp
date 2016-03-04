@@ -5,18 +5,22 @@ DriveStraightBase::DriveStraightBase(double speed)
 {
 	Requires(driveTrain);
 	m_speed = speed;
-	m_P = 0;
+	m_P = 0.01;
 	m_I = 0;
 	m_D = 0;
+	m_F = 0;
+	m_reset = true;
 }
 
 // Called just before this Command runs the first time
 void DriveStraightBase::Initialize()
 {
 	SmartDashboard::PutString("Current_Command", "DriveStraightBase");
+//	m_speed = SmartDashboard::GetNumber("Drive_Speed", -0.6);
 	m_P = SmartDashboard::GetNumber("Drive_P", -0.06);
 	m_I = SmartDashboard::GetNumber("Drive_I", -0.004);
 	m_D = SmartDashboard::GetNumber("Drive_D", 0);
+	m_F = SmartDashboard::GetNumber("Drive_F", 0.6);
 
 	if(CommandBase::IsPracticeBot())
 	{
@@ -24,21 +28,25 @@ void DriveStraightBase::Initialize()
 	}
 	else
 	{
-		driveTrain->setPIDf(m_P, m_I, m_D, 0.6);
+		driveTrain->setPIDf(m_P, m_I, m_D, m_F);
 	}
 	driveTrain->SetAutoSpeed(m_speed);
+//	driveTrain->SetAutoSpeed(-0.6);
 	driveTrain->SetAutoMode(driveTrain->DRIVE_STRAIGHT);
 
-	driveTrain->SetOffset(0.0);
+	//driveTrain->SetOffset(0.0);
+	driveTrain->SetSetpoint(0.0);
 	driveTrain->Enable();
-	driveTrain->ResetGyro();
+	//driveTrain->ResetGyro();
+	if(m_reset)
+		driveTrain->ResetHeadingOffset();
 	driveTrain->ResetLeftEncoder();
 }
 
 // Called repeatedly when this Command is scheduled to run
 void DriveStraightBase::Execute()
 {
-	printf("Gyro - %f  PID - %f\n", driveTrain->GetGyroAngle(), driveTrain->GetOutput());
+
 }
 
 // Make this return true when this Command no longer needs to run execute()
@@ -60,4 +68,9 @@ void DriveStraightBase::Interrupted()
 {
 	driveTrain->Disable();
 	driveTrain->AutoDrive(0, 0);
+}
+
+void DriveStraightBase::SetReset(bool reset)
+{
+	m_reset = reset;
 }

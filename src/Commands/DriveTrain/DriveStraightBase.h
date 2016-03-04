@@ -11,7 +11,8 @@ class DriveStraightBase: public CommandBase
 {
 private:
 	double m_speed;
-	float m_P, m_I, m_D;
+	float m_P, m_I, m_D, m_F;
+	bool m_reset;
 
 public:
 	DriveStraightBase(double speed);
@@ -20,6 +21,7 @@ public:
 	bool IsFinished();
 	void End();
 	void Interrupted();
+	void SetReset(bool reset);
 };
 
 #endif

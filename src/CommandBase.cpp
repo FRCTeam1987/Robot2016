@@ -57,7 +57,6 @@ void CommandBase::init()
 
 
 //	table = NetworkTable::GetTable("GRIP/myContoursReport");
-
 }
 
 bool CommandBase::IsPracticeBot()

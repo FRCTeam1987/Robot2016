@@ -7,7 +7,7 @@
 ShootFar::ShootFar()
 {
 	AddSequential(new SetHoodPosition(Shooter::kFar));
-	AddSequential(new SetShooterSpeed(4300));
+	AddSequential(new SetShooterSpeed(4500));
 	AddSequential(new SetIntake(Shooter::kIntakeForward));
 	AddSequential(new WaitForNoBall());
 	AddSequential(new WaitCommand(1));

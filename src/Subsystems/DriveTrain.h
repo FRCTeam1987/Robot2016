@@ -12,6 +12,8 @@ public:
 	enum AutoType {AUTO_TURN, DRIVE_STRAIGHT};
 
 private:
+	PIDController* distancePID;
+
 	CANTalon *leftDriveMaster;
 	CANTalon *leftDriveSlave;
 	CANTalon *rightDriveMaster;
@@ -44,6 +46,7 @@ public:
 
 	void DriveArcade(Joystick *stick);
 	void AutoDrive(float move, float rotate);
+	void Turn(float speed);
 	double GetGyroAngle();
 	double GetHeadingChange();
 
@@ -65,12 +68,14 @@ public:
 	AutoType GetAutoMode();
 	void SetAutoSpeed(double autoSpeed);
 	double GetOutput();
+	float GetPIDError();
 	void setPID(double P, double I, double D);
 	void setPIDf(double P, double I, double D, double f);
 	void ResetLeftEncoder();
 	void PrintLeftEncoder();
 	double GetLeftEncoderDistance();
 	void SetOffset(double offset);
+	void SetSetpoint(double setpoint);
 
 	void SetBrake();
 	void SetCoast();

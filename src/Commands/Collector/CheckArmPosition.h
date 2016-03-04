@@ -10,7 +10,9 @@ private:
 	Collector::ArmPosition m_position;
 
 public:
+	CheckArmPosition();
 	CheckArmPosition(Collector::ArmPosition position);
+	void setPosition(Collector::ArmPosition position);
 	void Initialize();
 	void Execute();
 	bool IsFinished();

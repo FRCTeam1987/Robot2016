@@ -16,7 +16,7 @@ DriveUntilPitchAndDark::DriveUntilPitchAndDark(float setPitch, float setRoll, do
 void DriveUntilPitchAndDark::Initialize()
 {
 	SmartDashboard::PutString("Current_Command", "DriveUntilPitchAndDark");
-	driveTrain->ResetGyro();
+	driveTrain->ResetHeadingOffset();
 	driveTrain->ResetLeftEncoder();
 	driveTrain->setPID(-0.06, -0.004, 0.0);
 	driveTrain->SetAutoSpeed(-motorSpeed);
@@ -47,6 +47,7 @@ bool DriveUntilPitchAndDark::IsFinished()
 void DriveUntilPitchAndDark::End()
 {
 	driveTrain->Disable();
+	driveTrain->AutoDrive(0, 0);
 }
 
 // Called when another command which requires one or more of the same
@@ -54,4 +55,5 @@ void DriveUntilPitchAndDark::End()
 void DriveUntilPitchAndDark::Interrupted()
 {
 	driveTrain->Disable();
+	driveTrain->AutoDrive(0, 0);
 }

@@ -12,6 +12,7 @@
 #include "Commands/DriveTrain/AutoGroup.h"
 #include "Commands/DriveTrain/SetHeadingOffset.h"
 #include "Commands/DriveTrain/AutoTurn.h"
+#include "Commands/DriveTrain/AutoTurnPID.h"
 #include "Commands/Shooter/SetIntake.h"
 #include "Commands/Shooter/LoadBall.h"
 #include "Commands/Shooter/WaitForBall.h"
@@ -24,6 +25,11 @@
 #include "Commands/Shooter/LineUpBatterShot.h"
 #include "Commands/Shooter/ReadjustBall.h"
 #include "Commands/Collector/SetArmPosition.h"
+#include "Commands/DriveTrain/DriveStraightAndZero.h"
+#include "Commands/DriveTrain/DriveSmoothForDistance.h"
+
+#include "Commands/DriveTrain/AutoTurnPID.h"
+#include "Commands/Collector/CheckArmPosition.h"
 #include "Commands/Collector/SetCollectorSpeed.h"
 #include "Commands/Collector/CollectBall.h"
 #include "Commands/Collector/StopIntakeAndCollector.h"
@@ -35,7 +41,7 @@ OI::OI()
 	stick = new BroncoJoy(0, 2, 2);
 	xbox = new BroncoXbox(2, 2, 2, .075);
 
-	m_btnBox = new Joystick(1);
+//	m_btnBox = new Joystick(1);
 
 	if(IS_USING_JOYSTICK){
 
@@ -77,13 +83,13 @@ OI::OI()
 //	toggleReverse = new JoystickButton(m_btnBox, TOGGLE_CONTROLS);
 
 
-	printStuff = new JoystickButton(m_btnBox, PRINT_STUFF_BUTTON);
-	autoTestDef = new JoystickButton(m_btnBox, AUTO_DRIVE_UNTIL_RAMP_SENSOR_BUTTON);
-	autoPortcullis = new JoystickButton(m_btnBox, AUTO_PORTCULLIS_BUTTON);
-	autoChevalDeFrise = new JoystickButton(m_btnBox, AUTO_CHEVAL_DEFRISE_BUTTON);
-	autoRockWall = new JoystickButton(m_btnBox, AUTO_ROCK_WALL_BUTTON);
-	autoLowBar = new JoystickButton(m_btnBox, AUTO_LOW_BAR_BUTTON);
-	readjustBall = new JoystickButton(m_btnBox, READJUST_BALL_BUTTON);
+//	printStuff = new JoystickButton(m_btnBox, PRINT_STUFF_BUTTON);
+//	autoTestDef = new JoystickButton(m_btnBox, AUTO_DRIVE_UNTIL_RAMP_SENSOR_BUTTON);
+//	autoPortcullis = new JoystickButton(m_btnBox, AUTO_PORTCULLIS_BUTTON);
+//	autoChevalDeFrise = new JoystickButton(m_btnBox, AUTO_CHEVAL_DEFRISE_BUTTON);
+//	autoRockWall = new JoystickButton(m_btnBox, AUTO_ROCK_WALL_BUTTON);
+//	autoLowBar = new JoystickButton(m_btnBox, AUTO_LOW_BAR_BUTTON);
+//	readjustBall = new JoystickButton(m_btnBox, READJUST_BALL_BUTTON);
 
 
 	hoodNearXbox->WhenPressed(new SetHoodPosition(Shooter::kNear));
@@ -102,11 +108,11 @@ OI::OI()
 	lineUpBatterShotXbox->WhenPressed(new LineUpBatterShot());
 
 
-	printStuff->WhenPressed(new PrintStuff());
+//	printStuff->WhenPressed(new PrintStuff());
 //	forwardIntakeMotor->WhenPressed(new SetIntake(Shooter::kIntakeForward));
 //	forwardIntakeMotor->WhenReleased(new SetIntake(Shooter::kIntakeOff));
-	autoChevalDeFrise->WhenPressed(new AutoChevalDeFrise());
-	autoPortcullis->WhenPressed(new AutoPortcullis());
+//	autoChevalDeFrise->WhenPressed(new AutoChevalDeFrise());
+//	autoPortcullis->WhenPressed(new AutoPortcullis());
 //	autoRockWall->WhenPressed(new AutoRockWall());
 //	autoLowBar->WhenPressed(new AutoLowBar());
 //	readjustBall->WhenPressed(new ReadjustBall());
@@ -138,6 +144,7 @@ OI::OI()
 
 	SmartDashboard::PutData("DriveTrain - Drive Straight 60 in", new DriveStraightForDistance(60, -0.6));
 	SmartDashboard::PutData("DriveTrain - Drive Straight 120 in", new DriveStraightForDistance(120, -0.6));
+	SmartDashboard::PutData("DriveTrain - Drive Straight and Zero", new DriveStraightAndZero());
 	SmartDashboard::PutData("DriveTrain - AutoPortcullis", new AutoPortcullis());
 	SmartDashboard::PutData("DriveTrain - AutoChevalle", new AutoChevalDeFrise());
 	SmartDashboard::PutData("DriveTrain - Rock Wall - 0.5", new AutoRockWall(0.5, 5.0, 2.0));
@@ -145,21 +152,63 @@ OI::OI()
 	SmartDashboard::PutData("DriveTrain - Rock Wall - 0.8", new AutoRockWall(0.8, 5.0, 2.0));
 	SmartDashboard::PutData("DriveTrain - Rock Wall - 0.9", new AutoRockWall(0.9, 5.0, 2.0));
 	SmartDashboard::PutData("DriveTrain - Rock Wall - 1.0", new AutoRockWall(1.0, 5.0, 2.0));
-	SmartDashboard::PutData("DriveTrain - Portcullis", new AutoPortcullis());
 	SmartDashboard::PutData("DriveTrain - Auto Group", new AutoGroup());
 	SmartDashboard::PutData("DriveTrain - Reset Heading", new SetHeadingOffset());
-	SmartDashboard::PutData("DriveTrain - Auto Turn 045", new AutoTurn(45));
-	SmartDashboard::PutData("DriveTrain - Auto Turn 090", new AutoTurn(90));
-	SmartDashboard::PutData("DriveTrain - Auto Turn 120", new AutoTurn(120));
-	SmartDashboard::PutData("DriveTrain - Auto Turn 150", new AutoTurn(150));
-	SmartDashboard::PutData("DriveTrain - Auto Turn 270", new AutoTurn(270));
-	SmartDashboard::PutData("DriveTrain - Auto Turn 315", new AutoTurn(315));
+	SmartDashboard::PutData("DriveTrain - Auto Turn 045", new AutoTurn(45, true));
+	SmartDashboard::PutData("DriveTrain - Auto Turn 055", new AutoTurn(55, true));
+	SmartDashboard::PutData("DriveTrain - Auto Turn 090", new AutoTurn(90, true));
+	SmartDashboard::PutData("DriveTrain - Auto Turn 120", new AutoTurn(120, true));
+	SmartDashboard::PutData("DriveTrain - Auto Turn 150", new AutoTurn(150, true));
+	SmartDashboard::PutData("DriveTrain - Auto Turn 180", new AutoTurn(180, true));
+	SmartDashboard::PutData("DriveTrain - Auto Turn 270", new AutoTurn(270, true));
+	SmartDashboard::PutData("DriveTrain - Auto Turn 315", new AutoTurn(315, true));
+	SmartDashboard::PutData("DriveTrain - Auto Turn PID", new AutoTurnPID(90));
+	SmartDashboard::PutData("DriveTrain - Drive Smooth 60 in", new DriveSmoothForDistance(60, -0.6));
+	SmartDashboard::PutData("DriveTrain - Drive Smooth 120 in", new DriveSmoothForDistance(120, -0.6));
+	SmartDashboard::PutData("DriveTrain - Auto Low Bar", new AutoLowBar());
 
 
 	SmartDashboard::PutString("Current_Command", "");
-	SmartDashboard::PutNumber("Drive_P", 0);
-	SmartDashboard::PutNumber("Drive_I", 0);
-	SmartDashboard::PutNumber("Drive_D", 0);
+	SmartDashboard::PutNumber("Drive_Speed", -1);
+	SmartDashboard::PutNumber("Drive_Distance", 120);
+	SmartDashboard::PutNumber("Drive_P", -0.15);
+	SmartDashboard::PutNumber("Drive_I", 0.000);
+	SmartDashboard::PutNumber("Drive_D", 0.040);
+	SmartDashboard::PutNumber("Drive_F", 0.000);
+
+	SmartDashboard::PutNumber("Smooth_Speed", -0.6);
+	SmartDashboard::PutNumber("Smooth_Distance", 60);
+	SmartDashboard::PutNumber("Smooth_Easing", 0.05);
+	SmartDashboard::PutNumber("Smooth_Min", -0.25);
+	SmartDashboard::PutNumber("Smooth_Distance_Left", 48);
+
+	SmartDashboard::PutNumber("Turn_Angle", 0);
+	SmartDashboard::PutNumber("Turn_P", -0.10000);
+	SmartDashboard::PutNumber("Turn_I", -0.00000);
+	SmartDashboard::PutNumber("Turn_D", -0.00002);
+	SmartDashboard::PutNumber("Turn_F",  0.00000);
+
+	SmartDashboard::PutNumber("Stop_Speed", 1);
+	SmartDashboard::PutNumber("Stop_Time",  0.1);
+
+/* ****************************** COMMAND OBJECTS ****************************** */
+	/* ******************** Collector ******************** */
+//	checkArmPosition = new CheckArmPosition();
+//	collectBall = new CollectBall();
+
+	// TODO: Create default constructors and setter methods for the values that need to be set in
+	// these commands.
+	//setArmPosition = new SetArmPosition();
+	//setCollectorSpeed = new SetCollectorSpeed();
+
+//	stopIntakeAndCollector = new StopIntakeAndCollector();
+
+	/* ******************** DriveTrain ******************** */
+
+//	driveStraightAndZero = new DriveStraightAndZero();
+//	autoLowBarCmd = new AutoLowBar();
+
+	//autoTurnPID = new AutoTurnPID();
 
 }
 
@@ -184,8 +233,8 @@ void OI::setLayout(LayoutType layout)
 		break;
 	case kSpencerDrive:
 		IS_USING_JOYSTICK = false;
-		HOOD_NEAR_XBOXBUTTON = BroncoXboxButton::Button::A; //UNASSIGNED
-		HOOD_MIDDLE_XBOXBUTTON = BroncoXboxButton::Button::UNASSIGNED; //A
+		HOOD_NEAR_XBOXBUTTON = BroncoXboxButton::Button::A;
+		HOOD_MIDDLE_XBOXBUTTON = BroncoXboxButton::Button::UNASSIGNED;
 		HOOD_FAR_XBOXBUTTON = BroncoXboxButton::Button::Y;
 		STOP_COLLECT_XBOXBUTTON = BroncoXboxButton::Button::B;
 		COLLECTOR_XBOXBUTTON = BroncoXboxButton::Button::X;

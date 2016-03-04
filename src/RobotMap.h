@@ -4,7 +4,6 @@
 #include "WPILib.h"
 
 //Drive Train
-
 const int LEFT_DRIVE_MOTOR_MASTER = 1;
 const int LEFT_DRIVE_MOTOR_SLAVE = 5;
 const int RIGHT_DRIVE_MOTOR_MASTER = 2;
@@ -20,8 +19,8 @@ const int PRACTICE_JUMPER = 5;
 const int ENCODER_TICKS = 250;
 const double PI = 3.141593;
 const double AUTO_DRIVESTRAIGHT_SPEED = 0.4;
-const double AUTO_BASE_TURN_SPEED = .6;    //Tune this value
-const double AUTO_ADJUST_TURN_SPEED = .01; //Tune this value
+const double AUTO_BASE_TURN_SPEED = 0.45;    //Tune this value
+const double AUTO_ADJUST_TURN_SPEED = .004; //Tune this value
 const float PITCH_ANGLE_TOLERANCE = 2.0;
 const float ROLL_ANGLE_TOLERANCE = 2.0;
 const float TURN_ANGLE_TOLERANCE = 1.0;

@@ -1,16 +1,27 @@
 #include "AutoTurn.h"
 
-AutoTurn::AutoTurn(double angle)
+AutoTurn::AutoTurn(double angle, bool reset)
 {
 	Requires(driveTrain);
 	m_angle = angle;
 	m_turnAngleAdjust = 0;
 	m_clockWise = true;
+	m_reset = reset;
+	m_headingChange = 0;
+	m_baseTurnSpeed = 0.49;
+	m_adjustSpeed = .0036;
+}
+
+void AutoTurn::setAngle(double angle)
+{
+	m_angle = angle;
 }
 
 void AutoTurn::Initialize()
 {
-	driveTrain->ResetHeadingOffset();
+	if(m_reset){
+		driveTrain->ResetHeadingOffset();
+	}
 
 	if(m_angle < 180)
 	{
@@ -20,33 +31,45 @@ void AutoTurn::Initialize()
 	{
 		m_clockWise = false;
 	}
+
+	driveTrain->SetBrake();
 }
 
 void AutoTurn::Execute()
 {
+	m_headingChange = driveTrain->GetHeadingChange();
 
-	m_turnAngleAdjust = AUTO_ADJUST_TURN_SPEED * fabs(driveTrain->GetHeadingChange() - m_angle);
-
-	if(m_clockWise == true)
+	if(m_angle < 180)
 	{
-		if(driveTrain->GetHeadingChange() < m_angle)
+		m_turnAngleAdjust = m_adjustSpeed * fabs(m_angle - m_headingChange);
+	}
+	else
+	{
+		m_turnAngleAdjust = m_adjustSpeed * fabs(m_headingChange - m_angle);
+	}
+
+	if(m_clockWise)
+	{
+		driveTrain->GetHeadingChange() > 359 ? m_headingChange = 0 : m_headingChange = driveTrain->GetHeadingChange();
+
+		if(m_headingChange < m_angle)
 		{
-			driveTrain->AutoDrive(0, -AUTO_BASE_TURN_SPEED);
+			driveTrain->Turn(-(m_baseTurnSpeed + m_turnAngleAdjust));
 		}
 		else
 		{
-			driveTrain->AutoDrive(0, AUTO_BASE_TURN_SPEED);
+			driveTrain->Turn((m_baseTurnSpeed + m_turnAngleAdjust));
 		}
 	}
 	else
 	{
-		if(driveTrain->GetHeadingChange() > m_angle || driveTrain->GetHeadingChange() < 1.0)
+		if(m_headingChange > m_angle || m_headingChange < 1.0)
 		{
-			driveTrain->AutoDrive(0, AUTO_BASE_TURN_SPEED);
+			driveTrain->Turn((m_baseTurnSpeed + m_turnAngleAdjust));
 		}
 		else
 		{
-			driveTrain->AutoDrive(0, -AUTO_BASE_TURN_SPEED);
+			driveTrain->Turn(-(m_baseTurnSpeed + m_turnAngleAdjust));
 		}
 	}
 
@@ -66,7 +89,7 @@ void AutoTurn::Execute()
 //		driveTrain->AutoDrive(0, 0);
 //	}
 
-
+	printf("HeadingChange - %f\t Target - %f\t Clockwise - %s\n", driveTrain->GetHeadingChange(), m_angle, m_clockWise ? "true" : "false");
 }
 
 bool AutoTurn::IsFinished()
@@ -78,9 +101,11 @@ bool AutoTurn::IsFinished()
 void AutoTurn::End()
 {
 	driveTrain->Disable();
+	driveTrain->SetCoast();
 }
 
 void AutoTurn::Interrupted()
 {
 	driveTrain->Disable();
+	driveTrain->SetCoast();
 }

@@ -2,9 +2,20 @@
 #include <iostream>
 using namespace std;
 
+CheckArmPosition::CheckArmPosition()
+{
+	Requires(collector);
+	m_position = Collector::ArmPosition::kSafe;
+}
+
 CheckArmPosition::CheckArmPosition(Collector::ArmPosition position)
 {
 	Requires(collector);
+	m_position = position;
+}
+
+void CheckArmPosition::setPosition(Collector::ArmPosition position)
+{
 	m_position = position;
 }
 

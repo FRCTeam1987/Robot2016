@@ -8,6 +8,9 @@ class SetShooterSpeed: public CommandBase
 {
 private:
 	float m_rpm;
+	float m_rpmSamples[10];
+	float m_rpmAverage;
+
 public:
 	SetShooterSpeed(float rpm);
 	void Initialize();

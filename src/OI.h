@@ -7,13 +7,15 @@
 #include "BroncoXboxButton.h"
 #include "RobotMap.h"
 
+//#include "Commands/DriveTrain/AutoTurnPID.h"
+
 class OI
 {
 private:
 	bool IS_USING_JOYSTICK;
 	BroncoJoy *stick;
 	BroncoXbox *xbox;
-	Joystick *m_btnBox;
+//	Joystick *m_btnBox;
 
 	//Xbox 360 (If you don't like it make your own layout.)
 
@@ -85,6 +87,21 @@ public:
 	Joystick *getStick();
 	Joystick *getXbox();
 	Joystick *getBtnBox();
+
+/* ****************************** COMMAND OBJECTS ****************************** */
+	/* ******************** Collector ******************** */
+	//Command* checkArmPosition;
+	//Command* collectBall;
+	//Command* setArmPosition;
+	//Command* setCollectorSpeed;
+	//Command* stopIntakeAndCollector;
+
+	/* ******************** DriveTrain ******************** */
+	//AutoLowBar* autoLowBarCmd;
+
+	//AutoTurnPID* autoTurnPID;
+
+	//DriveStraightAndZero* driveStraightAndZero;
 };
 
 #endif

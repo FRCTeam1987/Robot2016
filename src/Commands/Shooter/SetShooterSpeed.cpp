@@ -8,6 +8,11 @@ SetShooterSpeed::SetShooterSpeed(float rpm)
 	Requires(shooter);
 	m_rpm = rpm;
 	SetTimeout(5);
+	for(int i=0; i<10; i++)
+	{
+		m_rpmSamples[i] = 0;
+	}
+	m_rpmAverage = 0;
 }
 
 // Called just before this Command runs the first time
@@ -33,7 +38,22 @@ void SetShooterSpeed::Execute()
 // Make this return true when this Command no longer needs to run execute()
 bool SetShooterSpeed::IsFinished()
 {
-	return (m_rpm - RPM_TOLERANCE < shooter->GetRPM() && shooter->GetRPM() < m_rpm + RPM_TOLERANCE) || IsTimedOut();
+	for(int i = 9; i>0; i--)
+	{
+		m_rpmSamples[i] = m_rpmSamples[i-1];
+	}
+
+	m_rpmSamples[0] = shooter->GetRPM();
+	m_rpmAverage = 0;
+
+	for(int i = 0; i<10; i++)
+	{
+		m_rpmAverage += m_rpmSamples[i];
+	}
+
+	m_rpmAverage /= 10;
+
+	return (m_rpm - RPM_TOLERANCE < m_rpmAverage && m_rpmAverage < m_rpm + RPM_TOLERANCE) || IsTimedOut();
 }
 
 // Called once after isFinished returns true
