@@ -34,6 +34,12 @@ public:
 	
 	void CenterWipe(const COLOR c = COLOR::WHITE, const bool isContinous = false, const int speed = 0);
 	
+	void RainbowCycle();
+	void Rainbow();
+	
+	void TheaterChase(const COLOR c = COLOR::WHITE);
+	void TheaterRain();
+	
 };
 
 #endif
