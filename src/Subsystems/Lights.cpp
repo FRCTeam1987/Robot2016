@@ -39,7 +39,23 @@ void Lights::Set(const char c)
 	arduino->Write(cmd, cmd.length());
 }
 
-void Lights::Flash(const int count, const int flashInterval, const COLOR c)
+void Lights::Flash(const COLOR c = COLOR::WHITE, const bool holdWhenComplete = false)
 {
+	std::cout << "Making Lights flash: " << c << std::endl;
+	
+	std::string cmd = "L1_FLASH_";
+	if(holdWhenComplete){
+		cmd += std::string(1, c) + "_HOLD";
+	}else{
+		cmd += std::string(1, c);
+	}
+	cmd += ";";
+	arduino->Write(cmd, cmd.length());
 
+}
+
+void Lights::FlashConfig(const int count, const int flashInterval)
+{
+	std::to_string(count);
+	std::to_string(flashInterval);
 }
