@@ -28,8 +28,12 @@ public:
 	void On(){ Set(); };
 	void Set(const COLOR c = COLOR::WHITE);
 	void Set(const char c);
+	
 	void Flash(const COLOR c = COLOR::WHITE, const bool holdWhenComplete = false);
 	void FlashConfig(const int count = -1, const int flashInterval = -1);
+	
+	void CenterWipe(const COLOR c = COLOR::WHITE, const bool isContinous = false, const int speed = 0);
+	
 };
 
 #endif
