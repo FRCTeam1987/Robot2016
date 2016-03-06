@@ -45,10 +45,9 @@ void Lights::Flash(const COLOR c = COLOR::WHITE, const bool holdWhenComplete = f
 	
 	std::string cmd = "L1_FLASH_";
 	if(holdWhenComplete){
-		cmd += "_HOLD_" + std::string(1, c);
-	}else{
-		cmd += std::string(1, c);
+		cmd += "_HOLD_";
 	}
+	cmd += std::string(1, c); //Set the color
 	cmd += ";";
 	arduino->Write(cmd, cmd.length());
 
@@ -72,7 +71,32 @@ void Lights::CenterWipe(const COLOR c, const bool isContinous, const int speed)
 		cmd += "_" + std::to_string(speed);
 	}
 	cmd += std::string(1, c); //Set the color
+	cmd += ";";
 	
 	arduino->Write(cmd, cmd.length());
 	
+}
+
+void Lights::RainbowCycle()
+{
+	std::string cmd = "L1_RAINCYC;";
+	arduino->Write(cmd, cmd.length());	
+}
+
+void Lights::Rainbow()
+{
+	std::string cmd = "L1_RAIN;";
+	arduino->Write(cmd, cmd.length());	
+}
+
+void Lights::TheaterChase(const COLOR c)
+{
+	std::string cmd = "L1_THEA_" + std::string(1, c) + ";";
+	arduino->Write(cmd, cmd.length());	
+}
+
+void Lights::TheaterRain()
+{
+	std::string cmd = "L1_THEARAIN;";
+	arduino->Write(cmd, cmd.length());	
 }
