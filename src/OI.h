@@ -88,6 +88,8 @@ public:
 	Joystick *getXbox();
 	Joystick *getBtnBox();
 
+	SendableChooser *lightColorChooser;
+
 /* ****************************** COMMAND OBJECTS ****************************** */
 	/* ******************** Collector ******************** */
 	//Command* checkArmPosition;

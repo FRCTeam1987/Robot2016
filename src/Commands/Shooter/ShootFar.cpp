@@ -3,6 +3,7 @@
 #include "SetShooterSpeed.h"
 #include "SetIntake.h"
 #include "WaitForNoBall.h"
+#include "../Electrical_Lights/SetLights.h"
 
 ShootFar::ShootFar()
 {
@@ -10,8 +11,10 @@ ShootFar::ShootFar()
 	AddSequential(new SetShooterSpeed(4500));
 	AddSequential(new SetIntake(Shooter::kIntakeForward));
 	AddSequential(new WaitForNoBall());
+	AddSequential(new SetLights(Lights::COLOR::YELLOW));
 	AddSequential(new WaitCommand(1));
 	AddSequential(new SetIntake(Shooter::kIntakeOff));
 	AddSequential(new SetHoodPosition(Shooter::kNear));
 	AddSequential(new SetShooterSpeed(0));
+	AddSequential(new SetLights(Lights::COLOR::OFF));
 }

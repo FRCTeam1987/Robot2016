@@ -36,6 +36,9 @@
 #include "Commands/Collector/CollectBall.h"
 #include "Commands/Collector/StopIntakeAndCollector.h"
 
+#include "Commands/Electrical_Lights/LightsOff.h"
+#include "Commands/Electrical_Lights/SetLights.h"
+
 OI::OI()
 {
 	setLayout(BUTTON_LAYOUT);
@@ -164,6 +167,12 @@ OI::OI()
 
 	SmartDashboard::PutNumber("Stop_Speed", 1);
 	SmartDashboard::PutNumber("Stop_Time",  0.1);
+
+
+	SmartDashboard::PutData("Set Lights - Red", new SetLights(Lights::COLOR::RED));
+	SmartDashboard::PutData("Set Lights - Green", new SetLights(Lights::COLOR::GREEN));
+	SmartDashboard::PutData("Set Lights - Blue", new SetLights(Lights::COLOR::BLUE));
+	SmartDashboard::PutData("Set Lights - Off", new LightsOff());
 
 /* ****************************** COMMAND OBJECTS ****************************** */
 	/* ******************** Collector ******************** */

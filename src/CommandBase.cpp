@@ -6,6 +6,8 @@
 Shooter* CommandBase::shooter = NULL;
 DriveTrain* CommandBase::driveTrain = NULL;
 Collector* CommandBase::collector = NULL;
+Electrical* CommandBase::electrical = NULL;
+Lights* CommandBase::lights = NULL;
 std::shared_ptr<NetworkTable> CommandBase::table = NULL;
 OI* CommandBase::oi = NULL;
 bool CommandBase::m_isPracticeBot = false;
@@ -50,7 +52,8 @@ void CommandBase::init()
 	driveTrain = new DriveTrain();
 	shooter = new Shooter();
 	collector = new Collector();
-	//ourElectrical = new OurElectrical();
+	electrical = new Electrical();
+	lights = new Lights();
 	oi = new OI();
 
 	driveTrain->SetNetworkTable(table);
