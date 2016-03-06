@@ -64,7 +64,7 @@ void DriveSmoothForDistance::Execute()
 //		shooter->SetTopCylinderDirection(Shooter::kRetractCylinder);
 //		shooter->SetBottomCylinderDirection(Shooter::kExtendCylinder);
 	}
-	printf("Gyro - %f  PID - %f\n", driveTrain->GetGyroAngle(), driveTrain->GetOutput());
+	printf("Heading Change - %f\t PID - %f\t Distance - %f\n", driveTrain->GetHeadingChange(), driveTrain->GetOutput(), driveTrain->GetLeftEncoderDistance());
 }
 
 // Make this return true when this Command no longer needs to run execute()

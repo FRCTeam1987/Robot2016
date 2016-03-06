@@ -1,13 +1,16 @@
-#ifndef ReadJoystickSlider_H
-#define ReadJoystickSlider_H
+#ifndef SetWheelRaw_H
+#define SetWheelRaw_H
 
 #include "../../CommandBase.h"
 #include "WPILib.h"
 
-class ReadJoystickSlider: public CommandBase
+class SetWheelRaw: public CommandBase
 {
+private:
+	float m_speed;
+
 public:
-	ReadJoystickSlider();
+	SetWheelRaw(float speed);
 	void Initialize();
 	void Execute();
 	bool IsFinished();

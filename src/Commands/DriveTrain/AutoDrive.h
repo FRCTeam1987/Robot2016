@@ -6,8 +6,12 @@
 
 class AutoDrive: public CommandBase
 {
+private:
+	float m_speed;
+	float m_turn;
+
 public:
-	AutoDrive();
+	AutoDrive(float speed = 0, float turn = -0.5);
 	void Initialize();
 	void Execute();
 	bool IsFinished();

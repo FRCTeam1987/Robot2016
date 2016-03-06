@@ -1,25 +1,28 @@
 #include "AutoChevalDeFrise.h"
 #include "SetBrake.h"
+#include "AutoTurn.h"
 #include "../Collector/SetArmPosition.h"
 #include "../Collector/CheckArmPosition.h"
 #include "DriveUntilPitchAndDark.h"
 #include "DriveStraightUntilRampSensor.h"
 #include "DriveStraightAfterRampSensor.h"
 #include "DriveStraightForDistance.h"
+#include "DriveStraightAfterRampSensor.h"
 
 
 AutoChevalDeFrise::AutoChevalDeFrise()
 {
 	AddSequential(new SetBrake());
 	AddSequential(new SetArmPosition(Collector::kSafe));
-	AddSequential(new CheckArmPosition(Collector::kSafe));
 	AddSequential(new DriveStraightUntilRampSensor(0.5));
 //	AddSequential(new DriveStraightForDistance(1, -.50));
 	AddSequential(new SetArmPosition(Collector::kGround));
-//	AddSequential(new CheckArmPosition(Collector::kGround));
 	AddSequential(new WaitCommand(1.5));
-	AddSequential(new DriveStraightForDistance(6, .90));
-	AddSequential(new SetArmPosition(Collector::kCollect));
-	AddSequential(new CheckArmPosition(Collector::kCollect));
-	AddSequential(new DriveUntilPitchAndDark(0.0, 0.0, -0.75, PITCH_ANGLE_TOLERANCE, ROLL_ANGLE_TOLERANCE));
+	AddSequential(new DriveStraightForDistance(10, 0.9));
+	AddSequential(new SetArmPosition(Collector::kSafe));
+	AddSequential(new DriveStraightForDistance(40, 0.9));
+//	AddSequential(new DriveUntilPitchAndDark(5.0, -1.0, -0.75, 1.0, 1.0));
+	AddSequential(new DriveStraightAfterRampSensor(0.75));
+	AddSequential(new DriveStraightForDistance(9, 0.8));
+	AddSequential(new AutoTurn(180, false, 1.0, .45, .0025, 2.0));
 }

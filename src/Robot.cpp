@@ -1,4 +1,5 @@
 #include "WPILib.h"
+#include "DriverStation.h"
 #include "Commands/Command.h"
 #include "Commands/DriveTrain/AutoTurn.h"
 #include "Commands/Shooter/WaitForBall.h"
@@ -88,6 +89,9 @@ private:
 //		autonomousCommand.reset(new AutoDrive());
 //		autonomousCommand->Start();
 
+		CommandBase::driveTrain->SetAuto(true);
+		CommandBase::driveTrain->SetInitialHeading(CommandBase::driveTrain->GetFusedHeading());
+
 		autonomousCommand.reset((Command *)chooser->GetSelected());
 		autonomousCommand.reset(new AutoGroup());
 
@@ -106,6 +110,10 @@ private:
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
+
+		CommandBase::driveTrain->SetAuto(false);
+		CommandBase::driveTrain->SetInitialHeading(CommandBase::driveTrain->GetFusedHeading());
+
 		if (autonomousCommand != NULL)
 			autonomousCommand->Cancel();
 	}

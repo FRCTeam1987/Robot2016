@@ -6,12 +6,14 @@
 #include "WaitForNoBall.h"
 #include "SetHoodPosition.h"
 #include "ReadjustBallWithIntake.h"
+#include "../DriveTrain/SetBrake.h"
 
 LineUpBatterShot::LineUpBatterShot()
 {
+	AddSequential(new SetBrake());
 	AddSequential(new SetHoodPosition(Shooter::kMiddle));
 	AddSequential(new SetShooterSpeed(3800)); //3500
-	AddSequential(new DriveStraightForDistance(9, 0.2));
+	AddSequential(new DriveStraightForDistance(7, 0.2));
 	AddSequential(new SetIntake(Shooter::kIntakeForward));
 	AddSequential(new WaitForNoBall());
 	AddSequential(new ReadjustBallWithIntake());

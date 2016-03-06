@@ -13,12 +13,11 @@ class OI
 {
 private:
 	bool IS_USING_JOYSTICK;
-	BroncoJoy *stick;
+//	BroncoJoy *stick;
 	BroncoXbox *xbox;
-//	Joystick *m_btnBox;
+	BroncoXbox *xboxCoDriver;
 
-	//Xbox 360 (If you don't like it make your own layout.)
-
+	//Xbox 360 - Driver
 	JoystickButton *hoodNearXbox;
 	JoystickButton *hoodMiddleXbox;
 	JoystickButton *collectorGroundXbox;
@@ -37,16 +36,17 @@ private:
 	JoystickButton *lineUpBatterShotXbox;
 
 
-	//Button box buttons
-//	JoystickButton *forwardIntakeMotor;
-//	JoystickButton *toggleReverse;
-	JoystickButton *autoTestDef;
-	JoystickButton *printStuff;
-	JoystickButton *autoPortcullis;
-	JoystickButton *autoChevalDeFrise;
+	//Xbox 360 - Co-driver
+	JoystickButton *reverseShooterAndIntake;
 	JoystickButton *autoRockWall;
-	JoystickButton *autoLowBar;
-	JoystickButton *readjustBall;
+	JoystickButton *autoRamparts;
+	JoystickButton *autoCheval;
+	JoystickButton *autoPortcullis;
+	JoystickButton *lowBarConfig;
+	JoystickButton *stopAll;
+	JoystickButton *setBrake;
+	JoystickButton *setCoast;
+
 
 
 	int HOOD_NEAR_BUTTON;

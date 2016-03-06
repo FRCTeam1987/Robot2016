@@ -8,8 +8,10 @@ class DriveStraightForDistance: public DriveStraightBase
 {
 private:
 	double m_distance;
+	float m_angleSetpoint;
+
 public:
-	DriveStraightForDistance(double distance, double speed);
+	DriveStraightForDistance(double distance, double speed, float angleSetpoint = 0.0);
 	void Initialize();
 	bool IsFinished();
 };

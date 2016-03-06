@@ -73,7 +73,7 @@ enum LayoutType
 	kTreyDrive = 9
 };
 
-const LayoutType BUTTON_LAYOUT = kSpencerDrive;
+const LayoutType BUTTON_LAYOUT = kOliviaDrive;
 
 //Joystick
 //const int RESETENCODERBUTTON = 5;

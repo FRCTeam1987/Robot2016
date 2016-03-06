@@ -1,28 +1,68 @@
 #include "AutoGroup.h"
 #include "AutoLowBar.h"
-#include "DriveSmoothForDistance.h"
-#include "../Collector/SetArmPosition.h"
-#include "../Shooter/ShootFar.h"
+#include "AutoChevalDeFrise.h"
+#include "AutoRockWall.h"
 #include "AutoTurn.h"
 #include "AutoTurnPID.h"
+#include "DriveSmoothForDistance.h"
+#include "DriveStraightForDistance.h"
+#include "DriveStraightAfterRampSensor.h"
 #include "SetBrake.h"
 #include "SetCoast.h"
+#include "../Collector/SetArmPosition.h"
+#include "../Shooter/ShootFar.h"
+#include "../Shooter/LineUpBatterShot.h"
+#include "../DriveTrain/AutoPortcullis.h"
 
 AutoGroup::AutoGroup()
 {
-//Auto Batter Shot
-	AddSequential(new AutoLowBar());
-	AddSequential(new SetBrake());
-	AddSequential(new DriveSmoothForDistance(5, -0.5, false));
-	AddSequential(new SetArmPosition(Collector::kSafe));
-	AddSequential(new DriveSmoothForDistance(90, -0.65, false));
-	AddSequential(new AutoTurn(53, true));
-	AddSequential(new SetCoast());
-	AddSequential(new ShootFar());
-
 //Auto Low Bar Shot
+//	AddSequential(new AutoLowBar());
+//	AddSequential(new SetBrake());
+//	AddSequential(new DriveSmoothForDistance(5, -0.5, false));
+//	AddSequential(new SetArmPosition(Collector::kSafe));
+//	AddSequential(new DriveSmoothForDistance(93, -0.65, false));
+//	AddSequential(new AutoTurn(53, true));
+//	AddSequential(new ShootFar());
+//	AddSequential(new SetCoast());
 
-//Auto Spy Box Shot
+//Auto Cheval De Frise (Pos 2)
+//	AddSequential(new AutoChevalDeFrise());
+//	AddSequential(new DriveSmoothForDistance(100, 0.5, false));
+//	AddSequential(new AutoTurn (215, true, 0.2));
+//	AddSequential(new ShootFar());
+//	AddSequential(new SetCoast());
 
-//Auto Two Ball Auto
+//Pos 2
+//	AddSequential(new DriveSmoothForDistance(24, -0.5, false));
+//	AddSequential(new AutoTurn (28, true, 0.5, .51)); //Lucas says try 1.0
+//	AddSequential(new ShootFar());
+//	AddSequential(new SetCoast());
+
+//Pos 3
+//	AddSequential(new DriveStraightForDistance(24, -0.5, false));
+//	AddSequential(new AutoTurn (28, true, .5, .51));
+//	AddSequential(new ShootFar());
+//	AddSequential(new SetCoast());
+
+//Pos 4
+//	AddSequential(new DriveStraightForDistance(159, -0.57, 356));
+//	AddSequential(new LineUpBatterShot());
+//	AddSequential(new SetCoast());
+
+//Pos 5
+//	AddSequential(new DriveSmoothForDistance(4, -0.5, false));
+//	AddSequential(new AutoTurn (335, true, 0.5, .450));
+//	AddSequential(new ShootFar());
+//	AddSequential(new SetCoast());
+
+//Pos 5 (port)
+//	AddSequential(new AutoRockWall(0.8, 5.0, 2.0));//Rough Terrain
+	AddSequential(new AutoChevalDeFrise());
+	AddSequential(new DriveStraightAfterRampSensor(-0.4));
+	AddSequential(new DriveSmoothForDistance(4, -0.5, true));
+	AddSequential(new AutoTurn(335, true, .50, .47, .0025));
+	AddSequential(new ShootFar());
+//	AddSequential(new SetCoast());
+
 }

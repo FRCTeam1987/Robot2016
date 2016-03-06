@@ -29,8 +29,10 @@ private:
     double m_wheelDiameter;
     double m_offset;
     double m_headingOffset;
+    float m_initialHeading;
     bool m_isPracticeBot;
     bool m_isReversedOn;
+    bool m_inAuto;
 
     std::shared_ptr<NetworkTable> nt;
 
@@ -79,6 +81,11 @@ public:
 
 	void SetBrake();
 	void SetCoast();
+
+	bool InAuto();
+	void SetAuto(bool isAuto);
+	float GetInitialHeading();
+	void SetInitialHeading(float heading);
 
 	bool getRampSensor();
 };

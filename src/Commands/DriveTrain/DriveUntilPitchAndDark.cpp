@@ -46,6 +46,7 @@ bool DriveUntilPitchAndDark::IsFinished()
 // Called once after isFinished returns true
 void DriveUntilPitchAndDark::End()
 {
+	printf("Finished Drive Until Pitch and Dark Command \n");
 	driveTrain->Disable();
 	driveTrain->AutoDrive(0, 0);
 }

@@ -57,7 +57,7 @@ DriveTrain::DriveTrain() :
 	else
 	{
 		//m_wheelDiameter = 9.22;//COMP
-		m_wheelDiameter = 9.155;//PRACTICE
+		m_wheelDiameter = 8.64;//PRACTICE
 	}
 
 	leftEncoder->SetDistancePerPulse((PI * m_wheelDiameter) / ENCODER_TICKS);
@@ -271,6 +271,26 @@ void DriveTrain::SetCoast() {
 	rightDriveMaster->ConfigNeutralMode(CANSpeedController::NeutralMode::kNeutralMode_Coast);
 	leftDriveSlave->ConfigNeutralMode(CANSpeedController::NeutralMode::kNeutralMode_Coast);
 	rightDriveSlave->ConfigNeutralMode(CANSpeedController::NeutralMode::kNeutralMode_Coast);
+}
+
+bool DriveTrain::InAuto()
+{
+	return m_inAuto;
+}
+
+void DriveTrain::SetAuto(bool isAuto)
+{
+	m_inAuto = isAuto;
+}
+
+float DriveTrain::GetInitialHeading()
+{
+	return m_initialHeading;
+}
+
+void DriveTrain::SetInitialHeading(float heading)
+{
+	m_initialHeading = heading;
 }
 
 bool DriveTrain::getRampSensor()

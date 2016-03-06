@@ -1,7 +1,7 @@
 #include "DriveStraightBase.h"
 #include "RobotMap.h"
 
-DriveStraightBase::DriveStraightBase(double speed)
+DriveStraightBase::DriveStraightBase(double speed, float angleSetpoint)
 {
 	Requires(driveTrain);
 	m_speed = speed;
@@ -9,6 +9,7 @@ DriveStraightBase::DriveStraightBase(double speed)
 	m_I = 0;
 	m_D = 0;
 	m_F = 0;
+	m_angleSetpoint = angleSetpoint;
 	m_reset = true;
 }
 
@@ -35,11 +36,14 @@ void DriveStraightBase::Initialize()
 	driveTrain->SetAutoMode(driveTrain->DRIVE_STRAIGHT);
 
 	//driveTrain->SetOffset(0.0);
-	driveTrain->SetSetpoint(0.0);
+	driveTrain->SetSetpoint(m_angleSetpoint);
 	driveTrain->Enable();
 	//driveTrain->ResetGyro();
 	if(m_reset)
+	{
 		driveTrain->ResetHeadingOffset();
+		printf("Heading Offset Reset in Base Drive\n");
+	}
 	driveTrain->ResetLeftEncoder();
 }
 
