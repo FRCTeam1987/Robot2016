@@ -60,3 +60,19 @@ void Lights::FlashConfig(const int count, const int flashInterval)
 	
 	arduino->Write(cmd, cmd.length());
 }
+
+void Lights::CenterWipe(const COLOR c, const bool isContinous, const int speed)
+{
+	std::string cmd = "L1_WIPEC_";
+	
+	if(isContinoous){
+		cmd += "_CON_" + std::string(1, c);
+	}
+	if(speed > 0){
+		cmd += "_" + std::to_string(speed);
+	}
+	cmd += std::string(1, c); //Set the color
+	
+	arduino->Write(cmd, cmd.length());
+	
+}
