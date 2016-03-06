@@ -45,7 +45,7 @@ void Lights::Flash(const COLOR c = COLOR::WHITE, const bool holdWhenComplete = f
 	
 	std::string cmd = "L1_FLASH_";
 	if(holdWhenComplete){
-		cmd += std::string(1, c) + "_HOLD";
+		cmd += "_HOLD_" + std::string(1, c);
 	}else{
 		cmd += std::string(1, c);
 	}
@@ -56,6 +56,7 @@ void Lights::Flash(const COLOR c = COLOR::WHITE, const bool holdWhenComplete = f
 
 void Lights::FlashConfig(const int count, const int flashInterval)
 {
-	std::to_string(count);
-	std::to_string(flashInterval);
+	std::string cmd = "L1_FLASHC_" + std::to_string(count) + "_" + std::to_string(flashInterval) + ";";
+	
+	arduino->Write(cmd, cmd.length());
 }
