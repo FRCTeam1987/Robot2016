@@ -8,10 +8,12 @@
 #include "DriveStraightAfterRampSensor.h"
 #include "DriveStraightForDistance.h"
 #include "DriveStraightAfterRampSensor.h"
+#include "../Electrical_Lights/SetLights.h"
 
 
 AutoChevalDeFrise::AutoChevalDeFrise()
 {
+	AddSequential(new SetLights(Lights::COLOR::PURPLE));
 	AddSequential(new SetBrake());
 	AddSequential(new SetArmPosition(Collector::kSafe));
 	AddSequential(new DriveStraightUntilRampSensor(0.5));
@@ -25,4 +27,15 @@ AutoChevalDeFrise::AutoChevalDeFrise()
 	AddSequential(new DriveStraightAfterRampSensor(0.75));
 	AddSequential(new DriveStraightForDistance(9, 0.8));
 	AddSequential(new AutoTurn(180, false, 1.0, .45, .0025, 2.0));
+	AddSequential(new SetLights(Lights::COLOR::OFF));
+}
+
+void AutoChevalDeFrise::End()
+{
+	AddSequential(new SetLights(Lights::COLOR::OFF));
+}
+
+void AutoChevalDeFrise::Interrupted()
+{
+	AddSequential(new SetLights(Lights::COLOR::OFF));
 }

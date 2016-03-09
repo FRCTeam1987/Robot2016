@@ -39,6 +39,11 @@
 #include "Commands/Electrical_Lights/LightsOff.h"
 #include "Commands/Electrical_Lights/SetLights.h"
 
+#include "Commands/Shooter/SetFlashLight.h"
+#include "Commands/Shooter/ToggleFlashlight.h"
+
+#include "Commands/StopAll.h"
+
 OI::OI()
 {
 	setLayout(BUTTON_LAYOUT);
@@ -64,6 +69,7 @@ OI::OI()
 	collectorMaxXbox = new BroncoXboxButton(xbox, COLLECTOR_MAX_XBOXBUTTON);
 	toggleReverseXboxA = new BroncoXboxButton(xbox, TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_A);
 	lineUpBatterShotXbox = new BroncoXboxButton(xbox, LINE_UP_BATTER_SHOT_XBOXBUTTON);
+	driver_flashlight = new BroncoXboxButton(xbox, TOGGLE_FLASHLIGHT_XBOXBUTTON);
 
 	reverseShooterAndIntake = new BroncoXboxButton(xboxCoDriver, BroncoXboxButton::Button::RB);
 	autoRockWall = new BroncoXboxButton(xboxCoDriver, BroncoXboxButton::Button::D_D);
@@ -74,6 +80,7 @@ OI::OI()
 	stopAll = new BroncoXboxButton(xboxCoDriver, BroncoXboxButton::Button::B);
 	setBrake = new BroncoXboxButton(xboxCoDriver, BroncoXboxButton::Button::BACK);
 	setCoast = new BroncoXboxButton(xboxCoDriver, BroncoXboxButton::Button::START);
+	codriver_flashlight = new BroncoXboxButton(xboxCoDriver, BroncoXboxButton::Button::Y);
 
 	hoodNearXbox->WhenPressed(new SetHoodPosition(Shooter::kNear));
 	hoodMiddleXbox->WhenPressed(new SetHoodPosition(Shooter::kMiddle));
@@ -89,22 +96,22 @@ OI::OI()
 	collectorMaxXbox->WhenPressed(new SetArmPosition(Collector::kMax));
 	toggleReverseXboxA->WhenPressed(new ToggleDriverControls());
 	lineUpBatterShotXbox->WhenPressed(new LineUpBatterShot());
+	driver_flashlight->WhenPressed(new ToggleFlashlight());
 
 	reverseShooterAndIntake->WhenPressed(new SetIntake(Shooter::IntakeMode::kIntakeReverse));
 	reverseShooterAndIntake->WhenPressed(new SetWheelRaw(-1.0));
 	reverseShooterAndIntake->WhenReleased(new SetIntake(Shooter::IntakeMode::kIntakeOff));
 	reverseShooterAndIntake->WhenReleased(new SetWheelRaw(0.0));
-	autoRockWall->WhenPressed(new AutoRockWall(0.9, 5.0, 2.0));
+	autoRockWall->WhenPressed(new AutoRockWall(1.0, 5.0, 2.0));
 	autoRamparts->WhenPressed(new AutoRockWall(0.8, 5.0, 2.0));
 	autoCheval->WhenPressed(new AutoChevalDeFrise());
 	autoPortcullis->WhenPressed(new AutoPortcullis());
 	lowBarConfig->WhenPressed(new SetHoodPosition(Shooter::kNear));
 	lowBarConfig->WhenPressed(new SetArmPosition(Collector::kGround));
-	stopAll->WhenPressed(new StopIntakeAndCollector());
-	stopAll->WhenPressed(new SetWheelRaw(0));
-	stopAll->WhenPressed(new AutoDrive(0, 0));
+	stopAll->WhenPressed(new StopAll());
 	setBrake->WhenPressed(new SetBrake());
 	setCoast->WhenPressed(new SetCoast());
+	codriver_flashlight->WhenPressed(new ToggleFlashlight());
 
 
 	SmartDashboard::PutData("Print Stuff", new PrintStuff());
@@ -174,6 +181,9 @@ OI::OI()
 	SmartDashboard::PutData("Set Lights - Blue", new SetLights(Lights::COLOR::BLUE));
 	SmartDashboard::PutData("Set Lights - Off", new LightsOff());
 
+	SmartDashboard::PutData("Turn On Flash light", new SetFlashLight(true));
+	SmartDashboard::PutData("Turn Off Flash Light", new SetFlashLight(false));
+
 /* ****************************** COMMAND OBJECTS ****************************** */
 	/* ******************** Collector ******************** */
 //	checkArmPosition = new CheckArmPosition();
@@ -229,6 +239,7 @@ void OI::setLayout(LayoutType layout)
 		COLLECTOR_MAX_XBOXBUTTON = BroncoXboxButton::Button::D_U;
 		TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_A = BroncoXboxButton::Button::LSB;
 		LINE_UP_BATTER_SHOT_XBOXBUTTON = BroncoXboxButton::Button::RB;
+		TOGGLE_FLASHLIGHT_XBOXBUTTON = BroncoXboxButton::Button::START;
 		X_AXIS = BroncoXbox::Axis::LS_X;
 		Y_AXIS = BroncoXbox::Axis::TRIGGERS;
 		break;

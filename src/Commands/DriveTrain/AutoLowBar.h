@@ -8,6 +8,8 @@ class AutoLowBar: public CommandGroup
 {
 public:
 	AutoLowBar();
+	void End();
+	void Interrupted();
 };
 
 #endif

@@ -7,6 +7,8 @@ Lights::Lights() :
 		Subsystem("LightSubsystem")
 {
 	arduino = new SerialPort(9600, SerialPort::Port::kMXP);
+
+	FlashConfig(5, 250);
 }
 
 void Lights::InitDefaultCommand()
@@ -39,7 +41,13 @@ void Lights::Set(const char c)
 	arduino->Write(cmd, cmd.length());
 }
 
-void Lights::Flash(const COLOR c = COLOR::WHITE, const bool holdWhenComplete = false)
+void Lights::Set(const int R, const int G, const int B)
+{
+	std::string cmd = "L1_CUS_" + std::to_string(R) + "_" + std::to_string(G) + "_" + std::to_string(B) + ";";
+	arduino->Write(cmd, cmd.length());
+}
+
+void Lights::Flash(const COLOR c, const bool holdWhenComplete)
 {
 	std::cout << "Making Lights flash: " << c << std::endl;
 	
@@ -58,23 +66,6 @@ void Lights::FlashConfig(const int count, const int flashInterval)
 	std::string cmd = "L1_FLASHC_" + std::to_string(count) + "_" + std::to_string(flashInterval) + ";";
 	
 	arduino->Write(cmd, cmd.length());
-}
-
-void Lights::CenterWipe(const COLOR c, const bool isContinous, const int speed)
-{
-	std::string cmd = "L1_WIPEC_";
-	
-	if(isContinoous){
-		cmd += "_CON_" + std::string(1, c);
-	}
-	if(speed > 0){
-		cmd += "_" + std::to_string(speed);
-	}
-	cmd += std::string(1, c); //Set the color
-	cmd += ";";
-	
-	arduino->Write(cmd, cmd.length());
-	
 }
 
 void Lights::RainbowCycle()

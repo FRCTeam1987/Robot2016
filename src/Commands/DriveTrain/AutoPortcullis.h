@@ -8,6 +8,8 @@ class AutoPortcullis: public CommandGroup
 {
 public:
 	AutoPortcullis();
+	void End();
+	void Interrupted();
 };
 
 #endif

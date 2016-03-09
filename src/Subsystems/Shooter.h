@@ -14,6 +14,8 @@ private:
 	Solenoid *bottomCylinder;
 	float RPMCopy;
 	bool shootHasTimedOut;
+	bool flashlightOn;
+	AnalogOutput *flashLight;
 
 public:
 	enum IntakeMode {kIntakeForward = 0, kIntakeReverse = 1, kIntakeOff = 2};
@@ -35,6 +37,8 @@ public:
 	void EnableWheel();
 	void setHasTimedOut(bool timeout);
 	bool getHasTimedOut();
+	void ToggleFlashlight();
+	void SetFlashLight(bool isOn);
 };
 
 #endif

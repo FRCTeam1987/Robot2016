@@ -21,8 +21,8 @@ AutoGroup::AutoGroup()
 //	AddSequential(new SetBrake());
 //	AddSequential(new DriveSmoothForDistance(5, -0.5, false));
 //	AddSequential(new SetArmPosition(Collector::kSafe));
-//	AddSequential(new DriveSmoothForDistance(93, -0.65, false));
-//	AddSequential(new AutoTurn(53, true));
+//	AddSequential(new DriveSmoothForDistance(76, -0.65, false));
+//	AddSequential(new AutoTurn(55, true, 0.5, 0.5, 0.0035, 1.0));
 //	AddSequential(new ShootFar());
 //	AddSequential(new SetCoast());
 
@@ -41,12 +41,12 @@ AutoGroup::AutoGroup()
 
 //Pos 3
 //	AddSequential(new DriveStraightForDistance(24, -0.5, false));
-//	AddSequential(new AutoTurn (28, true, .5, .51));
+//	AddSequential(new AutoTurn (18.5, true, .5, .51)); //angle might be off
 //	AddSequential(new ShootFar());
 //	AddSequential(new SetCoast());
 
 //Pos 4
-//	AddSequential(new DriveStraightForDistance(159, -0.57, 356));
+//	AddSequential(new DriveStraightForDistance(153, -0.57, 356)); //distance value is close, may need to drive more or less
 //	AddSequential(new LineUpBatterShot());
 //	AddSequential(new SetCoast());
 
@@ -58,11 +58,11 @@ AutoGroup::AutoGroup()
 
 //Pos 5 (port)
 //	AddSequential(new AutoRockWall(0.8, 5.0, 2.0));//Rough Terrain
-	AddSequential(new AutoChevalDeFrise());
-	AddSequential(new DriveStraightAfterRampSensor(-0.4));
-	AddSequential(new DriveSmoothForDistance(4, -0.5, true));
-	AddSequential(new AutoTurn(335, true, .50, .47, .0025));
-	AddSequential(new ShootFar());
+//	AddSequential(new AutoChevalDeFrise());
+//	AddSequential(new DriveStraightAfterRampSensor(-0.4));
+//	AddSequential(new DriveSmoothForDistance(4, -0.5, true));
+//	AddSequential(new AutoTurn(335, true, .50, .47, .0025));
+//	AddSequential(new ShootFar());
 //	AddSequential(new SetCoast());
 
 }

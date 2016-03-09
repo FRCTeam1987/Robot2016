@@ -1,42 +1,38 @@
-#include "SetWheelRaw.h"
+#include "Rainbow.h"
 
-SetWheelRaw::SetWheelRaw(float speed)
+Rainbow::Rainbow()
 {
-	Requires(shooter);
-	m_speed = speed;
+
 }
 
+
 // Called just before this Command runs the first time
-void SetWheelRaw::Initialize()
+void Rainbow::Initialize()
 {
-	shooter->SetWheelRaw(m_speed);
-	if(m_speed == 0)
-	{
-		printf("Setting shooter wheel to 0\n");
-	}
+	lights->Rainbow();
 }
 
 // Called repeatedly when this Command is scheduled to run
-void SetWheelRaw::Execute()
+void Rainbow::Execute()
 {
 
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool SetWheelRaw::IsFinished()
+bool Rainbow::IsFinished()
 {
 	return true;
 }
 
 // Called once after isFinished returns true
-void SetWheelRaw::End()
+void Rainbow::End()
 {
 
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void SetWheelRaw::Interrupted()
+void Rainbow::Interrupted()
 {
 
 }

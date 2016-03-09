@@ -8,6 +8,8 @@ class AutoRockWall: public CommandGroup
 {
 public:
 	AutoRockWall(float speed, float pitchTolerance, float rollTolerance);
+	void End();
+	void Interrupted();
 };
 
 #endif

@@ -97,7 +97,7 @@ void AutoTurn::Execute()
 //		driveTrain->AutoDrive(0, 0);
 //	}
 
-	printf("HeadingChange - %f\t Target - %f\t Clockwise - %s\n", driveTrain->GetHeadingChange(), m_angle, m_clockWise ? "true" : "false");
+//	printf("HeadingChange - %f\t Target - %f\t Clockwise - %s\n", driveTrain->GetHeadingChange(), m_angle, m_clockWise ? "true" : "false");
 }
 
 bool AutoTurn::IsFinished()

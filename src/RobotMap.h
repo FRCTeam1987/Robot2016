@@ -45,6 +45,8 @@ const int HAS_BALL_SENSOR = 6;
 
 const int RPM_TOLERANCE = 50;
 
+const int FLASH_LIGHT = 0;
+
 
 //Collector
 
@@ -73,7 +75,7 @@ enum LayoutType
 	kTreyDrive = 9
 };
 
-const LayoutType BUTTON_LAYOUT = kOliviaDrive;
+const LayoutType BUTTON_LAYOUT = kSpencerDrive;
 
 //Joystick
 //const int RESETENCODERBUTTON = 5;

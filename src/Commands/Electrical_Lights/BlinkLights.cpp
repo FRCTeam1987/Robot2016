@@ -1,42 +1,38 @@
-#include "SetWheelRaw.h"
+#include "BlinkLights.h"
 
-SetWheelRaw::SetWheelRaw(float speed)
+BlinkLights::BlinkLights()
 {
-	Requires(shooter);
-	m_speed = speed;
+	// Use Requires() here to declare subsystem dependencies
+	// eg. Requires(chassis);
 }
 
 // Called just before this Command runs the first time
-void SetWheelRaw::Initialize()
+void BlinkLights::Initialize()
 {
-	shooter->SetWheelRaw(m_speed);
-	if(m_speed == 0)
-	{
-		printf("Setting shooter wheel to 0\n");
-	}
+	lights->Flash(Lights::COLOR::RED);
 }
 
 // Called repeatedly when this Command is scheduled to run
-void SetWheelRaw::Execute()
+void BlinkLights::Execute()
 {
 
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool SetWheelRaw::IsFinished()
+bool BlinkLights::IsFinished()
 {
-	return true;
+	return false;
 }
 
 // Called once after isFinished returns true
-void SetWheelRaw::End()
+void BlinkLights::End()
 {
 
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void SetWheelRaw::Interrupted()
+void BlinkLights::Interrupted()
 {
 
 }

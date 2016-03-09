@@ -23,6 +23,7 @@ void SetShooterSpeed::Initialize()
 	if(m_rpm == 0)
 	{
 		shooter->DisableWheel();
+		printf("Disabling shooter wheel PID\n");
 	}
 }
 
@@ -30,7 +31,7 @@ void SetShooterSpeed::Initialize()
 void SetShooterSpeed::Execute()
 {
 //	printf("Shooter Speed %f\n", shooter->GetRPM());
-	std::cout << " RPM: " << shooter->GetRPM() << " Encoder Velocity: " << shooter->GetEncoderVel() << std::endl;
+//	std::cout << " RPM: " << shooter->GetRPM() << " Encoder Velocity: " << shooter->GetEncoderVel() << std::endl;
 	SmartDashboard::PutNumber("Shooter - RPM", (double)shooter->GetRPM());
 	SmartDashboard::PutNumber("Shooter - Encoder", (double)shooter->GetEncoderVel());
 }

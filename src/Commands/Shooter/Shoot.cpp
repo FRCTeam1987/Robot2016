@@ -4,6 +4,7 @@
 #include "SetIntake.h"
 #include "WaitForNoBall.h"
 #include "SetHoodPosition.h"
+#include "SetFlashLight.h"
 #include "../Electrical_Lights/SetLights.h"
 
 Shoot::Shoot()
@@ -17,4 +18,5 @@ Shoot::Shoot()
 	AddSequential(new SetHoodPosition(Shooter::kNear));
 	AddSequential(new SetShooterSpeed(0));
 	AddSequential(new SetLights(Lights::COLOR::OFF));
+	AddSequential(new SetFlashLight(true));
 }

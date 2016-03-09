@@ -18,6 +18,9 @@ Shooter::Shooter() : Subsystem("ExampleSubsystem")
 	wheelMotor->SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
 	wheelMotor->ConfigNominalOutputVoltage(0,0);
 	wheelMotor->ConfigPeakOutputVoltage(12,0);
+
+	flashLight = new AnalogOutput(0);//FLASH_LIGHT);
+	flashlightOn = false;
 	//Do not delete the line below
 	//wheelMotor->SetPID(0.02, 0.0001, 0.0, 0.0425);
 
@@ -107,4 +110,17 @@ void Shooter::setHasTimedOut(bool timeout)
 bool Shooter::getHasTimedOut()
 {
 	return shootHasTimedOut;
+}
+
+void Shooter::ToggleFlashlight()
+{
+	flashLight->SetVoltage(flashlightOn ? 5 : 0);
+
+	flashlightOn = !flashlightOn;
+}
+
+void Shooter::SetFlashLight(bool isOn)
+{
+	flashlightOn = isOn;
+	flashLight->SetVoltage(isOn ? 5 : 0);
 }

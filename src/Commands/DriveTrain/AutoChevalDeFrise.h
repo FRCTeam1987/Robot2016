@@ -8,6 +8,8 @@ class AutoChevalDeFrise: public CommandGroup
 {
 public:
 	AutoChevalDeFrise();
+	void End();
+	void Interrupted();
 };
 
 #endif

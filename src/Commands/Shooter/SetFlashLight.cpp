@@ -1,42 +1,38 @@
-#include "SetWheelRaw.h"
+#include "SetFlashLight.h"
 
-SetWheelRaw::SetWheelRaw(float speed)
+SetFlashLight::SetFlashLight(bool onOff)
 {
 	Requires(shooter);
-	m_speed = speed;
+	m_onOff = onOff;
 }
 
 // Called just before this Command runs the first time
-void SetWheelRaw::Initialize()
+void SetFlashLight::Initialize()
 {
-	shooter->SetWheelRaw(m_speed);
-	if(m_speed == 0)
-	{
-		printf("Setting shooter wheel to 0\n");
-	}
+	shooter->SetFlashLight(m_onOff);
 }
 
 // Called repeatedly when this Command is scheduled to run
-void SetWheelRaw::Execute()
+void SetFlashLight::Execute()
 {
 
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool SetWheelRaw::IsFinished()
+bool SetFlashLight::IsFinished()
 {
 	return true;
 }
 
 // Called once after isFinished returns true
-void SetWheelRaw::End()
+void SetFlashLight::End()
 {
 
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void SetWheelRaw::Interrupted()
+void SetFlashLight::Interrupted()
 {
 
 }
