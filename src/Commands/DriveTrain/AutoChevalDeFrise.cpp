@@ -27,6 +27,7 @@ AutoChevalDeFrise::AutoChevalDeFrise()
 	AddSequential(new DriveStraightAfterRampSensor(0.75));
 	AddSequential(new DriveStraightForDistance(9, 0.8));
 	AddSequential(new AutoTurn(180, false, 1.0, .45, .0025, 2.0));
+	AddSequential(new DriveStraightUntilRampSensor(.5));
 	AddSequential(new SetLights(Lights::COLOR::OFF));
 }
 

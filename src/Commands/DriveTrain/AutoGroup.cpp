@@ -22,16 +22,16 @@ AutoGroup::AutoGroup()
 //	AddSequential(new DriveSmoothForDistance(5, -0.5, false));
 //	AddSequential(new SetArmPosition(Collector::kSafe));
 //	AddSequential(new DriveSmoothForDistance(76, -0.65, false));
-//	AddSequential(new AutoTurn(55, true, 0.5, 0.5, 0.0035, 1.0));
+//	AddSequential(new AutoTurn(57, true, 0.25, 0.44, 0.0035, 1.0));
 //	AddSequential(new ShootFar());
 //	AddSequential(new SetCoast());
 
 //Auto Cheval De Frise (Pos 2)
-//	AddSequential(new AutoChevalDeFrise());
-//	AddSequential(new DriveSmoothForDistance(100, 0.5, false));
-//	AddSequential(new AutoTurn (215, true, 0.2));
-//	AddSequential(new ShootFar());
-//	AddSequential(new SetCoast());
+	AddSequential(new AutoChevalDeFrise());
+	AddSequential(new DriveSmoothForDistance(75, -0.5, false));
+	AddSequential(new AutoTurn (32, true, 0.2, .44));
+	AddSequential(new ShootFar());
+	AddSequential(new SetCoast());
 
 //Pos 2
 //	AddSequential(new DriveSmoothForDistance(24, -0.5, false));

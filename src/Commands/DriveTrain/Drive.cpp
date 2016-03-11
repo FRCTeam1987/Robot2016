@@ -40,12 +40,12 @@ bool Drive::IsFinished()
 // Called once after isFinished returns true
 void Drive::End()
 {
-
+	driveTrain->AutoDrive(0, 0);
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void Drive::Interrupted()
 {
-
+	driveTrain->AutoDrive(0, 0);
 }
