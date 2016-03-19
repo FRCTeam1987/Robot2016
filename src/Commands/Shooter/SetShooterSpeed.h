@@ -9,7 +9,7 @@ class SetShooterSpeed: public CommandBase
 private:
 	static const int m_sampleSize = 30;
 	float m_rpm;
-	float m_rpmSamples[m_sampleSize];
+//	float m_rpmSamples[m_sampleSize];
 	float m_rpmAverage;
 
 public:

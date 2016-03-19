@@ -111,7 +111,6 @@ void DriveTrain::AutoDrive(float move, float rotate)
 
 void DriveTrain::Turn(float speed)
 {
-
 	// Might need this.
 	//robotDrive->TankDrive()
 	robotDrive->TankDrive(-speed, speed);

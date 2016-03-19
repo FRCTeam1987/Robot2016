@@ -56,48 +56,64 @@ void AutoTurn::Execute()
 		m_turnAngleAdjust = m_adjustSpeed * fabs(m_headingChange - m_angle);
 	}
 
+	//Old Version of the stuff below this
+//	if(m_clockWise)
+//	{
+//		driveTrain->GetHeadingChange() > 359 ? m_headingChange = 0 : m_headingChange = driveTrain->GetHeadingChange();
+//
+//		if(m_headingChange < m_angle)
+//		{
+//			driveTrain->Turn(-(m_baseTurnSpeed + m_turnAngleAdjust));
+//		}
+//		else
+//		{
+//			driveTrain->Turn((m_baseTurnSpeed + m_turnAngleAdjust));
+//		}
+//	}
+//	else
+//	{
+//		if(m_headingChange > m_angle || m_headingChange < 1.0)
+//		{
+//			driveTrain->Turn((m_baseTurnSpeed + m_turnAngleAdjust));
+//		}
+//		else
+//		{
+//			driveTrain->Turn(-(m_baseTurnSpeed + m_turnAngleAdjust));
+//		}
+//	}
+
 	if(m_clockWise)
 	{
 		driveTrain->GetHeadingChange() > 359 ? m_headingChange = 0 : m_headingChange = driveTrain->GetHeadingChange();
 
-		if(m_headingChange < m_angle)
+		if(m_headingChange < m_angle - m_actualTolerance)
 		{
 			driveTrain->Turn(-(m_baseTurnSpeed + m_turnAngleAdjust));
 		}
-		else
+		else if(m_headingChange > m_angle + m_actualTolerance)
 		{
 			driveTrain->Turn((m_baseTurnSpeed + m_turnAngleAdjust));
+		}
+		else
+		{
+			driveTrain->Turn(0);
 		}
 	}
 	else
 	{
-		if(m_headingChange > m_angle || m_headingChange < 1.0)
+		if(m_headingChange > m_angle + m_actualTolerance || m_headingChange < 1.0)
 		{
 			driveTrain->Turn((m_baseTurnSpeed + m_turnAngleAdjust));
 		}
-		else
+		else if(m_headingChange < m_angle - m_actualTolerance)
 		{
 			driveTrain->Turn(-(m_baseTurnSpeed + m_turnAngleAdjust));
 		}
+		else
+		{
+			driveTrain->Turn(0);
+		}
 	}
-
-//	if(driveTrain->GetGyroAngle() > m_angle)
-//	{
-//		printf("Angle - %f, Other - %f IF\n", driveTrain->GetGyroAngle(), m_turnAngleAdjust);
-//		driveTrain->AutoDrive(0, (AUTO_BASE_TURN_SPEED + m_turnAngleAdjust));
-//	}
-//	else if(driveTrain->GetGyroAngle() < m_angle)
-//	{
-//		printf("Angle - %f, Other - %f ELSEIF\n", driveTrain->GetGyroAngle(), m_turnAngleAdjust);
-//		driveTrain->AutoDrive(0, -(AUTO_BASE_TURN_SPEED + m_turnAngleAdjust));
-//	}
-//	else
-//	{
-//		printf("Angle - %f IF\n", driveTrain->GetGyroAngle());
-//		driveTrain->AutoDrive(0, 0);
-//	}
-
-//	printf("HeadingChange - %f\t Target - %f\t Clockwise - %s\n", driveTrain->GetHeadingChange(), m_angle, m_clockWise ? "true" : "false");
 }
 
 bool AutoTurn::IsFinished()
