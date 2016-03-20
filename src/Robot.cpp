@@ -6,6 +6,7 @@
 #include "Commands/DriveTrain/DriveUntilPitchAndDark.h"
 #include "Commands/DriveTrain/AutoGroup.h"
 #include "CommandBase.h"
+#include <unistd.h>
 
 class Robot: public IterativeRobot
 {
@@ -18,6 +19,13 @@ private:
 
 	void RobotInit()
 	{
+
+		/* Run mjpeg-streamer  in a new process */
+		if (fork() == 0) {
+			system("/start_mjpg_streamer.sh");
+		}
+
+
 		CommandBase::init();
 		chooser = new SendableChooser();
 		chooser->AddObject("Auto Turn - 030", new AutoTurn(30));

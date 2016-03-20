@@ -13,6 +13,22 @@ PrintStuff::PrintStuff()
 void PrintStuff::Initialize()
 {
 	printf("Fused Heading = %f \t Change in Heading = %f\n", driveTrain->GetFusedHeading(), driveTrain->GetHeadingChange());
+	std::shared_ptr<NetworkTable> table;
+	table = NetworkTable::GetTable("GRIP/myContoursReport");
+	std::vector<double> xs = table->GetNumberArray("centerX", llvm::ArrayRef<double>());
+	std::vector<double> ys = table->GetNumberArray("centerY", llvm::ArrayRef<double>());
+	std::vector<double> areas = table->GetNumberArray("area", llvm::ArrayRef<double>());
+	for(int i=0; i<xs.size(); i++) {
+		printf("X: %f, Y: %f, Area: %f\n", xs[i], ys[i], areas[i]);
+		SmartDashboard::PutNumber("GRIP-X", xs[i]);
+		SmartDashboard::PutNumber("GRIP-Y", ys[i]);
+		SmartDashboard::PutNumber("GRIP-AREA", areas[i]);
+	}
+	if(xs.size() == 0) {
+		SmartDashboard::PutNumber("GRIP-X", 0);
+		SmartDashboard::PutNumber("GRIP-Y", 0);
+		SmartDashboard::PutNumber("GRIP-AREA", 0);
+	}
 //	printf(driveTrain->getRampSensor() ? "True /n" : "False /n");
 //	SmartDashboard::PutString("RAMP SENSORS", driveTrain->getRampSensor() ? "True" : "False");
 //	if(collector->getArmPosition() == Collector::kGround) {
