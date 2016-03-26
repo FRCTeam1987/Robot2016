@@ -15,6 +15,12 @@
 #include "Commands/DriveTrain/AutoTurn.h"
 #include "Commands/DriveTrain/AutoTurnPID.h"
 #include "Commands/DriveTrain/AutoTurnHeading.h"
+#include "Commands/DriveTrain/DriveStraightAndZero.h"
+#include "Commands/DriveTrain/DriveSmoothForDistance.h"
+#include "Commands/DriveTrain/AutoTurnPID.h"
+#include "Commands/DriveTrain/AutoTarget.h"
+#include "Commands/DriveTrain/AutoTargetAndTurn.h"
+
 #include "Commands/Shooter/SetIntake.h"
 #include "Commands/Shooter/LoadBall.h"
 #include "Commands/Shooter/WaitForBall.h"
@@ -27,10 +33,10 @@
 #include "Commands/Shooter/LineUpBatterShot.h"
 #include "Commands/Shooter/ReadjustBall.h"
 #include "Commands/Shooter/SetWheelRaw.h"
+#include "Commands/Shooter/SetFlashLight.h"
+#include "Commands/Shooter/ToggleFlashlight.h"
+
 #include "Commands/Collector/SetArmPosition.h"
-#include "Commands/DriveTrain/DriveStraightAndZero.h"
-#include "Commands/DriveTrain/DriveSmoothForDistance.h"
-#include "Commands/DriveTrain/AutoTurnPID.h"
 #include "Commands/Collector/CheckArmPosition.h"
 #include "Commands/Collector/SetCollectorSpeed.h"
 #include "Commands/Collector/CollectBall.h"
@@ -38,9 +44,6 @@
 
 #include "Commands/Electrical_Lights/LightsOff.h"
 #include "Commands/Electrical_Lights/SetLights.h"
-
-#include "Commands/Shooter/SetFlashLight.h"
-#include "Commands/Shooter/ToggleFlashlight.h"
 
 #include "Commands/StopAll.h"
 
@@ -125,6 +128,7 @@ OI::OI()
 	SmartDashboard::PutData("Shooter - Shoot Far", new ShootFar());
 	SmartDashboard::PutData("Shooter - Shoot Near", new ShootClose());
 	SmartDashboard::PutData("Shooter - Set Near Hood", new SetHoodPosition(Shooter::kMiddle));
+	SmartDashboard::PutData("Shooter - Reverse intake", new SetIntake(Shooter::IntakeMode::kIntakeReverse));
 
 	SmartDashboard::PutData("DriveTrain - Drive Straight 60 in", new DriveStraightForDistance(60, -0.6));
 	SmartDashboard::PutData("DriveTrain - Drive Straight 120 in", new DriveStraightForDistance(120, -0.6));
@@ -138,6 +142,8 @@ OI::OI()
 	SmartDashboard::PutData("DriveTrain - Rock Wall - 1.0", new AutoRockWall(1.0, 5.0, 2.0));
 	SmartDashboard::PutData("DriveTrain - Auto Group", new AutoGroup());
 	SmartDashboard::PutData("DriveTrain - Reset Heading", new SetHeadingOffset());
+	SmartDashboard::PutData("DriveTrain - Auto Turn 005", new AutoTurn(5, true));
+	SmartDashboard::PutData("DriveTrain - Auto Turn 010", new AutoTurn(10, true));
 	SmartDashboard::PutData("DriveTrain - Auto Turn 045", new AutoTurn(45, true));
 	SmartDashboard::PutData("DriveTrain - Auto Turn 055", new AutoTurn(55, true));
 	SmartDashboard::PutData("DriveTrain - Auto Turn 090", new AutoTurn(90, true));
@@ -146,11 +152,16 @@ OI::OI()
 	SmartDashboard::PutData("DriveTrain - Auto Turn 180", new AutoTurn(180, true, 1.0, .45, .0025, 2.0));
 	SmartDashboard::PutData("DriveTrain - Auto Turn 270", new AutoTurn(270, true));
 	SmartDashboard::PutData("DriveTrain - Auto Turn 315", new AutoTurn(315, true));
+	SmartDashboard::PutData("DriveTrain - Auto Turn 350", new AutoTurn(350, true));
+	SmartDashboard::PutData("DriveTrain - Auto Turn 355", new AutoTurn(355, true));
 	SmartDashboard::PutData("DriveTrain - Turn Fused Heading at 0.5", new AutoTurnHeading(0.5));
 	SmartDashboard::PutData("DriveTrain - Auto Turn PID", new AutoTurnPID(90));
 	SmartDashboard::PutData("DriveTrain - Drive Smooth 60 in", new DriveSmoothForDistance(60, -0.6));
+	SmartDashboard::PutData("DriveTrain - Drive Smooth 76 in", new DriveSmoothForDistance(76, -0.65, 0.25, true));
 	SmartDashboard::PutData("DriveTrain - Drive Smooth 120 in", new DriveSmoothForDistance(120, -0.6));
 	SmartDashboard::PutData("DriveTrain - Auto Low Bar", new AutoLowBar());
+	SmartDashboard::PutData("DriveTrain - Auto Target", new AutoTarget());
+	SmartDashboard::PutData("DriveTrain - Turn to Target", new AutoTargetAndTurn());
 
 	SmartDashboard::PutString("Current_Command", "");
 	SmartDashboard::PutNumber("Drive_Speed", -1);

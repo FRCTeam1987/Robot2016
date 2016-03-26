@@ -14,12 +14,12 @@
 
 LineUpBatterShot::LineUpBatterShot()
 {
-	AddSequential(new AutoDrive(0, 0));
+	AddSequential(new AutoDrive(-0.1, 0));
 	AddSequential(new SetBrake());
 	AddSequential(new SetArmPosition(Collector::kSafe));//test
 	AddSequential(new SetHoodPosition(Shooter::kMiddle));
-	AddSequential(new SetShooterSpeed(3800)); //3500
-	AddSequential(new DriveStraightForDistance(7, 0.2));
+	AddSequential(new SetShooterSpeed(4000)); //3500
+	AddParallel(new DriveStraightForDistance(3, 0.35));
 	AddSequential(new SetIntake(Shooter::kIntakeForward));
 	AddSequential(new WaitForNoBall());
 //	AddSequential(new ReadjustBallWithIntake());

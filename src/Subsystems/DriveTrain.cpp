@@ -48,6 +48,7 @@ DriveTrain::DriveTrain() :
 	m_output = 0;
 	m_offset = 0; //make this number positive
 	m_headingOffset = GetFusedHeading();
+	m_azimuth = 0;
 
 	//Might need more refinement, doesn't seem to be actual wheel diameter, but works pretty well
 	if(CommandBase::IsPracticeBot())
@@ -300,4 +301,12 @@ bool DriveTrain::getRampSensor()
 void DriveTrain::ToggleReverse()
 {
 	m_isReversedOn = !m_isReversedOn;
+}
+void DriveTrain::SetAzimuth(double azimuth)
+{
+	m_azimuth = azimuth;
+}
+double DriveTrain::GetAzimuth()
+{
+	return m_azimuth;
 }

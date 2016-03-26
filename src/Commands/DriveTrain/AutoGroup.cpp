@@ -19,11 +19,15 @@ AutoGroup::AutoGroup()
 //Auto Low Bar Shot
 	AddSequential(new AutoLowBar());
 	AddSequential(new SetBrake());
-	AddSequential(new DriveSmoothForDistance(5, -0.5, false));
+	AddSequential(new DriveSmoothForDistance(5, -0.5, 0.325, false));
 	AddSequential(new SetArmPosition(Collector::kSafe));
-	AddSequential(new DriveSmoothForDistance(76, -0.65, false));
-	AddSequential(new AutoTurn(57, true, 0.25, 0.46, 0.0035, 1.0));
+	AddSequential(new DriveSmoothForDistance(76, -0.65, 0.25, false));
+	AddSequential(new AutoTurn(57, true, 0.5, 0.46, 0.0035, 1.0));
 	AddSequential(new ShootFar());
+	AddSequential(new AutoTurn(123, true, 1.0, 0.46, 0.0035, 2.0));
+	AddSequential(new WaitCommand(0.25));
+	AddSequential(new DriveStraightForDistance(76, -0.65));
+	AddSequential(new AutoLowBar());
 	AddSequential(new SetCoast());
 
 //Auto ChevalDeFrise (Pos 2)

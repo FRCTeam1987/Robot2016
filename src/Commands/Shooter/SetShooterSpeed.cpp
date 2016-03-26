@@ -15,6 +15,7 @@ SetShooterSpeed::SetShooterSpeed(float rpm)
 
 void SetShooterSpeed::Initialize()
 {
+	m_rpmAverage = 0;
 	shooter->EnableWheel();
 	shooter->SetWheel(m_rpm);
 	if(m_rpm == 0)
@@ -50,7 +51,16 @@ bool SetShooterSpeed::IsFinished()
 //
 //	m_rpmAverage /= m_sampleSize;
 
+	if(m_rpm == 0)
+	{
+		return true;
+	}
+
+	m_rpmAverage -= m_rpmAverage / m_sampleSize;
+
 	m_rpmAverage += shooter->GetRPM() / m_sampleSize;
+
+	printf("m_rpmAverage - %f\n", m_rpmAverage);
 
 	return (m_rpm - RPM_TOLERANCE < m_rpmAverage && m_rpmAverage < m_rpm + RPM_TOLERANCE) || IsTimedOut();
 }
@@ -58,7 +68,7 @@ bool SetShooterSpeed::IsFinished()
 // Called once after isFinished returns true
 void SetShooterSpeed::End()
 {
-
+	printf("SetShooterSpeed ended\n");
 }
 
 void SetShooterSpeed::Interrupted()

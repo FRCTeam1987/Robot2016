@@ -33,6 +33,7 @@ private:
     bool m_isPracticeBot;
     bool m_isReversedOn;
     bool m_inAuto;
+    double m_azimuth;
 
     std::shared_ptr<NetworkTable> nt;
 
@@ -88,6 +89,9 @@ public:
 	void SetInitialHeading(float heading);
 
 	bool getRampSensor();
+
+	void SetAzimuth(double azimuth);
+	double GetAzimuth();
 };
 
 #endif

@@ -1,6 +1,6 @@
 #include "AutoTurn.h"
 
-AutoTurn::AutoTurn(double angle, bool reset, float averageAngleTolerance, float baseTurnSpeed, float baseAdjustSpeed, float actualAngleTolerance)
+AutoTurn::AutoTurn(double angle, bool reset, float averageAngleTolerance, float baseTurnSpeed, float baseAdjustSpeed, float actualAngleTolerance, bool useAzimuth)
 {
 	Requires(driveTrain);
 	m_angle = angle;
@@ -12,11 +12,12 @@ AutoTurn::AutoTurn(double angle, bool reset, float averageAngleTolerance, float 
 	m_adjustSpeed = baseAdjustSpeed;
 	m_averageTolerance = averageAngleTolerance;
 	m_actualTolerance = actualAngleTolerance;
+	m_useAzimuth = useAzimuth;
 
-	for(int i=0; i<SAMPLE_SIZE; i++)
-	{
-		m_angleSamples[i] = 0;
-	}
+//	for(int i=0; i<SAMPLE_SIZE; i++)
+//	{
+//		m_angleSamples[i] = 0;
+//	}
 	m_angleAverage = 0;
 }
 
@@ -27,18 +28,38 @@ void AutoTurn::setAngle(double angle)
 
 void AutoTurn::Initialize()
 {
+	m_angleAverage = 0;
+
 	if(m_reset){
 		driveTrain->ResetHeadingOffset();
 	}
 
+	if(m_useAzimuth == true)
+	{
+		m_angle = driveTrain->GetAzimuth();
+		printf("Azimuth in autoTurn = %f\n", m_angle);
+
+		if(m_angle < 0)
+		{
+			m_angle += 360;
+		}
+	}
+
+
 	if(m_angle < 180)
 	{
 		m_clockWise = true;
+		if(m_useAzimuth == true)
+		{
+			m_angle += 4.0;
+		}
 	}
 	else
 	{
 		m_clockWise = false;
 	}
+
+	printf("Clockwise = %s\t Setpoint is = %f\n", (m_clockWise ? "True" : "False") ,m_angle);
 
 	driveTrain->SetBrake();
 }
@@ -118,33 +139,44 @@ void AutoTurn::Execute()
 
 bool AutoTurn::IsFinished()
 {
-	if(m_angleSamples[SAMPLE_SIZE-1] == 0)
-	{
-		for(int i=0; i<SAMPLE_SIZE; i++)
-		{
-			m_angleSamples[i] = m_headingChange;
-		}
-	}
+//	if(m_angleSamples[SAMPLE_SIZE-1] == 0)
+//	{
+//		for(int i=0; i<SAMPLE_SIZE; i++)
+//		{
+//			m_angleSamples[i] = m_headingChange;
+//		}
+//	}
+//
+//	for(int i = SAMPLE_SIZE-1; i>0; i--)
+//	{
+//		m_angleSamples[i] = m_angleSamples[i-1];
+//	}
+//
+//	m_angleSamples[0] = m_headingChange;
+//	m_angleAverage = 0;
+//
+//	for(int i = 0; i<SAMPLE_SIZE; i++)
+//	{
+//		m_angleAverage += m_angleSamples[i];
+//	}
+//
+//	m_angleAverage /= SAMPLE_SIZE;
 
-	for(int i = SAMPLE_SIZE-1; i>0; i--)
-	{
-		m_angleSamples[i] = m_angleSamples[i-1];
-	}
+	m_angleAverage -= m_angleAverage / SAMPLE_SIZE;
 
-	m_angleSamples[0] = m_headingChange;
-	m_angleAverage = 0;
+	m_angleAverage += driveTrain->GetHeadingChange() / SAMPLE_SIZE;
 
-	for(int i = 0; i<SAMPLE_SIZE; i++)
-	{
-		m_angleAverage += m_angleSamples[i];
-	}
-
-	m_angleAverage /= SAMPLE_SIZE;
+	printf("m_angleAverage = %f\t Current Angle = %f\n", m_angleAverage, driveTrain->GetHeadingChange());
 
 	SmartDashboard::PutNumber("Please", driveTrain->GetHeadingChange());
 
-	return (m_angle - m_averageTolerance) < m_angleAverage
-		&& m_angleAverage < (m_angle + m_averageTolerance)
+//	return (m_angle - m_averageTolerance) < m_angleAverage
+//		&& m_angleAverage < (m_angle + m_averageTolerance)
+//		&& (m_angle - m_actualTolerance) < m_headingChange
+//		&& m_headingChange < (m_angle + m_actualTolerance);
+
+	return (m_angleAverage - m_averageTolerance) < m_headingChange
+		&& m_headingChange < (m_angleAverage + m_averageTolerance)
 		&& (m_angle - m_actualTolerance) < m_headingChange
 		&& m_headingChange < (m_angle + m_actualTolerance);
 
