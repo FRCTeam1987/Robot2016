@@ -2,8 +2,6 @@
 
 AutoTarget::AutoTarget()
 {
-	// Use Requires() here to declare subsystem dependencies
-	// eg. Requires(chassis);
 	Requires(driveTrain);
 }
 
@@ -14,25 +12,43 @@ void AutoTarget::Initialize()
 	double yCoord;
 	double area;
 	double width;
+	int largestWidthIndex = 0;
 	double azimuth;
 	double horizontalFOV = 54.8;
 
 	std::shared_ptr<NetworkTable> table;
 	table = NetworkTable::GetTable("GRIP/myContoursReport");
+	if(table == NULL) {
+		printf("No contours report!\n");
+		driveTrain->SetAzimuth(0);
+		return;
+	}
 	std::vector<double> xCoords = table->GetNumberArray("centerX", llvm::ArrayRef<double>());
 	std::vector<double> yCoords = table->GetNumberArray("centerY", llvm::ArrayRef<double>());
 	std::vector<double> areas = table->GetNumberArray("area", llvm::ArrayRef<double>());
+	std::vector<double> widths = table->GetNumberArray("width", llvm::ArrayRef<double>());
+	if(xCoords.size() == 0)
+	{
+		printf("No Width \n");
+		driveTrain->SetAzimuth(0);
+		return;
+	}
 	for(unsigned int i=0; i<xCoords.size(); i++) {
+		printf("before 3\n");
 		double tempX = xCoords[i];
 		double tempY = yCoords[i];
 		double tempArea = areas[i];
-		if(true)//Determine condition to find the correct target
+		double tempWidth = widths[i];
+		if(widths[largestWidthIndex] < tempWidth)//Determine condition to find the correct target
 		{
-			xCoord = tempX;
-			yCoord = tempY;
-			area = tempArea;
+			largestWidthIndex = i;
 		}
 	}
+	xCoord = xCoords[largestWidthIndex];
+	yCoord = yCoords[largestWidthIndex];
+	area = areas[largestWidthIndex];
+	width = widths[largestWidthIndex];
+
 	// Not Tested
 
 	printf("xCoord - %f\t The other math - %f\n", xCoord, ((xCoord - 160) / 640));
@@ -43,7 +59,8 @@ void AutoTarget::Initialize()
 
 	printf("Yo, my azimuth is = %f\n", azimuth);
 
-	driveTrain->SetAzimuth(azimuth);
+	driveTrain->SetAzimuth(2 * azimuth);
+
 }
 
 // Called repeatedly when this Command is scheduled to run

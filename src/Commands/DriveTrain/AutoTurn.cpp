@@ -51,12 +51,16 @@ void AutoTurn::Initialize()
 		m_clockWise = true;
 		if(m_useAzimuth == true)
 		{
-			m_angle += 4.0;
+			m_angle += .5;
 		}
 	}
 	else
 	{
 		m_clockWise = false;
+		if(m_useAzimuth == true)
+		{
+			m_angle -= 4.5;
+		}
 	}
 
 	printf("Clockwise = %s\t Setpoint is = %f\n", (m_clockWise ? "True" : "False") ,m_angle);
@@ -122,7 +126,7 @@ void AutoTurn::Execute()
 	}
 	else
 	{
-		if(m_headingChange > m_angle + m_actualTolerance || m_headingChange < 1.0)
+		if(m_headingChange > m_angle + m_actualTolerance || m_headingChange < 10.0)
 		{
 			driveTrain->Turn((m_baseTurnSpeed + m_turnAngleAdjust));
 		}
@@ -188,6 +192,7 @@ void AutoTurn::End()
 {
 	SmartDashboard::PutNumber("Turn Degrees", driveTrain->GetHeadingChange());
 	SmartDashboard::PutNumber("Turn Degree Average", m_angleAverage);
+	printf("Set Point = %f\t Current Angle = %f\n", m_angle, m_headingChange);
 	driveTrain->Disable();
 	driveTrain->Turn(0);
 	driveTrain->SetCoast();

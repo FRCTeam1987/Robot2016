@@ -12,8 +12,8 @@ DriveSmoothForDistance::DriveSmoothForDistance(double distance, double speed, do
 	m_easing = easing; //Defaults if
 
 	/* ***** DRIVE SMOOTH CONSTANTS ***** */
-	m_easingDistance = 48;
-	m_minSpeed = 0.35;
+	m_easingDistance = 34;
+	m_minSpeed = 0.28;
 	m_positiveDrive = false;
 	m_reset = reset;
 
@@ -85,5 +85,5 @@ void DriveSmoothForDistance::End()
 // Called when another commto run
 void DriveSmoothForDistance::Interrupted()
 {
-
+	driveTrain->Disable();
 }

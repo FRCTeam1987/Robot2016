@@ -28,7 +28,7 @@ private:
 	JoystickButton *collectXbox;
 
 	JoystickButton *shootXbox;
-	JoystickButton *shootFarXbox;
+	JoystickButton *shootFarAutoXbox;
 	JoystickButton *shootCloseXbox;
 	JoystickButton *stopCollectXbox;
 	JoystickButton *toggleReverseXboxA;
@@ -49,6 +49,8 @@ private:
 	JoystickButton *setBrake;
 	JoystickButton *setCoast;
 	JoystickButton *codriver_flashlight;
+	JoystickButton *shootFarXbox;
+	JoystickButton *intakeCollect;
 
 
 
@@ -76,6 +78,7 @@ private:
 	BroncoXboxButton::Button STOP_COLLECT_XBOXBUTTON;
 	BroncoXboxButton::Button SHOOT_XBOXBUTTON;
 	BroncoXboxButton::Button SHOOT_FAR_XBOXBUTTON;
+	BroncoXboxButton::Button SHOOT_FAR_AUTO_XBOXBUTTON;
 	BroncoXboxButton::Button SHOOT_CLOSE_XBOXBUTTON;
 	BroncoXboxButton::Button TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_A;
 	BroncoXboxButton::Button LINE_UP_BATTER_SHOT_XBOXBUTTON;
