@@ -67,7 +67,7 @@ OI::OI()
 	collectXbox = new BroncoXboxButton(xbox, COLLECTOR_XBOXBUTTON);
 	stopCollectXbox = new BroncoXboxButton(xbox, STOP_COLLECT_XBOXBUTTON);
 	shootXbox = new BroncoXboxButton(xbox, SHOOT_XBOXBUTTON);
-	shootFarAutoXbox = new BroncoXboxButton(xbox, SHOOT_FAR_AUTO_XBOXBUTTON);
+//	shootFarAutoXbox = new BroncoXboxButton(xbox, SHOOT_FAR_AUTO_XBOXBUTTON);
 	shootCloseXbox = new BroncoXboxButton(xbox, SHOOT_CLOSE_XBOXBUTTON);
 	collectorGroundXbox = new BroncoXboxButton(xbox, COLLECTOR_GROUND_XBOXBUTTON);
 	collectorCollectXbox = new BroncoXboxButton(xbox, COLLECTOR_COLLECT_XBOXBUTTON);
@@ -76,6 +76,7 @@ OI::OI()
 	toggleReverseXboxA = new BroncoXboxButton(xbox, TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_A);
 	lineUpBatterShotXbox = new BroncoXboxButton(xbox, LINE_UP_BATTER_SHOT_XBOXBUTTON);
 	driver_flashlight = new BroncoXboxButton(xbox, TOGGLE_FLASHLIGHT_XBOXBUTTON);
+	shootFarXbox = new BroncoXboxButton(xbox, SHOOT_FAR_XBOXBUTTON);
 
 	reverseShooterAndIntake = new BroncoXboxButton(xboxCoDriver, BroncoXboxButton::Button::LB);
 	autoRockWall = new BroncoXboxButton(xboxCoDriver, BroncoXboxButton::Button::D_D);
@@ -97,7 +98,7 @@ OI::OI()
 	stopCollectXbox->WhenPressed(new StopIntakeAndCollector());
 	shootXbox->WhenPressed(new Shoot());
 	shootFarXbox->WhenPressed(new ShootFar());
-	shootFarAutoXbox->WhenPressed(new AutoShootFar());
+//	shootFarAutoXbox->WhenPressed(new AutoShootFar());
 	shootCloseXbox->WhenPressed(new ShootClose());
 	collectorGroundXbox->WhenPressed(new SetArmPosition(Collector::kGround));
 	collectorCollectXbox->WhenPressed(new SetArmPosition(Collector::kCollect));
@@ -248,7 +249,7 @@ void OI::setLayout(LayoutType layout)
 		STOP_COLLECT_XBOXBUTTON = BroncoXboxButton::Button::B;
 		COLLECTOR_XBOXBUTTON = BroncoXboxButton::Button::X;
 		SHOOT_XBOXBUTTON = BroncoXboxButton::Button::UNASSIGNED;
-		SHOOT_FAR_AUTO_XBOXBUTTON = BroncoXboxButton::Button::LB;
+		SHOOT_FAR_XBOXBUTTON = BroncoXboxButton::Button::LB;
 		COLLECTOR_GROUND_XBOXBUTTON = BroncoXboxButton::Button::D_D;
 		COLLECTOR_COLLECT_XBOXBUTTON = BroncoXboxButton::Button::D_R;
 		COLLECTOR_SAFE_XBOXBUTTON = BroncoXboxButton::Button::D_L;
