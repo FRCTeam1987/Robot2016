@@ -75,8 +75,9 @@ OI::OI()
 	collectorMaxXbox = new BroncoXboxButton(xbox, COLLECTOR_MAX_XBOXBUTTON);
 	toggleReverseXboxA = new BroncoXboxButton(xbox, TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_A);
 	lineUpBatterShotXbox = new BroncoXboxButton(xbox, LINE_UP_BATTER_SHOT_XBOXBUTTON);
-	driver_flashlight = new BroncoXboxButton(xbox, TOGGLE_FLASHLIGHT_XBOXBUTTON);
+//	driver_flashlight = new BroncoXboxButton(xbox, TOGGLE_FLASHLIGHT_XBOXBUTTON);
 	shootFarXbox = new BroncoXboxButton(xbox, SHOOT_FAR_XBOXBUTTON);
+	autoTargetXbox = new BroncoXboxButton(xbox, AUTO_TARGET_XBOXBUTTON);
 
 	reverseShooterAndIntake = new BroncoXboxButton(xboxCoDriver, BroncoXboxButton::Button::LB);
 	autoRockWall = new BroncoXboxButton(xboxCoDriver, BroncoXboxButton::Button::D_D);
@@ -88,7 +89,7 @@ OI::OI()
 	setBrake = new BroncoXboxButton(xboxCoDriver, BroncoXboxButton::Button::BACK);
 	setCoast = new BroncoXboxButton(xboxCoDriver, BroncoXboxButton::Button::START);
 	codriver_flashlight = new BroncoXboxButton(xboxCoDriver, BroncoXboxButton::Button::Y);
-	shootFarXbox = new BroncoXboxButton(xboxCoDriver, BroncoXboxButton::Button::RB);
+	shootFarCoXbox = new BroncoXboxButton(xboxCoDriver, BroncoXboxButton::Button::RB);
 	intakeCollect = new BroncoXboxButton(xboxCoDriver, BroncoXboxButton::Button::X);
 
 	hoodNearXbox->WhenPressed(new SetHoodPosition(Shooter::kNear));
@@ -106,7 +107,8 @@ OI::OI()
 	collectorMaxXbox->WhenPressed(new SetArmPosition(Collector::kMax));
 	toggleReverseXboxA->WhenPressed(new ToggleDriverControls());
 	lineUpBatterShotXbox->WhenPressed(new LineUpBatterShot());
-	driver_flashlight->WhenPressed(new ToggleFlashlight());
+//	driver_flashlight->WhenPressed(new ToggleFlashlight());
+	autoTargetXbox->WhenPressed(new AutoTargetAndTurn());
 
 	reverseShooterAndIntake->WhenPressed(new ReverseShooterAndIntake());
 	reverseShooterAndIntake->WhenReleased(new StopAll);
@@ -121,6 +123,7 @@ OI::OI()
 	setCoast->WhenPressed(new SetCoast());
 	codriver_flashlight->WhenPressed(new ToggleFlashlight());
 	intakeCollect->WhenPressed(new CollectIntakeOnly());
+	shootFarCoXbox->WhenPressed(new ShootFar());
 
 
 	SmartDashboard::PutData("Print Stuff", new PrintStuff());
@@ -256,7 +259,8 @@ void OI::setLayout(LayoutType layout)
 		COLLECTOR_MAX_XBOXBUTTON = BroncoXboxButton::Button::D_U;
 		TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_A = BroncoXboxButton::Button::LSB;
 		LINE_UP_BATTER_SHOT_XBOXBUTTON = BroncoXboxButton::Button::RB;
-		TOGGLE_FLASHLIGHT_XBOXBUTTON = BroncoXboxButton::Button::START;
+//		TOGGLE_FLASHLIGHT_XBOXBUTTON = BroncoXboxButton::Button::START;
+		AUTO_TARGET_XBOXBUTTON = BroncoXboxButton::Button::START;
 		X_AXIS = BroncoXbox::Axis::LS_X;
 		Y_AXIS = BroncoXbox::Axis::TRIGGERS;
 		break;

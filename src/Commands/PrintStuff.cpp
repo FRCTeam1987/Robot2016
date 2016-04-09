@@ -12,6 +12,7 @@ PrintStuff::PrintStuff()
 // Called just before this Command runs the first time
 void PrintStuff::Initialize()
 {
+	printf("In Print Stuff\n");
 	printf("Fused Heading = %f \t Change in Heading = %f\n", driveTrain->GetFusedHeading(), driveTrain->GetHeadingChange());
 	std::shared_ptr<NetworkTable> table;
 	table = NetworkTable::GetTable("GRIP/myContoursReport");

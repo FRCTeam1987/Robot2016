@@ -5,6 +5,7 @@
 #include "DriveStraightAfterRampSensor.h"
 #include "DriveUntilPitchAndDark.h"
 #include "SetBrake.h"
+//#include "../SetArmPosition.h"
 #include "../PrintStuff.h"
 #include "../Electrical_Lights/SetLights.h"
 
@@ -12,6 +13,7 @@ AutoRockWall::AutoRockWall(float speed, float pitchTolerance, float rollToleranc
 {
 	AddSequential(new SetLights(Lights::COLOR::PURPLE));
 	AddSequential(new SetBrake());
+//	AddSequential(new SetArmPosition(Collector::kCollect));
 	AddSequential(new DriveStraightUntilRampSensor(-speed));
 	AddSequential(new DriveUntilPitchAndDark(0.0, 0.0, speed, pitchTolerance, rollTolerance));
 //	AddSequential(new AutoTurn(0.5, false, .50, .450));

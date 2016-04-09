@@ -59,7 +59,7 @@ void AutoTurn::Initialize()
 		m_clockWise = false;
 		if(m_useAzimuth == true)
 		{
-			m_angle -= 4.5;
+			m_angle -= .5;
 		}
 	}
 

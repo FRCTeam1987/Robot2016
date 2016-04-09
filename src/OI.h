@@ -28,6 +28,7 @@ private:
 	JoystickButton *collectXbox;
 
 	JoystickButton *shootXbox;
+	JoystickButton *shootFarXbox;
 	JoystickButton *shootFarAutoXbox;
 	JoystickButton *shootCloseXbox;
 	JoystickButton *stopCollectXbox;
@@ -36,6 +37,7 @@ private:
 	JoystickButton *toggleReverseXboxC;
 	JoystickButton *lineUpBatterShotXbox;
 	JoystickButton *driver_flashlight;
+	JoystickButton *autoTargetXbox;
 
 
 	//Xbox 360 - Co-driver
@@ -49,7 +51,7 @@ private:
 	JoystickButton *setBrake;
 	JoystickButton *setCoast;
 	JoystickButton *codriver_flashlight;
-	JoystickButton *shootFarXbox;
+	JoystickButton *shootFarCoXbox;
 	JoystickButton *intakeCollect;
 
 
@@ -83,6 +85,7 @@ private:
 	BroncoXboxButton::Button TOGGLE_DRIVE_DIRECTION_XBOXBUTTON_A;
 	BroncoXboxButton::Button LINE_UP_BATTER_SHOT_XBOXBUTTON;
 	BroncoXboxButton::Button TOGGLE_FLASHLIGHT_XBOXBUTTON;
+	BroncoXboxButton::Button AUTO_TARGET_XBOXBUTTON;
 	BroncoXbox::Axis X_AXIS;
 	BroncoXbox::Axis Y_AXIS;
 

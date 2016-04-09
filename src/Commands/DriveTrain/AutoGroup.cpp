@@ -9,6 +9,7 @@
 #include "DriveStraightAfterRampSensor.h"
 #include "SetBrake.h"
 #include "SetCoast.h"
+#include "../PrintStuff.h"
 #include "../Collector/SetArmPosition.h"
 #include "../Shooter/ShootFar.h"
 #include "../Shooter/LineUpBatterShot.h"
@@ -20,10 +21,11 @@ AutoGroup::AutoGroup()
 //Auto Low Bar Shot
 //	AddSequential(new AutoLowBar());
 //	AddSequential(new SetBrake());
+//	AddSequential(new PrintStuff());
 //	AddSequential(new DriveSmoothForDistance(5, -0.5, 0.325, false));//test and then try drive straight
 //	AddSequential(new SetArmPosition(Collector::kSafe));
 //	AddSequential(new DriveSmoothForDistance(76, -0.65, 0.25, false));
-//	AddSequential(new AutoTurn(57, true, 0.5, 0.46, 0.0035, 1.0));
+//	AddSequential(new AutoTurn(57, true, 0.5, 0.47, 0.0035, 1.0));
 ////	AddSequential(new AutoTargetAndTurn());
 //	AddSequential(new ShootFar());
 ////	AddSequential(new AutoTurn(123, false, 1.0, 0.46, 0.0035, 2.0));
@@ -49,17 +51,18 @@ AutoGroup::AutoGroup()
 //	AddSequential(new SetCoast());
 
 //Pos 2 (port)
-	AddSequential(new AutoPortcullis());
-	AddSequential(new DriveStraightForDistance(75, -0.5, false));
-	AddSequential(new AutoTurn(25, true, .50, .47, .0025));
-	AddSequential(new DriveStraightForDistance(36, 0.5, false));
-	AddSequential(new AutoTargetAndTurn());
+//	AddSequential(new AutoPortcullis());
+	new AutoChevalDeFrise();
+//	AddSequential(new DriveStraightForDistance(75, -0.5, false));
+//	AddSequential(new AutoTurn(25, true, .50, .47, .0025));
+//	AddSequential(new DriveStraightForDistance(36, 0.5, false));
+//	AddSequential(new AutoTargetAndTurn());
 //	AddSequential(new WaitCommand(.2));
 //	AddSequential(new AutoTargetAndTurn());
 //	AddSequential(new WaitCommand(.2));
 //	AddSequential(new AutoTargetAndTurn());
 //	AddSequential(new ShootFar());
-	AddSequential(new SetCoast());
+//	AddSequential(new SetCoast());
 
 //Pos 3
 //	AddSequential(new DriveStraightForDistance(24, -0.5, false));
@@ -70,23 +73,29 @@ AutoGroup::AutoGroup()
 
 //Pos 3 (port)
 //	AddSequential(new AutoPortcullis());
+//	AddSequential(new AutoChevalDeFrise());
+//	AddSequential(new AutoRockWall(0.8, 5.0, 2.0));
 //	AddSequential(new DriveStraightForDistance(4, -0.5, false));
+//	AddSequential(new AutoTurn (18.5, true, .5, .47));
 //	AddSequential(new AutoTargetAndTurn());
 //	AddSequential(new AutoTargetAndTurn());
-//  AddSequential(new ShootFar());
+//    AddSequential(new ShootFar());
 //	AddSequential(new SetCoast());
 
 //Pos 4
-//	AddSequential(new DriveStraightForDistance(153, -0.57, 356)); //distance value is close, may need to drive more or less
-//	AddSequential(new LineUpBatterShot());
+//	AddSequential(new AutoRockWall(0.8, 5.0, 2.0));
+//	AddSequential(new DriveStraightForDistance(4.5, -0.5, false));
+//	AddSequential(new AutoTurn(357, true, .50, .47, .0025));
+//	AddSequential(new AutoTargetAndTurn());
+//	AddSequential(new ShootFar());
 //	AddSequential(new SetCoast());
 
 //Pos 4 (port)
-//	AddSequential(new AutoPortcullis());
-//	AddSequential(new DriveStraightForDistance(2, -0.5, false));
+//	AddSequential(new AutoChevalDeFrise());
+//	AddSequential(new DriveStraightForDistance(4.5, -0.5, false));
 //	AddSequential(new AutoTurn(357, true, .50, .47, .0025));
 //	AddSequential(new AutoTargetAndTurn());
-//  AddSequential(new ShootFar());
+//	AddSequential(new ShootFar());
 //	AddSequential(new SetCoast());
 
 //Pos 5 turn 5 degrees then auto aim
@@ -97,9 +106,10 @@ AutoGroup::AutoGroup()
 //	AddSequential(new SetCoast());
 
 //Pos 5 (port)
-//	AddSequential(new AutoPortcullis());
+//	AddSequential(new AutoChevalDeFrise());
 //	AddSequential(new DriveStraightForDistance(4, -0.5, false));
 //	AddSequential(new AutoTurn(335, true, .50, .47, .0025));
+//	AddSequential(new WaitCommand(1));
 //	AddSequential(new AutoTargetAndTurn());
 //	AddSequential(new ShootFar());
 //	AddSequential(new SetCoast());

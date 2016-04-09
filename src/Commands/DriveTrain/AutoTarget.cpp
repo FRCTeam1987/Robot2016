@@ -39,7 +39,8 @@ void AutoTarget::Initialize()
 		double tempY = yCoords[i];
 		double tempArea = areas[i];
 		double tempWidth = widths[i];
-		if(widths[largestWidthIndex] < tempWidth)//Determine condition to find the correct target
+		const int MIN_Y = 50;
+		if(widths[largestWidthIndex] < tempWidth && tempY > MIN_Y)//Determine condition to find the correct target
 		{
 			largestWidthIndex = i;
 		}
