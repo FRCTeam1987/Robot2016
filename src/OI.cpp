@@ -20,6 +20,7 @@
 #include "Commands/DriveTrain/AutoTurnPID.h"
 #include "Commands/DriveTrain/AutoTarget.h"
 #include "Commands/DriveTrain/AutoTargetAndTurn.h"
+#include "Commands/DriveTrain/AutoTurnSmallAngle.h"
 
 #include "Commands/Shooter/SetIntake.h"
 #include "Commands/Shooter/LoadBall.h"
@@ -172,6 +173,11 @@ OI::OI()
 	SmartDashboard::PutData("DriveTrain - Auto Target", new AutoTarget());
 	SmartDashboard::PutData("DriveTrain - Turn to Target", new AutoTargetAndTurn());
 
+	//Testing only
+	SmartDashboard::PutData("DriveTrain - Auto Turn Small Angle - Using Dashboard Angle", new AutoTurnSmallAngle(1001, true));
+	SmartDashboard::PutNumber("Small Angle", 0);
+	//End testing
+
 	SmartDashboard::PutString("Current_Command", "");
 	SmartDashboard::PutNumber("Drive_Speed", -1);
 	SmartDashboard::PutNumber("Drive_Distance", 120);
@@ -203,6 +209,10 @@ OI::OI()
 
 	SmartDashboard::PutData("Turn On Flash light", new SetFlashLight(true));
 	SmartDashboard::PutData("Turn Off Flash Light", new SetFlashLight(false));
+
+	SmartDashboard::PutData("Collector - Start Roller at 1.0", new SetCollectorSpeed(1.0));
+	SmartDashboard::PutData("Collector - Start Roller at 0.5", new SetCollectorSpeed(0.5));
+	SmartDashboard::PutData("Collector - Stop Roller", new SetCollectorSpeed(0.0));
 
 /* ****************************** COMMAND OBJECTS ****************************** */
 	/* ******************** Collector ******************** */

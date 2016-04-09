@@ -3,6 +3,7 @@
 AutoTurn::AutoTurn(double angle, bool reset, float averageAngleTolerance, float baseTurnSpeed, float baseAdjustSpeed, float actualAngleTolerance, bool useAzimuth)
 {
 	Requires(driveTrain);
+
 	m_angle = angle;
 	m_turnAngleAdjust = 0;
 	m_clockWise = true;
@@ -14,10 +15,6 @@ AutoTurn::AutoTurn(double angle, bool reset, float averageAngleTolerance, float 
 	m_actualTolerance = actualAngleTolerance;
 	m_useAzimuth = useAzimuth;
 
-//	for(int i=0; i<SAMPLE_SIZE; i++)
-//	{
-//		m_angleSamples[i] = 0;
-//	}
 	m_angleAverage = 0;
 }
 
@@ -28,6 +25,8 @@ void AutoTurn::setAngle(double angle)
 
 void AutoTurn::Initialize()
 {
+	m_turnAngleAdjust = 0;
+	m_headingChange = 0;
 	m_angleAverage = 0;
 
 	if(m_reset){
@@ -81,32 +80,6 @@ void AutoTurn::Execute()
 		m_turnAngleAdjust = m_adjustSpeed * fabs(m_headingChange - m_angle);
 	}
 
-	//Old Version of the stuff below this
-//	if(m_clockWise)
-//	{
-//		driveTrain->GetHeadingChange() > 359 ? m_headingChange = 0 : m_headingChange = driveTrain->GetHeadingChange();
-//
-//		if(m_headingChange < m_angle)
-//		{
-//			driveTrain->Turn(-(m_baseTurnSpeed + m_turnAngleAdjust));
-//		}
-//		else
-//		{
-//			driveTrain->Turn((m_baseTurnSpeed + m_turnAngleAdjust));
-//		}
-//	}
-//	else
-//	{
-//		if(m_headingChange > m_angle || m_headingChange < 1.0)
-//		{
-//			driveTrain->Turn((m_baseTurnSpeed + m_turnAngleAdjust));
-//		}
-//		else
-//		{
-//			driveTrain->Turn(-(m_baseTurnSpeed + m_turnAngleAdjust));
-//		}
-//	}
-
 	if(m_clockWise)
 	{
 		driveTrain->GetHeadingChange() > 359 ? m_headingChange = 0 : m_headingChange = driveTrain->GetHeadingChange();
@@ -143,29 +116,6 @@ void AutoTurn::Execute()
 
 bool AutoTurn::IsFinished()
 {
-//	if(m_angleSamples[SAMPLE_SIZE-1] == 0)
-//	{
-//		for(int i=0; i<SAMPLE_SIZE; i++)
-//		{
-//			m_angleSamples[i] = m_headingChange;
-//		}
-//	}
-//
-//	for(int i = SAMPLE_SIZE-1; i>0; i--)
-//	{
-//		m_angleSamples[i] = m_angleSamples[i-1];
-//	}
-//
-//	m_angleSamples[0] = m_headingChange;
-//	m_angleAverage = 0;
-//
-//	for(int i = 0; i<SAMPLE_SIZE; i++)
-//	{
-//		m_angleAverage += m_angleSamples[i];
-//	}
-//
-//	m_angleAverage /= SAMPLE_SIZE;
-
 	m_angleAverage -= m_angleAverage / SAMPLE_SIZE;
 
 	m_angleAverage += driveTrain->GetHeadingChange() / SAMPLE_SIZE;
@@ -174,18 +124,11 @@ bool AutoTurn::IsFinished()
 
 	SmartDashboard::PutNumber("Please", driveTrain->GetHeadingChange());
 
-//	return (m_angle - m_averageTolerance) < m_angleAverage
-//		&& m_angleAverage < (m_angle + m_averageTolerance)
-//		&& (m_angle - m_actualTolerance) < m_headingChange
-//		&& m_headingChange < (m_angle + m_actualTolerance);
-
 	return (m_angleAverage - m_averageTolerance) < m_headingChange
 		&& m_headingChange < (m_angleAverage + m_averageTolerance)
 		&& (m_angle - m_actualTolerance) < m_headingChange
 		&& m_headingChange < (m_angle + m_actualTolerance);
 
-//	return driveTrain->GetHeadingChange() <= (m_angle + m_tolerance)
-//		&& driveTrain->GetHeadingChange() >= (m_angle - m_tolerance);
 }
 
 void AutoTurn::End()
