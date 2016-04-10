@@ -57,8 +57,8 @@ DriveTrain::DriveTrain() :
 	}
 	else
 	{
-		m_wheelDiameter = 8.352;//COMP
-//		m_wheelDiameter = 8.64;//PRACTICE
+//		m_wheelDiameter = 8.352;//COMP
+		m_wheelDiameter = 8.75;//PRACTICE
 	}
 
 	leftEncoder->SetDistancePerPulse((PI * m_wheelDiameter) / ENCODER_TICKS);

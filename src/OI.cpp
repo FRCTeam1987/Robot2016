@@ -97,7 +97,7 @@ OI::OI()
 	hoodMiddleXbox->WhenPressed(new SetHoodPosition(Shooter::kMiddle));
 	hoodFarXbox->WhenPressed(new SetHoodPosition(Shooter::kFar));
 	collectXbox->WhenPressed(new CollectBall());
-	stopCollectXbox->WhenPressed(new StopIntakeAndCollector());
+	stopCollectXbox->WhenPressed(new StopAll());
 	shootXbox->WhenPressed(new Shoot());
 	shootFarXbox->WhenPressed(new ShootFar());
 //	shootFarAutoXbox->WhenPressed(new AutoShootFar());

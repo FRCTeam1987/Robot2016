@@ -39,7 +39,7 @@ void AutoTarget::Initialize()
 		double tempY = yCoords[i];
 		double tempArea = areas[i];
 		double tempWidth = widths[i];
-		const int MIN_Y = 50;
+		const int MIN_Y = 0; //Change to ignore top of frame
 		if(widths[largestWidthIndex] < tempWidth && tempY > MIN_Y)//Determine condition to find the correct target
 		{
 			largestWidthIndex = i;

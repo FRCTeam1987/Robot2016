@@ -52,7 +52,8 @@ void AutoTurnSmallAngle::Initialize()
 		m_clockWise = true;
 		if(m_azimuth == true)
 		{
-			m_angleSetpoint += .5;
+			m_angleSetpoint -= 1.0;
+			printf("Adding in clockwise offset\n");
 		}
 		m_turnSpeed = -m_turnSpeed;
 	}
@@ -62,6 +63,7 @@ void AutoTurnSmallAngle::Initialize()
 		if(m_azimuth == true)
 		{
 			m_angleSetpoint -= .5;
+			printf("Adding in counterclockwise offset\n");
 		}
 
 	}
