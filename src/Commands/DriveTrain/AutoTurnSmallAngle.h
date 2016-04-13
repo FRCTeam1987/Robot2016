@@ -7,7 +7,7 @@
 class AutoTurnSmallAngle: public CommandBase
 {
 private:
-	const float ANGLE_TOLERANCE = 0.5;
+	const float ANGLE_TOLERANCE = 0.25;
 	const float TURN_SPEED_INCREMENT = .01;
 	const float MIN_ANGLE_CHANGE = 0.075;
 	const float MIN_TURN_SPEED = .45;

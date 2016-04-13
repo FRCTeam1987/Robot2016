@@ -12,9 +12,10 @@ void AutoTarget::Initialize()
 	double yCoord;
 	double area;
 	double width;
+	double hypotenuse, distanceX;
+	double distanceY = 71;
 	int largestWidthIndex = 0;
 	double azimuth;
-	double horizontalFOV = 54.8;
 
 	std::shared_ptr<NetworkTable> table;
 	table = NetworkTable::GetTable("GRIP/myContoursReport");
@@ -50,11 +51,17 @@ void AutoTarget::Initialize()
 	area = areas[largestWidthIndex];
 	width = widths[largestWidthIndex];
 
+//	hypotenuse = GOAL_WIDTH_INCHES * IMAGE_RESOLUTION / (2 * width * tan(DegreesToRadians(HORIZONTAL_FOV/2)));
+	hypotenuse = 0;
+
+//	distanceX = sqrt((hypotenuse * hypotenuse) - (distanceY * distanceY));
+	distanceX = (-3.0175 * width) + 276.82 - 2.0;
+
 	// Not Tested
 
-	printf("xCoord - %f\t The other math - %f\n", xCoord, ((xCoord - 160) / 640));
+	printf("xCoord = %f\t The other math = %f\t Hypotenuse = %f\t Distance X = %f\n Width = %f\t", xCoord, ((xCoord - 160) / 640), hypotenuse, distanceX, width);
 
-	azimuth = ((xCoord - 160) / 640 * horizontalFOV);
+	azimuth = ((xCoord - 160) / 640 * HORIZONTAL_FOV);
 
 //	azimuth = (int)fabs(azimuth) % 360;
 
@@ -89,4 +96,7 @@ void AutoTarget::Interrupted()
 
 }
 
-
+double AutoTarget::DegreesToRadians(double degrees)
+{
+	return degrees * PI / 180;
+}
