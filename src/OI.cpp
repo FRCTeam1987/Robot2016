@@ -89,9 +89,10 @@ OI::OI()
 	stopAll = new BroncoXboxButton(xboxCoDriver, BroncoXboxButton::Button::B);
 	setBrake = new BroncoXboxButton(xboxCoDriver, BroncoXboxButton::Button::BACK);
 	setCoast = new BroncoXboxButton(xboxCoDriver, BroncoXboxButton::Button::START);
-	codriver_flashlight = new BroncoXboxButton(xboxCoDriver, BroncoXboxButton::Button::Y);
+	codriver_flashlight = new BroncoXboxButton(xboxCoDriver, BroncoXboxButton::Button::LSB);
 	shootFarCoXbox = new BroncoXboxButton(xboxCoDriver, BroncoXboxButton::Button::RB);
 	intakeCollect = new BroncoXboxButton(xboxCoDriver, BroncoXboxButton::Button::X);
+	shootCloseXbox = new BroncoXboxButton(xboxCoDriver, BroncoXboxButton::Button::Y);
 
 	hoodNearXbox->WhenPressed(new SetHoodPosition(Shooter::kNear));
 	hoodMiddleXbox->WhenPressed(new SetHoodPosition(Shooter::kMiddle));

@@ -11,6 +11,7 @@
 #include "Commands/DriveTrain/DriveStraightAfterRampSensor.h"
 #include "DriveStraightForDistance.h"
 #include "../Electrical_Lights/SetLights.h"
+#include "AutoTurnSmallAngle.h"
 
 
 AutoPortcullis::AutoPortcullis()
@@ -33,6 +34,7 @@ AutoPortcullis::AutoPortcullis()
 	AddSequential(new DriveStraightAfterRampSensor(1.0));
 	AddSequential(new DriveStraightForDistance(9, 0.8));
 	AddSequential(new AutoTurn(180, false, 1.0, .45, .0025, 2.0));//fix this line
+//	AddSequential(new AutoTurnSmallAngle(180, false));
 	AddSequential(new DriveStraightUntilRampSensor(.4));
 //	AddSequential(new SetCoast());
 	AddSequential(new SetLights(Lights::COLOR::OFF));

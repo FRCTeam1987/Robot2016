@@ -9,6 +9,7 @@
 #include "DriveStraightForDistance.h"
 #include "DriveStraightAfterRampSensor.h"
 #include "../Electrical_Lights/SetLights.h"
+#include "AutoTurnSmallAngle.h"
 
 
 AutoChevalDeFrise::AutoChevalDeFrise()
@@ -19,7 +20,7 @@ AutoChevalDeFrise::AutoChevalDeFrise()
 	AddSequential(new DriveStraightUntilRampSensor(0.5));
 //	AddSequential(new DriveStraightForDistance(1, -.50));
 	AddSequential(new SetArmPosition(Collector::kGround));
-	AddSequential(new WaitCommand(1.5));
+	AddSequential(new WaitCommand(1));
 	AddSequential(new DriveStraightForDistance(10, 0.9));
 	AddSequential(new SetArmPosition(Collector::kSafe));
 	AddSequential(new DriveStraightForDistance(40, 0.9));
@@ -27,6 +28,7 @@ AutoChevalDeFrise::AutoChevalDeFrise()
 	AddSequential(new DriveStraightAfterRampSensor(0.75));
 	AddSequential(new DriveStraightForDistance(9, 0.8));
 	AddSequential(new AutoTurn(180, false, 1.0, .45, .0025, 2.0));
+//	AddSequential(new AutoTurnSmallAngle(180, false));
 	AddSequential(new DriveStraightUntilRampSensor(.5));
 	AddSequential(new SetLights(Lights::COLOR::OFF));
 }

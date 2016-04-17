@@ -14,7 +14,7 @@ void AutoTarget::Initialize()
 	double width;
 	double hypotenuse, distanceX;
 	double distanceY = 71;
-	int largestWidthIndex = 0;
+	int largestWidthIndex = -1;
 	double azimuth;
 
 	std::shared_ptr<NetworkTable> table;
@@ -28,6 +28,7 @@ void AutoTarget::Initialize()
 	std::vector<double> yCoords = table->GetNumberArray("centerY", llvm::ArrayRef<double>());
 	std::vector<double> areas = table->GetNumberArray("area", llvm::ArrayRef<double>());
 	std::vector<double> widths = table->GetNumberArray("width", llvm::ArrayRef<double>());
+	std::vector<double> heights = table->GetNumberArray("height", llvm::ArrayRef<double>());
 	if(xCoords.size() == 0)
 	{
 		printf("No Width \n");
@@ -35,17 +36,24 @@ void AutoTarget::Initialize()
 		return;
 	}
 	for(unsigned int i=0; i<xCoords.size(); i++) {
-		printf("before 3\n");
 		double tempX = xCoords[i];
 		double tempY = yCoords[i];
 		double tempArea = areas[i];
 		double tempWidth = widths[i];
+		double tempHeight = heights[i];
 		const int MIN_Y = 0; //Change to ignore top of frame
-		if(widths[largestWidthIndex] < tempWidth && tempY > MIN_Y)//Determine condition to find the correct target
+		if(IsBlobTargetRatio(tempWidth, tempHeight) && widths[largestWidthIndex] < tempWidth)
+//		if(widths[largestWidthIndex] < tempWidth && tempY > MIN_Y)//Determine condition to find the correct target
 		{
 			largestWidthIndex = i;
 		}
 	}
+	if(largestWidthIndex < 0) {
+		printf("No Width \n");
+		driveTrain->SetAzimuth(0);
+		return;
+	}
+
 	xCoord = xCoords[largestWidthIndex];
 	yCoord = yCoords[largestWidthIndex];
 	area = areas[largestWidthIndex];
@@ -99,4 +107,14 @@ void AutoTarget::Interrupted()
 double AutoTarget::DegreesToRadians(double degrees)
 {
 	return degrees * PI / 180;
+}
+
+bool AutoTarget::IsBlobTargetRatio(double tWidth, double tHeight, double tolerance) {
+	double knownTargetRatio = GOAL_WIDTH_INCHES / GOAL_HEIGHT_INCHES;
+	double blobRatio = tWidth / tHeight;
+	printf("knownRatio:%.2f   blobRatio:%.2f\n", knownTargetRatio, blobRatio);
+	printf("IsBlobTargetRatio: %s\n", (blobRatio < knownTargetRatio + tolerance &&
+			blobRatio > knownTargetRatio - tolerance) ? "true": "false");
+	return blobRatio < knownTargetRatio + tolerance &&
+			blobRatio > knownTargetRatio - tolerance;
 }

@@ -1,9 +1,11 @@
 #include "AutoTurnSmallAngle.h"
 
-AutoTurnSmallAngle::AutoTurnSmallAngle(float angleSetpoint, bool reset, bool useAzimuth)
+AutoTurnSmallAngle::AutoTurnSmallAngle(float angleSetpoint, bool reset, bool useAzimuth, float minAngleChange, float angleTolerance)
 {
 	Requires(driveTrain);
 
+	m_minAngleChange = minAngleChange;
+	m_angleTolerance = angleTolerance;
 	m_angleSetpoint = angleSetpoint;
 	m_reset = reset;
 	m_azimuth = useAzimuth;
@@ -52,7 +54,7 @@ void AutoTurnSmallAngle::Initialize()
 		m_clockWise = true;
 		if(m_azimuth == true)
 		{
-			m_angleSetpoint += 5.0;
+			m_angleSetpoint -= 1.5; // +2.0 for close
 			printf("Adding in clockwise offset\n");
 		}
 		m_turnSpeed = -m_turnSpeed;
@@ -62,7 +64,7 @@ void AutoTurnSmallAngle::Initialize()
 		m_clockWise = false;
 		if(m_azimuth == true)
 		{
-			m_angleSetpoint -= .5;
+			m_angleSetpoint -= 0; // -.5 for close
 			printf("Adding in counterclockwise offset\n");
 		}
 
@@ -93,20 +95,20 @@ void AutoTurnSmallAngle::Execute()
 
 	driveTrain->AutoDrive(0, m_turnSpeed);
 
-	m_lastAngle = m_currentAngle;
-
 	printf("Setpoint = %f\t Angle = %f\t Last Angle = %f\t Clockwise = %s\t Turn Speed %f\n", m_angleSetpoint, m_currentAngle, m_lastAngle, (m_clockWise ? "True" : "False"), m_turnSpeed);
+
+	m_lastAngle = m_currentAngle;
 }
 
 bool AutoTurnSmallAngle::IsFinished()
 {
 	if(m_clockWise == true)
 	{
-		return (m_angleSetpoint - ANGLE_TOLERANCE) < m_currentAngle;
+		return (m_angleSetpoint - m_angleTolerance) < m_currentAngle && m_currentAngle < 358;
 	}
 	else
 	{
-		return m_currentAngle < (m_angleSetpoint + ANGLE_TOLERANCE) && m_currentAngle > 2;
+		return m_currentAngle < (m_angleSetpoint + m_angleTolerance) && m_currentAngle > 2;
 	}
 
 }
@@ -123,5 +125,5 @@ void AutoTurnSmallAngle::Interrupted()
 
 bool AutoTurnSmallAngle::isMoving(float angleChange)
 {
-	return angleChange > MIN_ANGLE_CHANGE;
+	return angleChange > m_minAngleChange;
 }
