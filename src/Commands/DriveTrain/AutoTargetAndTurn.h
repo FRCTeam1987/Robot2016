@@ -6,8 +6,11 @@
 
 class AutoTargetAndTurn: public CommandGroup
 {
+private:
+//	float m_minAngleChange;
+//	float m_angleTolerance;
 public:
-	AutoTargetAndTurn();
+	AutoTargetAndTurn(float minAngleChange = 0.075, float angleTolerance = 0.25);
 };
 
 #endif

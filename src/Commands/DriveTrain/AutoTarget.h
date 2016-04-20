@@ -20,7 +20,7 @@ public:
 	void End();
 	void Interrupted();
 	double DegreesToRadians(double degrees);
-	bool IsBlobTargetRatio(double tWidth, double tHeight, double tolerance = 0.7);
+	bool IsBlobTargetRatio(double tWidth, double tHeight, double tolerance = 1.1);
 };
 
 #endif

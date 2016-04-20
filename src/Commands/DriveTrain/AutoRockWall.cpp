@@ -18,6 +18,7 @@ AutoRockWall::AutoRockWall(float speed, float pitchTolerance, float rollToleranc
 	AddSequential(new DriveUntilPitchAndDark(0.0, 0.0, speed, pitchTolerance, rollTolerance));
 //	AddSequential(new AutoTurn(0.5, false, .50, .450));
 //	AddSequential(new AutoTurnHeading(0.5));
+	AddSequential(new WaitCommand(.55));
 	AddSequential(new DriveStraightUntilRampSensor(0.5));
 	AddSequential(new SetLights(Lights::COLOR::OFF));
 }
