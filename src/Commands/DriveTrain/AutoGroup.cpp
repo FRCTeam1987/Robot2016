@@ -153,7 +153,7 @@ AutoGroup::AutoGroup()
 	AddSequential(new AutoTurnSmallAngle(18.5, true));
 	AddSequential(new WaitCommand(.55));
 	AddSequential(new AutoTargetAndTurn());
-//	AddSequential(new ShootFar());
+	AddSequential(new ShootFar());
 	AddSequential(new WaitCommand(1.5));//Shoot Sim
 	AddSequential(new AutoTurn(161.5, false, .50, .47, .0025));
 	AddSequential(new WaitCommand(.55));

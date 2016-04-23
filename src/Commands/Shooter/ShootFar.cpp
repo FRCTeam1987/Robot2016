@@ -14,7 +14,7 @@ ShootFar::ShootFar()
 	AddSequential(new SetIntake(Shooter::kIntakeForward));
 	AddSequential(new WaitForNoBall());
 	AddSequential(new SetLights(Lights::COLOR::YELLOW));
-	AddSequential(new WaitCommand(1));
+	AddSequential(new WaitCommand(.25));
 	AddSequential(new SetIntake(Shooter::kIntakeOff));
 	AddSequential(new SetHoodPosition(Shooter::kNear));
 	AddSequential(new SetShooterSpeed(0));
