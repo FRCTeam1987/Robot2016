@@ -15,9 +15,13 @@ private:
 	float m_lastAngle;
 	float m_angleSetpoint;
 	float m_turnSpeed;
+	float m_degreesPerSecond;
+//	auto m_microseconds;
+//	auto m_lastMicroseconds;
 	bool m_reset;
 	bool m_azimuth;
 	bool m_clockWise;
+	bool m_isSlow;
 	bool isMoving(float angleChange);
 
 public:

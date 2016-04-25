@@ -13,6 +13,10 @@ AutoTurnSmallAngle::AutoTurnSmallAngle(float angleSetpoint, bool reset, bool use
 	m_currentAngle = 0;
 	m_lastAngle = 0;
 	m_clockWise = true;
+//	m_microseconds = 0;
+//	m_lastMicroseconds = 0;
+	m_degreesPerSecond = 0;
+	m_isSlow = false;
 }
 
 void AutoTurnSmallAngle::Initialize()
@@ -20,7 +24,9 @@ void AutoTurnSmallAngle::Initialize()
 	m_turnSpeed = MIN_TURN_SPEED;
 	m_currentAngle = 0;
 	m_lastAngle = 0;
-
+//	m_microseconds = std::chrono::high_resolution_clock::now();
+	m_degreesPerSecond = 0;
+	m_isSlow = false;
 
 	if(m_angleSetpoint < 1005 && m_angleSetpoint > 1000)
 	{
@@ -64,7 +70,7 @@ void AutoTurnSmallAngle::Initialize()
 		m_clockWise = false;
 		if(m_azimuth == true)
 		{
-			m_angleSetpoint -= 0; // -.5 for close
+			m_angleSetpoint -= 0.5; // -.5 for close
 			printf("Adding in counterclockwise offset\n");
 		}
 
@@ -79,9 +85,11 @@ void AutoTurnSmallAngle::Execute()
 {
 	m_currentAngle = driveTrain->GetHeadingChange();
 
+//	m_microseconds = std::chrono::high_resolution_clock::now();
+
 	bool m_isMoving = isMoving(fabs(m_currentAngle - m_lastAngle));
 
-	if( m_isMoving == false)
+	if(m_isMoving == false) //&& m_isSlow == false)
 	{
 		if(m_clockWise == false)
 		{
@@ -92,12 +100,39 @@ void AutoTurnSmallAngle::Execute()
 			m_turnSpeed -= TURN_SPEED_INCREMENT;
 		}
 	}
+	else if(m_isMoving == true && m_angleSetpoint > 2)
+	{
+		if(m_clockWise == true)
+		{
+			if(m_angleSetpoint - (m_angleTolerance + 2) < m_currentAngle && m_currentAngle < 358)
+			{
+//				m_isSlow = true;
+				if(m_turnSpeed < 0)
+					m_turnSpeed += 0.1;
+				printf("Reducing speed\n");
+			}
+		}
+		else
+		{
+			if(m_currentAngle < (m_angleSetpoint + m_angleTolerance + 2) && m_currentAngle > 2)
+			{
+//				m_isSlow = true;
+				if(m_turnSpeed > 0)
+					m_turnSpeed -= 0.1;
+				printf("Reducing speed\n");
+			}
+		}
+	}
 
 	driveTrain->AutoDrive(0, m_turnSpeed);
 
-	printf("Setpoint = %f\t Angle = %f\t Last Angle = %f\t Clockwise = %s\t Turn Speed %f\n", m_angleSetpoint, m_currentAngle, m_lastAngle, (m_clockWise ? "True" : "False"), m_turnSpeed);
+	m_degreesPerSecond = (m_currentAngle - m_lastAngle)/(0.02);
+
+	printf("Setpoint = %f\t Angle = %f\t Last Angle = %f\t Clockwise = %s\t Turn Speed %f\t Degrees/Second %f\n", m_angleSetpoint, m_currentAngle, m_lastAngle, (m_clockWise ? "True" : "False"), m_turnSpeed, m_degreesPerSecond);
 
 	m_lastAngle = m_currentAngle;
+
+//	m_lastMicroseconds = m_microseconds;
 }
 
 bool AutoTurnSmallAngle::IsFinished()
