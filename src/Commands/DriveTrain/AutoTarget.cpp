@@ -109,12 +109,12 @@ double AutoTarget::DegreesToRadians(double degrees)
 	return degrees * PI / 180;
 }
 
-bool AutoTarget::IsBlobTargetRatio(double tWidth, double tHeight, double tolerance) {
+bool AutoTarget::IsBlobTargetRatio(double tWidth, double tHeight, double maxRatio, double minRatio) {
 	double knownTargetRatio = GOAL_WIDTH_INCHES / GOAL_HEIGHT_INCHES;
 	double blobRatio = tWidth / tHeight;
 	printf("knownRatio:%.2f   blobRatio:%.2f\n", knownTargetRatio, blobRatio);
-	printf("IsBlobTargetRatio: %s\n", (blobRatio < knownTargetRatio + tolerance &&
-			blobRatio > knownTargetRatio - tolerance) ? "true": "false");
-	return blobRatio < knownTargetRatio + tolerance &&
-			blobRatio > knownTargetRatio - tolerance;
+	printf("IsBlobTargetRatio: %s\n", (blobRatio < maxRatio &&
+			blobRatio > minRatio) ? "true": "false");
+	return blobRatio < maxRatio &&
+			blobRatio > minRatio;
 }
