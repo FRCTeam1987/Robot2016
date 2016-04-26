@@ -7,7 +7,7 @@ ReadjustBall::ReadjustBall()
 {
 //	Requires(CommandBase::shooter);
 	//Command* command1 = new WaitForNoBall();
-	AddSequential(command1);
+//	AddSequential(command1);
 
 	printf("Yo, we're constructing our ReadjustBall\n");
 
@@ -25,7 +25,7 @@ void ReadjustBall::Initialize()
 	if(CommandBase::shooter->HasBall())
 	{
 		std::cout << "We have the ball! Let's readjust" << std::endl;
-		command1 = new WaitForBall();
+//		command1 = new WaitForBall();
 		//m_commands.push_back(CommandGroupEntry(new SetIntake(Shooter::kIntakeReverse), CommandGroupEntry::kSequence_InSequence) );
 //		AddSequential(new SetIntake(Shooter::kIntakeReverse));
 //		AddSequential(new WaitForNoBall());

@@ -19,7 +19,7 @@ void PrintStuff::Initialize()
 	std::vector<double> xs = table->GetNumberArray("centerX", llvm::ArrayRef<double>());
 	std::vector<double> ys = table->GetNumberArray("centerY", llvm::ArrayRef<double>());
 	std::vector<double> areas = table->GetNumberArray("area", llvm::ArrayRef<double>());
-	for(int i=0; i<xs.size(); i++) {
+	for(unsigned int i=0; i<xs.size(); i++) {
 		printf("X: %f, Y: %f, Area: %f\n", xs[i], ys[i], areas[i]);
 		SmartDashboard::PutNumber("GRIP-X", xs[i]);
 		SmartDashboard::PutNumber("GRIP-Y", ys[i]);

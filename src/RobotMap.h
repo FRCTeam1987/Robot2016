@@ -63,16 +63,9 @@ const int BOTTOM_CYLINDER_EXTENDED_SENSOR = 8;
 //Xbox
 enum LayoutType
 {
-	kGTADrive = 0,
 	kSpencerDrive = 1,
 	kLucasDrive = 2,
-	kOliviaDrive = 3,
-	kConnieDrive = 4,
-	kKenzieDrive = 5,
-	kSierraDrive = 6,
-	kLeviDrive = 7,
-	kIanDrive = 8,
-	kTreyDrive = 9
+	kOliviaDrive = 3
 };
 
 const LayoutType BUTTON_LAYOUT = kSpencerDrive;

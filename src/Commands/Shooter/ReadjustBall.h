@@ -15,7 +15,7 @@ public:
 	void Interrupted();
 
 private:
-	Command* command1;
+//	Command* command1;
 };
 
 #endif

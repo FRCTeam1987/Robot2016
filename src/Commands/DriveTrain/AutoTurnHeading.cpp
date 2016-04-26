@@ -6,6 +6,7 @@ AutoTurnHeading::AutoTurnHeading(float speed)
 	m_headingChange = 0;
 	m_actualTolerance = 1.0;
 	m_speed = speed;
+	m_headingSetpoint = 0;
 }
 
 // Called just before this Command runs the first time

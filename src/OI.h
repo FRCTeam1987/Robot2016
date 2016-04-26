@@ -53,6 +53,7 @@ private:
 	JoystickButton *codriver_flashlight;
 	JoystickButton *shootFarCoXbox;
 	JoystickButton *intakeCollect;
+	JoystickButton *hoodFarXboxCo;
 
 
 
