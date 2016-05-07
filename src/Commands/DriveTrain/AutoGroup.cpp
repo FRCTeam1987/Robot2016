@@ -42,15 +42,6 @@ AutoGroup::AutoGroup()
 //	AddSequential(new AutoLowBar());
 //	AddSequential(new SetCoast());
 
-//Auto ChevalDeFrise (Pos 2)
-//	AddSequential(new AutoChevalDeFrise());
-//	AddSequential(new DriveSmoothForDistance(75, -0.5, false));
-////	AddSequential(new AutoTurn(32, true, 0.2, .44));
-//	AddSequential(new AutoTurnSmallAngle(32, true));
-//	AddSequential(new AutoTargetAndTurn());
-//	AddSequential(new ShootFar());
-//	AddSequential(new SetCoast());
-
 //Pos 2
 //	AddSequential(new DriveSmoothForDistance(24, -0.5, false));
 ////	AddSequential(new AutoTurn (28, true, 0.5, .51)); //Lucas says try 1.0
@@ -111,7 +102,7 @@ AutoGroup::AutoGroup()
 //	AddSequential(new DriveStraightForDistance(3, -0.5, false));
 //	AddSequential(new WaitCommand(.75));
 //	AddSequential(new AutoTargetAndTurn());
-//	AddSequential(new ShootClose());
+	AddSequential(new ShootClose());
 //	AddSequential(new SetCoast());
 
 //Pos 3
@@ -193,14 +184,14 @@ AutoGroup::AutoGroup()
 //	AddSequential(new SetCoast());
 
 //Pos 4 (cheval)
-	AddSequential(new AutoChevalDeFrise());
-	AddSequential(new DriveStraightForDistance(4.5, -0.5, false));
-//	AddSequential(new AutoTurn(357, true, .50, .47, .0025));
-	AddSequential(new AutoTurnSmallAngle(357, true));
-	AddSequential(new WaitCommand(.55));
-	AddSequential(new AutoTargetAndTurn());
-	AddSequential(new ShootFar());
-	AddSequential(new SetCoast());
+//	AddSequential(new AutoChevalDeFrise());
+//	AddSequential(new DriveStraightForDistance(4.5, -0.5, false));
+////	AddSequential(new AutoTurn(357, true, .50, .47, .0025));
+//	AddSequential(new AutoTurnSmallAngle(357, true));
+//	AddSequential(new WaitCommand(.55));
+//	AddSequential(new AutoTargetAndTurn());
+//	AddSequential(new ShootFar());
+//	AddSequential(new SetCoast());
 
 //Pos 4 Ramparts
 //	AddSequential(new AutoRockWall(0.75, 5.0, 2.0));

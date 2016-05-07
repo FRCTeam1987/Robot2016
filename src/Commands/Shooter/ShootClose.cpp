@@ -9,7 +9,7 @@
 ShootClose::ShootClose()
 {
 	AddSequential(new SetHoodPosition(Shooter::kMiddle));
-	AddSequential(new SetShooterSpeed(3800));
+	AddSequential(new SetShooterSpeed(2500));
 	AddSequential(new SetIntake(Shooter::kIntakeForward));
 	AddSequential(new WaitForNoBall());
 	AddSequential(new SetLights(Lights::COLOR::YELLOW));

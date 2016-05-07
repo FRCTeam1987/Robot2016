@@ -42,7 +42,7 @@ void AutoTarget::Initialize()
 		double tempWidth = widths[i];
 		double tempHeight = heights[i];
 		const int MIN_Y = 0; //Change to ignore top of frame
-		if(IsBlobTargetRatio(tempWidth, tempHeight) && widths[largestWidthIndex] < tempWidth)
+		if(/*IsBlobTargetRatio(tempWidth, tempHeight) &&*/ widths[largestWidthIndex] < tempWidth)
 //		if(widths[largestWidthIndex] < tempWidth && tempY > MIN_Y)//Determine condition to find the correct target
 		{
 			largestWidthIndex = i;

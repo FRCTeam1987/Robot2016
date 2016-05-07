@@ -22,7 +22,7 @@ Shooter::Shooter() : Subsystem("ExampleSubsystem")
 	flashLight = new AnalogOutput(0);//FLASH_LIGHT);
 	flashlightOn = false;
 	//Do not delete the line below
-	//wheelMotor->SetPID(0.02, 0.0001, 0.0, 0.0425);
+	wheelMotor->SetPID(0.02, 0.0001, 0.0, 0.0425);
 
 	shootHasTimedOut = false;
 
@@ -59,6 +59,9 @@ void Shooter::SetWheel(float rpm)
 	RPMCopy=rpm;
 	wheelMotor->SetControlMode(CANTalon::kSpeed);
 	wheelMotor->Set(rpm);
+	printf("RPM Input = %f\n", rpm);
+//	wheelMotor->SetControlMode(CANTalon::kPercentVbus);
+//	wheelMotor->Set(1);
 }
 
 void Shooter::SetWheelRaw(float speed)
@@ -123,4 +126,9 @@ void Shooter::SetFlashLight(bool isOn)
 {
 	flashlightOn = isOn;
 	flashLight->SetVoltage(isOn ? 5 : 0);
+}
+
+void Shooter::PrintStuff()
+{
+	printf("Setpoint = %f\t Error = %d\t Output Voltage = %f\n", wheelMotor->GetSetpoint(), wheelMotor->GetClosedLoopError(), wheelMotor->GetOutputVoltage());
 }

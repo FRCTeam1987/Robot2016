@@ -39,6 +39,7 @@ public:
 	bool getHasTimedOut();
 	void ToggleFlashlight();
 	void SetFlashLight(bool isOn);
+	void PrintStuff();
 };
 
 #endif

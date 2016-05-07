@@ -60,7 +60,8 @@ bool SetShooterSpeed::IsFinished()
 
 	m_rpmAverage += shooter->GetRPM() / m_sampleSize;
 
-	printf("m_rpmAverage - %f\n", m_rpmAverage);
+	printf("m_rpmAverage - %f\t ", m_rpmAverage);
+	shooter->PrintStuff();
 
 	return (m_rpm - RPM_TOLERANCE < m_rpmAverage && m_rpmAverage < m_rpm + RPM_TOLERANCE) || IsTimedOut();
 }

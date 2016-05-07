@@ -216,6 +216,8 @@ OI::OI()
 	SmartDashboard::PutData("Collector - Start Roller at 0.5", new SetCollectorSpeed(0.5));
 	SmartDashboard::PutData("Collector - Stop Roller", new SetCollectorSpeed(0.0));
 
+	SmartDashboard::PutData("Shooter - Shoot - Testing", new SetShooterSpeed(5500));
+
 /* ****************************** COMMAND OBJECTS ****************************** */
 	/* ******************** Collector ******************** */
 //	checkArmPosition = new CheckArmPosition();
