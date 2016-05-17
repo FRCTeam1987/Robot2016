@@ -38,6 +38,7 @@
 #include "Commands/Shooter/ToggleFlashlight.h"
 #include "Commands/Shooter/ReverseShooterAndIntake.h"
 #include "Commands/Shooter/AutoShootFar.h"
+#include "Commands/Collector/SetRumble.h"
 
 #include "Commands/Collector/SetArmPosition.h"
 #include "Commands/Collector/CheckArmPosition.h"
@@ -141,6 +142,7 @@ OI::OI()
 	SmartDashboard::PutData("Shooter - Shoot Near", new ShootClose());
 	SmartDashboard::PutData("Shooter - Set Near Hood", new SetHoodPosition(Shooter::kMiddle));
 	SmartDashboard::PutData("Shooter - Reverse intake", new SetIntake(Shooter::IntakeMode::kIntakeReverse));
+	SmartDashboard::PutData("Shooter - Rumble Controller", new SetRumble());
 
 	SmartDashboard::PutData("DriveTrain - Drive Straight 60 in", new DriveStraightForDistance(60, -0.6));
 	SmartDashboard::PutData("DriveTrain - Drive Straight 120 in", new DriveStraightForDistance(120, -0.6));
@@ -312,3 +314,9 @@ Joystick* OI::getXbox()
 {
 	return xbox;
 }
+
+BroncoXbox* OI::getBroncoXbox()
+{
+	return xbox;
+}
+

@@ -101,6 +101,16 @@ bool BroncoXbox::GetRightJoyButton(){
 	return GetRawButton(10);
 }
 
+void BroncoXbox::StartRumble(){
+	SetRumble(RumbleType::kLeftRumble,1);
+	SetRumble(RumbleType::kRightRumble,1);
+}
+
+void BroncoXbox::StopRumble(){
+	SetRumble(RumbleType::kLeftRumble,0);
+	SetRumble(RumbleType::kRightRumble,0);
+}
+
 float BroncoXbox::GetAxis(const Axis ax) const {
 	switch(ax)
 	{

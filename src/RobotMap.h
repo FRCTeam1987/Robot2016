@@ -43,7 +43,7 @@ const int BOTTOM_CYLINDER = 5;
 
 const int HAS_BALL_SENSOR = 6;
 
-const int RPM_TOLERANCE = 50;
+const int RPM_TOLERANCE = 75;
 
 const int FLASH_LIGHT = 0;
 

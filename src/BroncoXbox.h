@@ -57,6 +57,8 @@ public:
 	float GetLeftJoyY() const;
 	float GetRightJoyX() const;
 	float GetRightJoyY() const;
+	void StartRumble();
+	void StopRumble();
 
 private:
 	Axis X_AXIS;

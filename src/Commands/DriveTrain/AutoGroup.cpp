@@ -102,7 +102,7 @@ AutoGroup::AutoGroup()
 //	AddSequential(new DriveStraightForDistance(3, -0.5, false));
 //	AddSequential(new WaitCommand(.75));
 //	AddSequential(new AutoTargetAndTurn());
-	AddSequential(new ShootClose());
+//	AddSequential(new ShootClose());
 //	AddSequential(new SetCoast());
 
 //Pos 3
@@ -241,15 +241,15 @@ AutoGroup::AutoGroup()
 //	AddSequential(new SetCoast());
 
 //Pos 5 Ramparts
-//	AddSequential(new AutoRockWall(0.75, 5.0, 2.0));
-//	AddSequential(new DriveSmoothForDistance(6, -0.5, false));
-//	AddSequential(new AutoTurnSmallAngle(327, true));
-//	AddSequential(new WaitCommand(.55));
-//	AddSequential(new DriveStraightForDistance(12, -.5, false));
-//	AddSequential(new WaitCommand(.55));
-//	AddSequential(new AutoTargetAndTurn());
-//	AddSequential(new ShootFar());
-//	AddSequential(new SetCoast());
+	AddSequential(new AutoRockWall(0.75, 5.0, 2.0));
+	AddSequential(new DriveSmoothForDistance(6, -0.5, false));
+	AddSequential(new AutoTurnSmallAngle(327, true));
+	AddSequential(new WaitCommand(.55));
+	AddSequential(new DriveStraightForDistance(12, -.5, false));
+	AddSequential(new WaitCommand(.55));
+	AddSequential(new AutoTargetAndTurn());
+	AddSequential(new ShootFar());
+	AddSequential(new SetCoast());
 
 //Pos 5 Moat
 //	AddSequential(new AutoRockWall(0.80, 5.0, 2.0));

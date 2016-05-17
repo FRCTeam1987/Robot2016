@@ -98,6 +98,7 @@ public:
 	Joystick *getStick();
 	Joystick *getXbox();
 	Joystick *getBtnBox();
+	BroncoXbox* getBroncoXbox();
 
 	SendableChooser *lightColorChooser;
 
